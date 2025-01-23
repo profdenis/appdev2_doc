@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4. Hockey Application Version 1 - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4. Hockey Application Version 1";
+        var mkdocs_page_input_path = "2. Android/04-hockey-v1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4. Hockey Application Version 1</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#detailed-explanation-of-composable-functions">Detailed Explanation of Composable Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#playercard">PlayerCard</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#playerlist">PlayerList</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">4. Hockey Application Version 1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="4-hockey-application-version-1">4. Hockey Application Version 1</h1>
+<p>This code defines a structure to represent hockey players and creates user interface components using Jetpack Compose to
+display these players in a list. It includes a data class for players, a function to generate sample players, and two
+main composable functions: one to display an individual player card and another to display a list of these cards.</p>
+<h2 id="detailed-explanation-of-composable-functions">Detailed Explanation of Composable Functions</h2>
+<h3 id="playercard"><code>PlayerCard</code></h3>
+<pre><code class="language-kotlin">@Composable
+fun PlayerCard(player: Player, modifier: Modifier = Modifier) {
+    // ...
+}
+</code></pre>
+<p>This composable function creates a card to display information about an individual player.</p>
+<ul>
+<li>It takes a <code>Player</code> object and an optional <code>Modifier</code> as parameters.</li>
+<li>Uses a <code>Card</code> component to create a card with rounded corners and a border.</li>
+<li>Inside the card, it organizes content in a <code>Column</code> (vertical column).</li>
+<li>The first <code>Row</code> (horizontal line) contains the player's image.</li>
+<li>The second <code>Row</code> displays the player's number and name.</li>
+</ul>
+<p>Components used:</p>
+<ul>
+<li><code>Card</code>: Creates an elevated surface with shadow and content.</li>
+<li><code>Column</code>: Arranges elements vertically.</li>
+<li><code>Row</code>: Arranges elements horizontally.</li>
+<li><code>Image</code>: Displays the player's image.</li>
+<li><code>Text</code>: Displays text (player's number and name).</li>
+<li><code>Spacer</code>: Creates space between elements.</li>
+</ul>
+<p>Modifiers used:</p>
+<ul>
+<li><code>fillMaxWidth()</code>: Fills all available width.</li>
+<li><code>padding()</code>: Adds space around elements.</li>
+<li><code>background()</code>: Sets the background color.</li>
+<li><code>width()</code>: Sets a specific width.</li>
+</ul>
+<h3 id="playerlist"><code>PlayerList</code></h3>
+<pre><code class="language-kotlin">@Composable
+fun PlayerList(modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier) {
+        items(getSamplePlayers()) {
+            PlayerCard(player = it)
+        }
+    }
+}
+</code></pre>
+<p>This composable function creates a scrollable list of player cards.</p>
+<ul>
+<li>It uses <code>LazyColumn</code>, which is optimized for displaying long lists of items.</li>
+<li>The <code>items()</code> function is used to dynamically generate list items from the player list returned by
+  <code>getSamplePlayers()</code>.</li>
+<li>For each player in the list, it creates a <code>PlayerCard</code>.</li>
+</ul>
+<p>Main component:</p>
+<ul>
+<li><code>LazyColumn</code>: A vertical scrolling container that only loads and displays items visible on screen, making it efficient
+  for long lists.</li>
+</ul>
+<p>These two composable functions work together to create an interactive and efficient user interface for displaying a list
+of hockey players. <code>PlayerCard</code> handles the display of individual player details, while <code>PlayerList</code> organizes these
+cards in a scrollable list.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../03-premi%C3%A8re-app/" class="btn btn-neutral float-left" title="3. First Application with Jetpack Compose"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../05-etats-evenements/" class="btn btn-neutral float-right" title="5. State and Event Management">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../03-premi%C3%A8re-app/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../05-etats-evenements/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

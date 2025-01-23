@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>5. State and Event Management - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5. State and Event Management";
+        var mkdocs_page_input_path = "2. Android/05-etats-evenements.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5. State and Event Management</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#example-inputexamples">Example: InputExamples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#textlengthcounter-function">TextLengthCounter Function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-declaration">Function Declaration:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#state-management">State Management:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-structure">Interface Structure:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#input-field">Input Field:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#spacing">Spacing:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calculate-button">Calculate Button:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#length-display">Length Display:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#state-management-with-remember-and-mutablestateof">State Management with remember and mutableStateOf</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#role-of-remember">Role of remember</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-of-mutablestateof">Function of mutableStateOf</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delegation-with-by">Delegation with by</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lambdas-and-state-updates">Lambdas and State Updates</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#in-textfield">In TextField</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#in-button">In Button</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reactivity-and-data-flow">Reactivity and Data Flow</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fruitselector-function">FruitSelector Function</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#function-declaration_1">Function Declaration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#state-initialization">State Initialization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-structure_1">Interface Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#selector-text-field">Selector Text Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dropdown-menu">Dropdown Menu</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#selection-display">Selection Display</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#overall-operation">Overall Operation</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">5. State and Event Management</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="5-state-and-event-management">5. State and Event Management</h1>
+<h2 id="example-inputexamples">Example: InputExamples</h2>
+<p>Example on <a href="https://github.com/profdenis/ExemplesEntrees">GitHub</a></p>
+<h3 id="textlengthcounter-function"><code>TextLengthCounter</code> Function</h3>
+<p>The <code>TextLengthCounter</code> function is a Jetpack Compose composable that creates a user interface allowing users to enter text and display its length in characters. It uses states to manage the entered text and its length, and dynamically updates the display.</p>
+<p>Here's a detailed description of the function:</p>
+<h3 id="function-declaration">Function Declaration:</h3>
+<pre><code class="language-kotlin">@Composable
+fun TextLengthCounter(modifier: Modifier = Modifier)
+</code></pre>
+<ul>
+<li>It's a composable function that can receive a <code>Modifier</code> as a parameter.</li>
+</ul>
+<h3 id="state-management">State Management:</h3>
+<pre><code class="language-kotlin">var text by remember { mutableStateOf(&quot;&quot;) }
+var length by remember { mutableIntStateOf(0) }
+</code></pre>
+<ul>
+<li>Two state variables are created: <code>text</code> to store the entered text and <code>length</code> for the text length.</li>
+<li><code>remember</code> is used to preserve these states between recompositions.</li>
+</ul>
+<h3 id="interface-structure">Interface Structure:</h3>
+<pre><code class="language-kotlin">Column(
+    modifier = Modifier
+        .padding(16.dp)
+        .fillMaxWidth(),
+    horizontalAlignment = Alignment.CenterHorizontally
+) {
+    // Column content
+}
+</code></pre>
+<ul>
+<li>A <code>Column</code> is used to organize interface elements vertically.</li>
+<li>A padding of 16dp is applied, and the column occupies all available width.</li>
+<li>Elements are horizontally centered.</li>
+</ul>
+<h3 id="input-field">Input Field:</h3>
+<pre><code class="language-kotlin">TextField(
+    value = text,
+    onValueChange = {
+        text = it
+        length = text.length
+    },
+    label = { Text(&quot;Enter text&quot;) },
+    modifier = Modifier.fillMaxWidth()
+)
+</code></pre>
+<ul>
+<li>A <code>TextField</code> allows users to enter text.</li>
+<li>The field value is bound to the <code>text</code> state.</li>
+<li>With each change, <code>text</code> is updated and <code>length</code> is recalculated.</li>
+</ul>
+<h3 id="spacing">Spacing:</h3>
+<pre><code class="language-kotlin">Spacer(modifier = Modifier.height(16.dp))
+</code></pre>
+<ul>
+<li><code>Spacer</code>s are used to add vertical space between elements.</li>
+</ul>
+<h3 id="calculate-button">Calculate Button:</h3>
+<pre><code class="language-kotlin">Button(
+    onClick = { length = text.length }
+) {
+    Text(&quot;Calculate length&quot;)
+}
+</code></pre>
+<ul>
+<li>A button allows manual recalculation of the text length.</li>
+</ul>
+<h3 id="length-display">Length Display:</h3>
+<pre><code class="language-kotlin">Text(&quot;Text length: $length characters&quot;)
+</code></pre>
+<ul>
+<li>A <code>Text</code> displays the current text length.</li>
+</ul>
+<p>This function illustrates several important Jetpack Compose concepts, including state management, component reactivity, and user interface organization. It shows how to create a simple but functional interactive interface.</p>
+<h2 id="state-management-with-remember-and-mutablestateof">State Management with <code>remember</code> and <code>mutableStateOf</code></h2>
+<p>In Jetpack Compose, state is a crucial concept. It represents any data that can change over time and, when changed, can trigger a recomposition of the user interface.</p>
+<pre><code class="language-kotlin">var text by remember { mutableStateOf(&quot;&quot;) }
+var length by remember { mutableIntStateOf(0) }
+</code></pre>
+<h3 id="role-of-remember">Role of <code>remember</code></h3>
+<ul>
+<li><code>remember</code> is a function that allows preserving an object between recompositions.</li>
+<li>Without <code>remember</code>, each recomposition would create a new object, losing the previous state.</li>
+<li><code>remember</code> "memorizes" the initial object and reuses it during subsequent recompositions.</li>
+</ul>
+<h3 id="function-of-mutablestateof">Function of <code>mutableStateOf</code></h3>
+<ul>
+<li><code>mutableStateOf</code> creates a <code>MutableState&lt;T&gt;</code> object that encapsulates a mutable value.</li>
+<li>When this value changes, Compose is notified and can trigger a recomposition if necessary.</li>
+<li><code>mutableIntStateOf</code> is a specialized version for integers, optimized for performance.</li>
+</ul>
+<h3 id="delegation-with-by">Delegation with <code>by</code></h3>
+<ul>
+<li>The <code>by</code> keyword is used for property delegation in Kotlin.</li>
+<li>It allows using <code>text</code> and <code>length</code> directly as if they were normal variables, while benefiting from <code>MutableState</code> reactivity.</li>
+</ul>
+<h2 id="lambdas-and-state-updates">Lambdas and State Updates</h2>
+<p>Lambdas are used to define behaviors in response to events, such as value changes or clicks.</p>
+<h3 id="in-textfield">In TextField</h3>
+<pre><code class="language-kotlin">onValueChange = {
+    text = it
+    length = text.length
+}
+</code></pre>
+<ul>
+<li>This lambda is called each time the <code>TextField</code> content changes.</li>
+<li><code>it</code> represents the new text field value.</li>
+<li>The lambda updates <code>text</code> with the new value and immediately recalculates <code>length</code>.</li>
+<li>These updates trigger a recomposition, updating the user interface.</li>
+</ul>
+<h3 id="in-button">In Button</h3>
+<pre><code class="language-kotlin">onClick = { length = text.length }
+</code></pre>
+<ul>
+<li>This lambda is simpler, called when the button is clicked.</li>
+<li>It recalculates <code>length</code> based on the current value of <code>text</code>.</li>
+<li>While this may seem redundant here (since <code>length</code> is already up to date), it could be useful in more complex scenarios.</li>
+</ul>
+<h3 id="reactivity-and-data-flow">Reactivity and Data Flow</h3>
+<ol>
+<li>When the user types text, <code>onValueChange</code> is called.</li>
+<li><code>text</code> is updated, which notifies Compose of a state change.</li>
+<li><code>length</code> is also immediately updated.</li>
+<li>Compose detects these state changes and triggers a recomposition.</li>
+<li>During recomposition, the <code>TextField</code> displays the new text, and the <code>Text</code> below displays the new length.</li>
+</ol>
+<p>This approach ensures that the user interface always stays synchronized with the application's internal state, providing a reactive and consistent user experience.</p>
+<h2 id="fruitselector-function">FruitSelector Function</h2>
+<p>The <code>FruitSelector</code> function is a Jetpack Compose composable that creates a fruit selector as a dropdown menu. It allows users to choose a fruit from a predefined list and displays the selected fruit.</p>
+<pre><code class="language-kotlin">@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FruitSelector(modifier: Modifier = Modifier) {
+</code></pre>
+<h3 id="function-declaration_1">Function Declaration</h3>
+<pre><code>- `@OptIn(ExperimentalMaterial3Api::class)` indicates the use of experimental Material 3 APIs.
+- It's a composable function that accepts an optional `modifier`.
+</code></pre>
+<pre><code class="language-kotlin">    val fruits = listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Strawberry&quot;, &quot;Kiwi&quot;)
+    var expanded by remember { mutableStateOf(false) }
+    var selectedFruit by rememberSaveable { mutableStateOf(&quot;&quot;) }
+</code></pre>
+<h3 id="state-initialization">State Initialization</h3>
+<ul>
+<li><code>fruits</code> is a static list of fruits.</li>
+<li><code>expanded</code> is a boolean state to control opening/closing the dropdown menu.</li>
+<li><code>selectedFruit</code> is a state to store the selected fruit. <code>rememberSaveable</code> is used to preserve the selection even after a configuration change (like screen rotation).</li>
+</ul>
+<pre><code class="language-kotlin">    Column(modifier = modifier.padding(16.dp)) {
+       ExposedDropdownMenuBox(
+           expanded = expanded,
+           onExpandedChange = { expanded = !expanded }
+       ) {
+</code></pre>
+<h3 id="interface-structure_1">Interface Structure</h3>
+<ul>
+<li>A <code>Column</code> contains all elements with 16dp padding.</li>
+<li><code>ExposedDropdownMenuBox</code> is the main container for the dropdown menu.</li>
+</ul>
+<pre><code class="language-kotlin">            TextField(
+                value = selectedFruit,
+                onValueChange = {},
+                readOnly = true,
+                label = { Text(&quot;Choose a fruit&quot;) },
+                trailingIcon = {
+                    ExposedDropdownMenuDefaults
+                        .TrailingIcon(expanded = expanded)
+                },
+                modifier = Modifier
+                    .menuAnchor()
+                    .fillMaxWidth()
+            )
+</code></pre>
+<h3 id="selector-text-field">Selector Text Field</h3>
+<ul>
+<li>A <code>TextField</code> displays the selected fruit.</li>
+<li>It is read-only (<code>readOnly = true</code>).</li>
+<li>A dropdown icon is added on the right.</li>
+<li><code>.menuAnchor()</code> links this field to the dropdown menu.</li>
+</ul>
+<pre><code class="language-kotlin">            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                fruits.forEach { fruit -&gt;
+                    DropdownMenuItem(
+                        text = { Text(fruit) },
+                        onClick = {
+                            selectedFruit = fruit
+                            expanded = false
+                        }
+                    )
+                }
+            }
+</code></pre>
+<h3 id="dropdown-menu">Dropdown Menu</h3>
+<ul>
+<li><code>ExposedDropdownMenu</code> contains the list of fruits.</li>
+<li>Each fruit is represented by a <code>DropdownMenuItem</code>.</li>
+<li>When clicking a fruit, <code>selectedFruit</code> is updated and the menu closes.</li>
+</ul>
+<pre><code class="language-kotlin">        Spacer(modifier = Modifier.height(16.dp))
+        if (selectedFruit.isNotEmpty()) {
+            Text(&quot;Selected fruit: $selectedFruit&quot;)
+        }
+    }
+}
+</code></pre>
+<h3 id="selection-display">Selection Display</h3>
+<ul>
+<li>A vertical space is added.</li>
+<li>If a fruit is selected, it is displayed below the menu.</li>
+</ul>
+<h3 id="overall-operation">Overall Operation</h3>
+<ul>
+<li>The user sees a text field with the label "Choose a fruit".</li>
+<li>Clicking on the field opens a dropdown menu with the list of fruits.</li>
+<li>Selecting a fruit updates the <code>selectedFruit</code> state and closes the menu.</li>
+<li>The selected fruit is displayed in the text field and below it.</li>
+</ul>
+<p>This function illustrates several advanced Jetpack Compose concepts:</p>
+<ul>
+<li>Using Material 3 components to create an interactive dropdown menu.</li>
+<li>State management with <code>remember</code> and <code>rememberSaveable</code>.</li>
+<li>Creating a dynamic and reactive user interface.</li>
+<li>Using lambdas to handle user interactions.</li>
+<li>Conditional display based on state (<code>if (selectedFruit.isNotEmpty())</code>).</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../04-hockey-v1/" class="btn btn-neutral float-left" title="4. Hockey Application Version 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../06-hockey-v2/" class="btn btn-neutral float-right" title="6. Hockey Application Version 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../04-hockey-v1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../06-hockey-v2/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

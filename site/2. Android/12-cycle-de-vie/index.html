@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>12. Lifecycle and Architecture - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "12. Lifecycle and Architecture";
+        var mkdocs_page_input_path = "2. Android/12-cycle-de-vie.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">12. Lifecycle and Architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#general-android-application-lifecycle">General Android Application Lifecycle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#fundamental-concepts">Fundamental Concepts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#main-activity-states">Main Activity States</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lifecycle-methods">Lifecycle Methods</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jetpack-compose-specificities">Jetpack Compose Specificities</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#declarative-approach">Declarative Approach</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#state-management">State Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#effects-and-lifecycle">Effects and Lifecycle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">12. Lifecycle and Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="12-lifecycle-and-architecture">12. Lifecycle and Architecture</h1>
+<h2 id="general-android-application-lifecycle">General Android Application Lifecycle</h2>
+<h3 id="fundamental-concepts">Fundamental Concepts</h3>
+<p>An Android application consists of different components, each with its own lifecycle, but the main element is the *
+<em>Activity</em>*. An activity represents a screen of the application with which the user can interact.</p>
+<p>The lifecycle of an activity extends from its creation to its destruction, when the system reclaims its resources.
+Understanding this lifecycle is essential for:</p>
+<ul>
+<li>Avoiding crashes during interruptions (phone calls, app switching)</li>
+<li>Optimizing system resource usage</li>
+<li>Preserving application data and state</li>
+<li>Properly handling configuration changes (screen rotation)</li>
+</ul>
+<h3 id="main-activity-states">Main Activity States</h3>
+<p>An activity can be in four main states:</p>
+<ul>
+<li><strong>Active/Resumed</strong>: The activity is in the foreground and interactive</li>
+<li><strong>Paused</strong>: Visible but has lost focus</li>
+<li><strong>Stopped</strong>: Not visible but kept in memory</li>
+<li><strong>Destroyed</strong>: The activity is terminated</li>
+</ul>
+<p>Lifecycle</p>
+<h3 id="lifecycle-methods">Lifecycle Methods</h3>
+<p>The main methods called during state transitions are:</p>
+<ol>
+<li><code>onCreate()</code>: Activity initialization</li>
+<li><code>onStart()</code>: Activity becomes visible</li>
+<li><code>onResume()</code>: Activity becomes interactive</li>
+<li><code>onPause()</code>: Activity loses focus</li>
+<li><code>onStop()</code>: Activity is no longer visible</li>
+<li><code>onDestroy()</code>: Activity is destroyed</li>
+</ol>
+<h2 id="jetpack-compose-specificities">Jetpack Compose Specificities</h2>
+<h3 id="declarative-approach">Declarative Approach</h3>
+<p>Jetpack Compose uses a different approach from the traditional lifecycle. Instead of directly managing state changes
+through callback methods, Compose uses a declarative paradigm.</p>
+<h3 id="state-management">State Management</h3>
+<p>In Compose, the lifecycle is closely tied to state management:</p>
+<ul>
+<li>Composables are either stateless or stateful</li>
+<li>State is managed through <code>State&lt;T&gt;</code> objects and the <code>remember{}</code> function</li>
+<li>Recomposition occurs automatically when state changes</li>
+</ul>
+<h3 id="effects-and-lifecycle">Effects and Lifecycle</h3>
+<p>Compose introduces specific effects to manage lifecycle-related operations:</p>
+<pre><code class="language-kotlin">@Composable
+fun MyComposable() {
+    // Effect executed at each recomposition
+    LaunchedEffect(key1) {
+        // Code to execute
+    }
+
+    // Effect executed only at first composition
+    DisposableEffect(key1) {
+        onDispose {
+            // Resource cleanup
+        }
+    }
+}
+</code></pre>
+<h3 id="best-practices">Best Practices</h3>
+<p>For an efficient Compose application:</p>
+<ul>
+<li>Favor stateless components</li>
+<li>Hoist state to the appropriate level</li>
+<li>Use effects for operations with side effects</li>
+<li>Avoid side effects in composables</li>
+<li>Properly manage recomposition to optimize performance</li>
+</ul>
+<p>By understanding these concepts, you can develop robust Android applications that properly handle their lifecycle,
+whether using the traditional approach or Jetpack Compose.</p>
+<p>Citations:</p>
+<ul>
+<li>https://developer.android.com/codelabs/basic-android-kotlin-compose-activity-lifecycle?hl=fr</li>
+<li>https://appmaster.io/fr/blog/jetpack-compose-un-guide-du-debutant</li>
+<li>https://www.weblineindia.com/fr/blog/android-app-development-lifecycle.html</li>
+<li>https://appmaster.io/fr/blog/kotlin-avec-jetpack-compose-les-meilleures-pratiques</li>
+<li>http://www.iro.umontreal.ca/~dift1155/cours/ift1155/communs/Cours/2P/C02_CycledeVie_2P.pdf</li>
+<li>https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=fr</li>
+<li>https://developer.android.com/codelabs/basic-android-kotlin-training-activity-lifecycle?hl=fr</li>
+<li>https://developer.android.com/develop/ui/compose/state?hl=fr</li>
+<li>https://www.yeeply.com/fr/blog/developpement-applications-mobiles/cycle-de-vie-developpement-logiciels-mobiles/</li>
+<li>https://developer.android.com/guide/components/activities/activity-lifecycle?hl=fr</li>
+<li>https://openclassrooms.com/fr/courses/8150246-developpez-votre-premiere-application-android/8256687-apprehendez-le-cycle-de-vie-d-une-application</li>
+<li>https://www.editions-eni.fr/livre/jetpack-compose-developpez-des-interfaces-accessibles-et-modernes-pour-android-9782409039669/gestion-des-etats-et-des-effets</li>
+<li>https://www.lirmm.fr/~fmichel/ens/android/cours/Android_lifecycle.pdf</li>
+<li>https://mathias-seguy.developpez.com/tutoriels/android/comprendre-cyclevie-activite/</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../11-json/" class="btn btn-neutral float-left" title="11. Reading and Writing JSON Files"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../13-architecture/" class="btn btn-neutral float-right" title="13. Architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../11-json/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../13-architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

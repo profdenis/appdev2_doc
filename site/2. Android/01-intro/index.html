@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>1. Introduction to Mobile and Android Programming - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1. Introduction to Mobile and Android Programming";
+        var mkdocs_page_input_path = "2. Android/01-intro.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">1. Introduction to Mobile and Android Programming</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#mobile-programming-challenges">Mobile Programming Challenges</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#android-vs-other-platforms">Android vs Other Platforms</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#history-of-android-versions">History of Android Versions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#classic-vs-modern-android-applications">Classic vs Modern Android Applications</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#classic-applications-java">Classic Applications (Java)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#modern-applications-kotlin-with-jetpack-compose">Modern Applications (Kotlin with Jetpack Compose)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#android-mobile-application-development-steps">Android Mobile Application Development Steps</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-design-and-planning">1. Design and Planning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-development-environment-setup">2. Development Environment Setup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-development">3. Development</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-testing">4. Testing</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#a-unit-tests">a. Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#b-integration-tests">b. Integration Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#c-manual-tests">c. Manual Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#d-performance-tests">d. Performance Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-debugging-and-optimization">5. Debugging and Optimization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-deployment-preparation">6. Deployment Preparation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-google-play-store-deployment">7. Google Play Store Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-post-launch-monitoring-and-maintenance">8. Post-launch Monitoring and Maintenance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9-updates-and-iterations">9. Updates and Iterations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10-continuous-marketing-and-promotion">10. Continuous Marketing and Promotion</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">1. Introduction to Mobile and Android Programming</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="1-introduction-to-mobile-and-android-programming">1. Introduction to Mobile and Android Programming</h1>
+<p>Mobile programming represents an exciting and constantly evolving field in software development. It offers developers
+the opportunity to create applications that accompany users everywhere, transforming how we interact with technology in
+our daily lives.</p>
+<h2 id="mobile-programming-challenges">Mobile Programming Challenges</h2>
+<p>Mobile application development presents unique challenges compared to traditional platforms:</p>
+<ol>
+<li>
+<p><strong>Limited resources</strong>: Mobile devices typically have less processing power, memory, and battery life than desktop
+   computers.</p>
+</li>
+<li>
+<p><strong>Device diversity</strong>: There is a wide variety of screen sizes, resolutions, and hardware capabilities to consider.</p>
+</li>
+<li>
+<p><strong>Intermittent connectivity</strong>: Mobile applications must often function with unstable or nonexistent Internet
+   connections.</p>
+</li>
+<li>
+<p><strong>Touch interactions</strong>: The user interface must be designed for touch interactions rather than mouse and keyboard.</p>
+</li>
+<li>
+<p><strong>Application lifecycle</strong>: Mobile applications can be interrupted at any time by calls, notifications, or other
+   system events.</p>
+</li>
+</ol>
+<h2 id="android-vs-other-platforms">Android vs Other Platforms</h2>
+<p>Android distinguishes itself in several aspects:</p>
+<ul>
+<li><strong>Open source</strong>: Unlike iOS, Android is an open-source operating system, offering more flexibility to developers.</li>
+<li><strong>Market share</strong>: Android dominates the global smartphone market with over 70% market share.</li>
+<li><strong>Device diversity</strong>: Android runs on a wide variety of devices from different manufacturers, unlike iOS which is
+  limited to Apple devices.</li>
+<li><strong>Publication process</strong>: Publishing applications on the Google Play Store is generally faster and less restrictive
+  than on Apple's App Store.</li>
+</ul>
+<h2 id="history-of-android-versions">History of Android Versions</h2>
+<ul>
+<li>2008: Android 1.0 (API 1)</li>
+<li>2009: Android 2.0 (Eclair, API 5)</li>
+<li>2010: Android 2.2 (Froyo, API 8) and 2.3 (Gingerbread, API 9)</li>
+<li>2011: Android 3.0 (Honeycomb, API 11) and 4.0 (Ice Cream Sandwich, API 14)</li>
+<li>2012: Android 4.1 (Jelly Bean, API 16)</li>
+<li>2013: Android 4.4 (KitKat, API 19)</li>
+<li>2014: Android 5.0 (Lollipop, API 21)</li>
+<li>2015: Android 6.0 (Marshmallow, API 23)</li>
+<li>2016: Android 7.0 (Nougat, API 24)</li>
+<li>2017: Android 8.0 (Oreo, API 26)</li>
+<li>2018: Android 9 (Pie, API 28)</li>
+<li>2019: Android 10 (API 29)</li>
+<li>2020: Android 11 (API 30)</li>
+<li>2021: Android 12 (API 31)</li>
+<li>2022: Android 13 (API 33)</li>
+<li>2023: Android 14 (API 34)</li>
+</ul>
+<p>This list highlights the progression of Android versions and their corresponding APIs. It's important to note that each
+new API version typically brings new features, performance improvements, and changes in how developers interact with the
+Android system.</p>
+<p>API numbers are particularly important for developers as they determine:</p>
+<ol>
+<li>The features available to the application.</li>
+<li>The application's compatibility with different Android devices.</li>
+<li>The minimum and target requirements for publishing on the Google Play Store.</li>
+</ol>
+<p>When developing an Android application, developers must choose a minimum API version (which determines the oldest
+supported devices) and a target API version (typically the most recent to take advantage of the latest features and
+optimizations).</p>
+<p>This constant progression of API versions underscores the importance for Android developers to stay current with the
+latest platform developments and adapt their applications accordingly.</p>
+<h2 id="classic-vs-modern-android-applications">Classic vs Modern Android Applications</h2>
+<h3 id="classic-applications-java">Classic Applications (Java)</h3>
+<ul>
+<li>Use of Java as the main language</li>
+<li>User interface defined in XML</li>
+<li>Use of Activities and Fragments for application structure</li>
+<li>More complex component lifecycle management</li>
+</ul>
+<h3 id="modern-applications-kotlin-with-jetpack-compose">Modern Applications (Kotlin with Jetpack Compose)</h3>
+<ul>
+<li>Use of Kotlin, a more modern and concise language</li>
+<li>User interface defined declaratively with Jetpack Compose</li>
+<li>More flexible and modular application structure</li>
+<li>Simplified component lifecycle management</li>
+<li>Better performance and less boilerplate code</li>
+<li>Native support for asynchronous and reactive programming... The transition from Java to Kotlin and the adoption of
+  Jetpack Compose represent a major evolution in Android development, offering developers more powerful tools and a more
+  enjoyable development experience.</li>
+</ul>
+<p>In conclusion, Android mobile programming offers numerous opportunities and challenges. With the constant evolution of
+the platform and development tools, it is crucial for developers to stay up-to-date and adopt best practices to create
+performant and attractive applications.</p>
+<h2 id="android-mobile-application-development-steps">Android Mobile Application Development Steps</h2>
+<p>Mobile application development is a complex process that involves several steps, from initial design to final
+deployment. Here's a detailed overview of the main steps to develop an Android mobile application, including testing and
+deployment phases:</p>
+<h3 id="1-design-and-planning">1. Design and Planning</h3>
+<ul>
+<li>Define application objectives and features</li>
+<li>Conduct market research and competitive analysis</li>
+<li>Create user interface wireframes and mockups</li>
+<li>Develop a development plan and schedule</li>
+</ul>
+<h3 id="2-development-environment-setup">2. Development Environment Setup</h3>
+<ul>
+<li>Install Android Studio</li>
+<li>Configure Android SDK and necessary tools</li>
+<li>Set up version control system (e.g., Git)</li>
+</ul>
+<h3 id="3-development">3. Development</h3>
+<ul>
+<li>Code the user interface (UI) with Jetpack Compose</li>
+<li>Implement business logic in Kotlin</li>
+<li>Integrate necessary APIs (Google Maps, payment, etc.)</li>
+<li>Manage local data storage (SharedPreferences, Room)</li>
+<li>Implement network connectivity features</li>
+</ul>
+<h3 id="4-testing">4. Testing</h3>
+<h4 id="a-unit-tests">a. Unit Tests</h4>
+<ul>
+<li>Write and execute unit tests for individual components</li>
+<li>Use JUnit and Mockito to test business logic</li>
+</ul>
+<h4 id="b-integration-tests">b. Integration Tests</h4>
+<ul>
+<li>Test interaction between different application modules</li>
+<li>Use Espresso for automated UI testing</li>
+</ul>
+<h4 id="c-manual-tests">c. Manual Tests</h4>
+<ul>
+<li>Perform functional tests on different devices and Android versions</li>
+<li>Test real-world usage scenarios</li>
+</ul>
+<h4 id="d-performance-tests">d. Performance Tests</h4>
+<ul>
+<li>Analyze application performance (CPU usage, memory, battery)</li>
+<li>Use Android Profiler to identify bottlenecks</li>
+</ul>
+<h3 id="5-debugging-and-optimization">5. Debugging and Optimization</h3>
+<ul>
+<li>Fix bugs identified during testing</li>
+<li>Optimize application performance</li>
+<li>Improve user experience based on feedback</li>
+</ul>
+<h3 id="6-deployment-preparation">6. Deployment Preparation</h3>
+<ul>
+<li>Generate a signed APK or App bundle</li>
+<li>Prepare marketing resources (icons, screenshots, descriptions)</li>
+<li>Write privacy policy and terms of use</li>
+</ul>
+<h3 id="7-google-play-store-deployment">7. Google Play Store Deployment</h3>
+<ul>
+<li>Create a Google Play developer account</li>
+<li>Configure the application listing on Google Play console</li>
+<li>Upload APK or App bundle</li>
+<li>Define distribution countries and prices (if applicable)</li>
+<li>Submit application for review</li>
+</ul>
+<h3 id="8-post-launch-monitoring-and-maintenance">8. Post-launch Monitoring and Maintenance</h3>
+<ul>
+<li>Monitor installation and usage statistics</li>
+<li>Collect and analyze user feedback</li>
+<li>Respond to user comments and questions</li>
+<li>Plan and develop regular updates</li>
+</ul>
+<h3 id="9-updates-and-iterations">9. Updates and Iterations</h3>
+<ul>
+<li>Fix bugs reported by users</li>
+<li>Add new features based on feedback</li>
+<li>Adapt application to new Android versions and devices</li>
+</ul>
+<h3 id="10-continuous-marketing-and-promotion">10. Continuous Marketing and Promotion</h3>
+<ul>
+<li>Implement ASO (App Store Optimization) strategies</li>
+<li>Promote the application on social media and other channels</li>
+<li>Analyze performance metrics and adjust marketing strategy</li>
+</ul>
+<p>This process is iterative, and many steps can overlap or be repeated as the application develops and evolves. It is
+crucial to remain flexible and responsive to market changes, user feedback, and technological advances throughout the
+application's lifecycle.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../1.%20Kotlin/02-kotlin-android/" class="btn btn-neutral float-left" title="Kotlin for Android"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../02-intro-compose/" class="btn btn-neutral float-right" title="2. Introduction to Jetpack Compose">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../1.%20Kotlin/02-kotlin-android/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../02-intro-compose/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

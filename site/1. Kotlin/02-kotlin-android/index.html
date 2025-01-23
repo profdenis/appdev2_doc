@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Kotlin for Android - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Kotlin for Android";
+        var mkdocs_page_input_path = "1. Kotlin/02-kotlin-android.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Kotlin for Android</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">1. Kotlin</li>
+      <li class="breadcrumb-item active">Kotlin for Android</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="kotlin-for-android">Kotlin for Android</h1>
+<p><a href="https://kotlinlang.org/docs/android-overview.html">Source</a></p>
+<p>Android mobile development has been <a href="https://developer.android.com/kotlin/first">Kotlin-first</a> since Google I/O in 2019.</p>
+<p>More than 50% of professional Android developers use Kotlin as their primary language, while only 30% use Java as their
+main language. 70% of developers whose primary language is Kotlin say that Kotlin makes them more productive.</p>
+<p>By using Kotlin for Android development, you can benefit from:</p>
+<ul>
+<li><strong>Less code combined with greater readability</strong>. Spend less time writing your code and trying to understand others'
+  code.</li>
+<li><strong>Fewer common errors</strong>. Applications built with Kotlin are 20% less likely to crash based
+  on <a href="https://medium.com/androiddevelopers/fewer-crashes-and-more-stability-with-kotlin-b606c6a6ac04">Google's internal data</a>.</li>
+<li><strong>Kotlin support in Jetpack libraries</strong>. <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is Android's
+  recommended modern toolkit for building native UI in
+  Kotlin. <a href="https://developer.android.com/kotlin/ktx">KTX extensions</a> add Kotlin language features like coroutines,
+  extension functions, lambdas, and named parameters to existing Android libraries.</li>
+<li><strong>Support for multiplatform development</strong>. Kotlin Multiplatform enables development not only for Android but also
+  for <a href="https://kotlinlang.org/lp/multiplatform/">iOS</a>, backend, and web
+  applications. <a href="https://developer.android.com/kotlin/multiplatform">Some Jetpack libraries</a> are already
+  multiplatform. <a href="https://www.jetbrains.com/lp/compose-multiplatform/">Compose Multiplatform</a>, JetBrains' declarative UI
+  framework based on Kotlin and Jetpack Compose, makes it possible to share user interfaces across platforms - iOS,
+  Android, desktop, and web.</li>
+<li><strong>Mature language and environment</strong>. Since its creation in 2011, Kotlin has continuously evolved, not only as a
+  language but as an entire ecosystem with robust tooling. Today, it is seamlessly integrated
+  into <a href="https://developer.android.com/studio">Android Studio</a> and is actively used by many companies to develop Android
+  applications.</li>
+<li><strong>Interoperability with Java</strong>. You can use Kotlin in combination with the Java programming language in your
+  applications without having to migrate all your code to Kotlin.</li>
+<li><strong>Easy to learn</strong>. Kotlin is very easy to learn, especially for Java developers.</li>
+<li><strong>Large community</strong>. Kotlin enjoys strong support and many contributions from the worldwide community. More than 95%
+  of the top thousand Android applications use Kotlin.</li>
+</ul>
+<p>Many startups and Fortune 500 companies have already developed Android applications using Kotlin, see the list
+on <a href="https://developer.android.com/kotlin/stories">Google's Android Developers website</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../01-kotlin/" class="btn btn-neutral float-left" title="The Kotlin Programming Language"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../2.%20Android/01-intro/" class="btn btn-neutral float-right" title="1. Introduction to Mobile and Android Programming">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../01-kotlin/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../2.%20Android/01-intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

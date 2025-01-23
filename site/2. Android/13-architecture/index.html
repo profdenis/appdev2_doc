@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>13. Architecture - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "13. Architecture";
+        var mkdocs_page_input_path = "2. Android/13-architecture.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">13. Architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#layered-architecture">Layered Architecture</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ui-layer-presentation">UI Layer (Presentation)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domain-layer-optional">Domain Layer (Optional)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-layer">Data Layer</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#state-management-with-compose">State Management with Compose</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ui-state">UI State</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#side-effects">Side Effects</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#navigation">Navigation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dependency-injection">Dependency Injection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">13. Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="13-architecture">13. Architecture</h1>
+<h2 id="layered-architecture">Layered Architecture</h2>
+<p>A modern Android application with Jetpack Compose should follow a distinct layered architecture:</p>
+<h3 id="ui-layer-presentation">UI Layer (Presentation)</h3>
+<p>The UI layer is responsible for displaying data and handling user interactions. With Jetpack Compose, it includes:</p>
+<p><strong>Main Components:</strong></p>
+<ul>
+<li>UI Composables</li>
+<li>ViewModels</li>
+<li>UI State</li>
+<li>UI Events</li>
+</ul>
+<pre><code class="language-kotlin">@Composable
+fun MyScreen(
+    viewModel: MyViewModel = viewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    Column {
+        // UI elements
+    }
+}
+</code></pre>
+<h3 id="domain-layer-optional">Domain Layer (Optional)</h3>
+<p>This intermediate layer contains the business logic and bridges UI and Data:</p>
+<ul>
+<li>Use cases</li>
+<li>Domain models</li>
+<li>Business logic</li>
+</ul>
+<pre><code class="language-kotlin">class GetUserUseCase(
+    private val userRepository: UserRepository
+) {
+    suspend operator fun invoke(userId: String): User {
+        return userRepository.getUser(userId)
+    }
+}
+</code></pre>
+<h3 id="data-layer">Data Layer</h3>
+<p>Manages application data:</p>
+<ul>
+<li>Repositories</li>
+<li>Data sources (API, database)</li>
+<li>Data models</li>
+</ul>
+<pre><code class="language-kotlin">class UserRepository(
+    private val api: ApiService,
+    private val database: AppDatabase
+) {
+    suspend fun getUser(id: String): User {
+        return database.userDao().getUser(id)
+            ?: api.fetchUser(id).also { user -&gt;
+                database.userDao().insert(user)
+            }
+    }
+}
+</code></pre>
+<h2 id="state-management-with-compose">State Management with Compose</h2>
+<h3 id="ui-state">UI State</h3>
+<p>UI state is managed through:</p>
+<ul>
+<li>State hoisting</li>
+<li><code>ViewModel</code> with <code>StateFlow</code>/<code>SharedFlow</code></li>
+<li><code>remember</code>/<code>rememberSaveable</code></li>
+</ul>
+<pre><code class="language-kotlin">class MyViewModel : ViewModel() {
+    private val _uiState = MutableStateFlow(MyUiState())
+    val uiState: StateFlow&lt;MyUiState&gt; = _uiState.asStateFlow()
+
+    fun handleEvent(event: MyUiEvent) {
+        // Update state based on events
+    }
+}
+</code></pre>
+<h3 id="side-effects">Side Effects</h3>
+<p>Effects are managed with Compose APIs:</p>
+<pre><code class="language-kotlin">@Composable
+fun MyScreen() {
+    LaunchedEffect(key1) {
+        // One-time setup
+    }
+
+    DisposableEffect(key1) {
+        onDispose {
+            // Cleanup
+        }
+    }
+}
+</code></pre>
+<h2 id="navigation">Navigation</h2>
+<p>Navigation is handled by Navigation Compose:</p>
+<pre><code class="language-kotlin">@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    NavHost(navController, startDestination = &quot;home&quot;) {
+        composable(&quot;home&quot;) { HomeScreen() }
+        composable(&quot;details/{id}&quot;) { backStackEntry -&gt;
+            DetailsScreen(backStackEntry.arguments?.getString(&quot;id&quot;))
+        }
+    }
+}
+</code></pre>
+<h2 id="dependency-injection">Dependency Injection</h2>
+<p>Hilt is recommended for dependency injection:</p>
+<pre><code class="language-kotlin">@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel()
+</code></pre>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li>
+<p><strong>Unidirectional Data Flow (UDF)</strong></p>
+<ul>
+<li>UI events flow up to the ViewModel</li>
+<li>State flows down to UI composables</li>
+</ul>
+</li>
+<li>
+<p><strong>State Hoisting</strong></p>
+<ul>
+<li>Separate state from its manipulation</li>
+<li>Lift state to appropriate level</li>
+</ul>
+</li>
+<li>
+<p><strong>Single Source of Truth</strong></p>
+<ul>
+<li>One source of truth for data</li>
+<li>Use Flow for reactivity</li>
+</ul>
+</li>
+<li>
+<p><strong>Stateless Composables</strong></p>
+<ul>
+<li>Prefer stateless composables when possible</li>
+<li>Separate logic from display</li>
+</ul>
+</li>
+<li>
+<p><strong>Modularization</strong></p>
+<ul>
+<li>Divide application into functional modules</li>
+<li>Use feature modules for better scalability</li>
+</ul>
+</li>
+</ol>
+<p>This architecture enables creating maintainable, testable, and scalable applications with Jetpack Compose.</p>
+<p>Citations:</p>
+<ul>
+<li>https://www.geeksforgeeks.org/android-architecture/</li>
+<li>https://www.simform.com/blog/mobile-application-architecture/</li>
+<li>https://www.intelivita.com/blog/android-architecture-patterns/</li>
+<li>https://developer.android.com/topic/architecture?hl=en</li>
+<li>https://w3r.one/fr/blog/mobile/android/architecture-android/comprendre-architecture-android-vie-ensemble-composants-modeles</li>
+<li>https://www.zucisystems.com/be/blog/limportance-de-larchitecture-mobile-concevoir-des-applications-pour-reussir/</li>
+<li>https://appmaster.io/fr/blog/kotlin-avec-jetpack-compose-les-meilleures-pratiques</li>
+<li>https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=fr</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../12-cycle-de-vie/" class="btn btn-neutral float-left" title="12. Lifecycle and Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../14-navigation/" class="btn btn-neutral float-right" title="14. Navigation in Jetpack Compose">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../12-cycle-de-vie/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../14-navigation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

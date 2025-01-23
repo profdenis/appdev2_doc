@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>15. Intents - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "15. Intents";
+        var mkdocs_page_input_path = "2. Android/15-intentions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">15. Intents</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#general-structure">General Structure</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mainactivity">MainActivity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#startotheractivity">StartOtherActivity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#startotheractivitywithvalue">StartOtherActivityWithValue</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#important-points-to-note">Important Points to Note</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#secondactivity-structure">SecondActivity Structure</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-secondactivity-class">The SecondActivity Class</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-secondscreen-component">The SecondScreen Component</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#important-points-to-note_1">Important Points to Note</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#thirdactivity-structure">ThirdActivity Structure</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-thirdactivity-class">The ThirdActivity Class</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-thirdscreen-component">The ThirdScreen Component</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#important-points-to-note_2">Important Points to Note</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">15. Intents</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="15-intents">15. Intents</h1>
+<p><a href="https://github.com/profdenis/Activites_Multiples">Git Repository</a></p>
+<h2 id="general-structure">General Structure</h2>
+<p>The code defines a main activity (<code>MainActivity</code>) that contains two Composable components to start other activities.</p>
+<h3 id="mainactivity">MainActivity</h3>
+<pre><code class="language-kotlin">class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Column {
+                StartOtherActivity()
+                StartOtherActivityWithValue()
+            }
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>This is the main activity that inherits from <code>ComponentActivity</code></li>
+<li>In <code>onCreate</code>, it defines its content with two Composable components in a <code>Column</code></li>
+</ul>
+<h3 id="startotheractivity">StartOtherActivity</h3>
+<pre><code class="language-kotlin">@Composable
+fun StartOtherActivity() {
+    val context = LocalContext.current
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = &quot;Main Screen&quot;)
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = {
+            val intent = Intent(context, SecondActivity::class.java)
+            context.startActivity(intent)
+        }) {
+            Text(&quot;Go to secondary screen&quot;)
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>This component displays a title and a button</li>
+<li>When the button is clicked, it creates an <code>Intent</code> to start <code>SecondActivity</code></li>
+<li>The <code>Intent</code> is an Android mechanism to start another activity</li>
+</ul>
+<h3 id="startotheractivitywithvalue">StartOtherActivityWithValue</h3>
+<pre><code class="language-kotlin">@Composable
+fun StartOtherActivityWithValue() {
+    val context = LocalContext.current
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = {
+            val intent = Intent(context, ThirdActivity::class.java)
+            intent.putExtra(&quot;buttonValue&quot;, 1)
+            context.startActivity(intent)
+        }) {
+            Text(&quot;Button 1&quot;)
+        }
+        // Similar second button with value 2
+    }
+}
+</code></pre>
+<ul>
+<li>This component displays two buttons</li>
+<li>Each button starts <code>ThirdActivity</code> passing a different value</li>
+<li><code>putExtra</code> allows passing data to the next activity</li>
+</ul>
+<h2 id="important-points-to-note">Important Points to Note</h2>
+<ol>
+<li>The use of <code>LocalContext.current</code> to get the context needed for creating <code>Intent</code></li>
+<li>The difference between a simple activity change and a change with data passing</li>
+<li>Layout organization with <code>Column</code>, <code>Spacer</code>, and modifiers for alignment</li>
+<li>The use of Jetpack Compose components (<code>Button</code>, <code>Text</code>, etc.)</li>
+</ol>
+<p>Let me explain this code that represents a secondary activity in the application.</p>
+<h2 id="secondactivity-structure">SecondActivity Structure</h2>
+<h3 id="the-secondactivity-class">The SecondActivity Class</h3>
+<pre><code class="language-kotlin">class SecondActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            SecondScreen(
+                onNavigateBack = {
+                    finish()
+                }
+            )
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>This class inherits from <code>ComponentActivity</code>, like the main activity</li>
+<li>In <code>onCreate</code>, it defines its content with the <code>SecondScreen</code> component</li>
+<li>The <code>finish()</code> function is passed as a callback to handle returning to the previous screen</li>
+<li><code>finish()</code> is an Android method that ends the current activity and returns to the previous activity</li>
+</ul>
+<h3 id="the-secondscreen-component">The SecondScreen Component</h3>
+<pre><code class="language-kotlin">@Composable
+fun SecondScreen(onNavigateBack: () -&gt; Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = &quot;Secondary Screen&quot;)
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = onNavigateBack) {
+            Text(&quot;Return to main screen&quot;)
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>The component takes an <code>onNavigateBack</code> parameter which is a lambda function with no parameters (<code>() -&gt; Unit</code>)</li>
+<li>The interface is simple with:<ul>
+<li>A "Secondary Screen" title</li>
+<li>A 16dp vertical space</li>
+<li>A button to return to the main screen</li>
+</ul>
+</li>
+<li>The layout uses a <code>Column</code> centered horizontally and vertically</li>
+<li>The <code>fillMaxSize()</code> modifier makes the column occupy all available space</li>
+</ul>
+<h2 id="important-points-to-note_1">Important Points to Note</h2>
+<ol>
+<li>
+<p><strong>Navigation Management</strong></p>
+<ul>
+<li>Back navigation is properly handled with <code>finish()</code></li>
+<li>The callback is passed from activity level to Composable component</li>
+</ul>
+</li>
+<li>
+<p><strong>Code Structure</strong></p>
+<ul>
+<li>Clear separation between activity and user interface</li>
+<li>Use of reusable components</li>
+</ul>
+</li>
+<li>
+<p><strong>Best Practices</strong></p>
+<ul>
+<li>The <code>SecondScreen</code> component is decoupled from the activity</li>
+<li>Navigation is handled via callback rather than direct activity reference</li>
+</ul>
+</li>
+<li>
+<p><strong>User Interface</strong></p>
+<ul>
+<li>Simple and centered layout</li>
+<li>Appropriate use of spacing</li>
+<li>Clear and intuitive interface</li>
+</ul>
+</li>
+</ol>
+<h2 id="thirdactivity-structure">ThirdActivity Structure</h2>
+<h3 id="the-thirdactivity-class">The ThirdActivity Class</h3>
+<pre><code class="language-kotlin">class ThirdActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val buttonValue = intent.getIntExtra(&quot;buttonValue&quot;, 0)
+
+        setContent {
+            ThirdScreen(
+                buttonValue = buttonValue,
+                onNavigateBack = {
+                    finish()
+                }
+            )
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>This activity retrieves a value passed via the <code>Intent</code> with <code>getIntExtra</code></li>
+<li>The second parameter <code>0</code> is the default value if no value is found</li>
+<li>The retrieved value is passed to the <code>ThirdScreen</code> component</li>
+</ul>
+<h3 id="the-thirdscreen-component">The ThirdScreen Component</h3>
+<pre><code class="language-kotlin">@Composable
+fun ThirdScreen(
+    buttonValue: Int,
+    onNavigateBack: () -&gt; Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = &quot;Received value: $buttonValue&quot;)
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = onNavigateBack) {
+            Text(&quot;Back&quot;)
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>The component takes two parameters:<ul>
+<li><code>buttonValue</code>: the value received from the previous activity</li>
+<li><code>onNavigateBack</code>: the callback to return to the previous screen</li>
+</ul>
+</li>
+<li>The interface displays the received value and a back button</li>
+</ul>
+<h2 id="important-points-to-note_2">Important Points to Note</h2>
+<ol>
+<li>
+<p><strong>Data Passing</strong></p>
+<ul>
+<li>Use of <code>getIntExtra</code> to retrieve the passed data</li>
+<li>Corresponds to the <code>putExtra</code> seen in the first file</li>
+<li>Important to specify a default value</li>
+</ul>
+</li>
+<li>
+<p><strong>Communication Cycle</strong></p>
+<ul>
+<li>The main activity sends a value</li>
+<li>The third activity retrieves it</li>
+<li>The value is displayed on screen</li>
+</ul>
+</li>
+<li>
+<p><strong>Architecture</strong></p>
+<ul>
+<li>Clear separation between logic (data retrieval) and display</li>
+<li>The Composable component remains pure and reusable</li>
+</ul>
+</li>
+<li>
+<p><strong>String Template</strong></p>
+<ul>
+<li>Use of <code>$buttonValue</code> to insert the value in the text</li>
+<li>Simple example of string interpolation in Kotlin</li>
+</ul>
+</li>
+</ol>
+<p>This code complements the first two files well by showing how to:</p>
+<ul>
+<li>Receive data from another activity</li>
+<li>Display this data in the interface</li>
+<li>Maintain a clean and modular architecture</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../14-navigation/" class="btn btn-neutral float-left" title="14. Navigation in Jetpack Compose"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../16-intentions-vs-navigation/" class="btn btn-neutral float-right" title="16. Intents vs. Navigation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../14-navigation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../16-intentions-vs-navigation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

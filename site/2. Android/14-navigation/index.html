@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>14. Navigation in Jetpack Compose - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "14. Navigation in Jetpack Compose";
+        var mkdocs_page_input_path = "2. Android/14-navigation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">14. Navigation in Jetpack Compose</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#example-with-buttons-to-navigate-between-composables">Example with Buttons to Navigate Between Composables</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#initial-setup">Initial Setup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-structure">Example Structure</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#route-definition">Route Definition</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#screen-composable-creation">Screen Composable Creation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#navigation-configuration">Navigation Configuration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-in-mainactivity">Integration in MainActivity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#demonstrated-features">Demonstrated Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#important-points">Important Points</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-with-menu-in-application-top-bar">Example with Menu in Application Top Bar</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#application-structure">Application Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#navigation-configuration_1">Navigation Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topbar-with-menu">TopBar with Menu</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#application-screens">Application Screens</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#important-points-to-note">Important Points to Note</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-with-icons-in-bottom-bar">Example with Icons in Bottom Bar</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#application-structure_1">Application Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#navigation-configuration_2">Navigation Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#application-screens_1">Application Screens</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#important-points_1">Important Points</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">14. Navigation in Jetpack Compose</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="14-navigation-in-jetpack-compose">14. Navigation in Jetpack Compose</h1>
+<p><a href="https://github.com/profdenis/NavigationSimple">Git Repository</a></p>
+<h2 id="example-with-buttons-to-navigate-between-composables">Example with Buttons to Navigate Between Composables</h2>
+<h3 id="initial-setup">Initial Setup</h3>
+<p>First, add the dependency in the <code>build.gradle</code> file:</p>
+<pre><code class="language-kotlin">dependencies {
+    implementation(&quot;androidx.navigation:navigation-compose:2.8.3&quot;)
+}
+</code></pre>
+<h3 id="example-structure">Example Structure</h3>
+<p>We will create an application with three screens:</p>
+<ul>
+<li>Home screen</li>
+<li>Profile screen</li>
+<li>Settings screen</li>
+</ul>
+<h4 id="route-definition">Route Definition</h4>
+<pre><code class="language-kotlin">sealed class Screen(val route: String) {
+    object Home : Screen(&quot;home&quot;)
+    object Profile : Screen(&quot;profile&quot;)
+    object Settings : Screen(&quot;settings&quot;)
+}
+</code></pre>
+<h4 id="screen-composable-creation">Screen Composable Creation</h4>
+<pre><code class="language-kotlin">@Composable
+fun HomeScreen(navController: NavController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(&quot;Home Screen&quot;)
+        Button(onClick = { navController.navigate(Screen.Profile.route) }) {
+            Text(&quot;Go to Profile&quot;)
+        }
+        Button(onClick = { navController.navigate(Screen.Settings.route) }) {
+            Text(&quot;Go to Settings&quot;)
+        }
+    }
+}
+
+@Composable
+fun ProfileScreen(navController: NavController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(&quot;Profile Screen&quot;)
+        Button(onClick = { navController.navigate(Screen.Settings.route) }) {
+            Text(&quot;Go to Settings&quot;)
+        }
+        Button(onClick = { navController.popBackStack() }) {
+            Text(&quot;Back&quot;)
+        }
+    }
+}
+
+@Composable
+fun SettingsScreen(navController: NavController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(&quot;Settings Screen&quot;)
+        Button(onClick = { navController.popBackStack() }) {
+            Text(&quot;Back&quot;)
+        }
+        Button(
+            onClick = {
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Home.route) { inclusive = true }
+                }
+            }
+        ) {
+            Text(&quot;Back to Home&quot;)
+        }
+    }
+}
+</code></pre>
+<h4 id="navigation-configuration">Navigation Configuration</h4>
+<pre><code class="language-kotlin">@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Home.route
+    ) {
+        composable(Screen.Home.route) {
+            HomeScreen(navController)
+        }
+        composable(Screen.Profile.route) {
+            ProfileScreen(navController)
+        }
+        composable(Screen.Settings.route) {
+            SettingsScreen(navController)
+        }
+    }
+}
+</code></pre>
+<h4 id="integration-in-mainactivity">Integration in MainActivity</h4>
+<pre><code class="language-kotlin">class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    AppNavigation()
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="demonstrated-features">Demonstrated Features</h3>
+<ol>
+<li><strong>Basic Navigation</strong>: Navigation between screens using <code>navigate()</code></li>
+<li><strong>Back Navigation</strong>: Using <code>popBackStack()</code></li>
+<li><strong>Navigation with Stack Clearing</strong>: Using <code>popUpTo</code> to return to home</li>
+</ol>
+<h3 id="important-points">Important Points</h3>
+<ul>
+<li>The <code>NavController</code> manages the navigation state</li>
+<li>The <code>NavHost</code> defines the navigation graph</li>
+<li>Each screen receives the <code>NavController</code> to manage navigation</li>
+<li><code>popBackStack()</code> allows returning to the previous screen</li>
+<li><code>popUpTo</code> with <code>inclusive = true</code> allows going back to a destination while including it in the removal</li>
+</ul>
+<p>This example shows the basics of navigation in Jetpack Compose while remaining simple and understandable for beginners.</p>
+<p>Citations:
+[1] https://proandroiddev.com/android-jetpack-compose-navigation-1cdfc488b891?gi=d31e0323b815
+https://saurabhjadhavblogs.com/ultimate-guide-to-jetpack-compose-navigation
+https://blog.kotlin-academy.com/mastery-navigation-in-jetpack-compose-db00b0a0ef75?gi=007e50484ede
+https://developer.android.com/develop/ui/compose/navigation
+https://proandroiddev.com/mastering-navigation-in-jetpack-compose-a-guide-to-using-the-inclusive-attribute-b66916a5f15c?gi=401071494588
+https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation
+https://developer.android.com/develop/ui/compose/navigation?hl=fr
+https://www.youtube.com/watch?v=AIC_OFQ1r3k</p>
+<h2 id="example-with-menu-in-application-top-bar">Example with Menu in Application Top Bar</h2>
+<h3 id="application-structure">Application Structure</h3>
+<pre><code class="language-kotlin">sealed class Screen(val route: String, val title: String) {
+    object Home : Screen(&quot;home&quot;, &quot;Home&quot;)
+    object Profile : Screen(&quot;profile&quot;, &quot;Profile&quot;)
+    object Settings : Screen(&quot;settings&quot;, &quot;Settings&quot;)
+}
+</code></pre>
+<h3 id="navigation-configuration_1">Navigation Configuration</h3>
+<pre><code class="language-kotlin">@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    Scaffold(
+        topBar = {
+            TopAppBarWithMenu(navController)
+        }
+    ) { paddingValues -&gt;
+        NavHost(
+            navController = navController,
+            startDestination = Screen.Home.route,
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            composable(Screen.Home.route) {
+                HomeScreen()
+            }
+            composable(Screen.Profile.route) {
+                ProfileScreen()
+            }
+            composable(Screen.Settings.route) {
+                SettingsScreen()
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="topbar-with-menu">TopBar with Menu</h3>
+<pre><code class="language-kotlin">@Composable
+fun TopAppBarWithMenu(navController: NavController) {
+    var showMenu by remember { mutableStateOf(false) }
+
+    TopAppBar(
+        title = { Text(&quot;My Application&quot;) },
+        actions = {
+            IconButton(onClick = { showMenu = !showMenu }) {
+                Icon(Icons.Default.MoreVert, contentDescription = &quot;Menu&quot;)
+            }
+            DropdownMenu(
+                expanded = showMenu,
+                onDismissRequest = { showMenu = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text(Screen.Home.title) },
+                    onClick = {
+                        navController.navigate(Screen.Home.route) {
+                            popUpTo(Screen.Home.route) { inclusive = true }
+                        }
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(Screen.Profile.title) },
+                    onClick = {
+                        navController.navigate(Screen.Profile.route)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(Screen.Settings.title) },
+                    onClick = {
+                        navController.navigate(Screen.Settings.route)
+                        showMenu = false
+                    }
+                )
+            }
+        }
+    )
+}
+</code></pre>
+<h3 id="application-screens">Application Screens</h3>
+<pre><code class="language-kotlin">@Composable
+fun HomeScreen() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(&quot;Home Screen&quot;)
+    }
+}
+
+@Composable
+fun ProfileScreen() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(&quot;Profile Screen&quot;)
+    }
+}
+
+@Composable
+fun SettingsScreen() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(&quot;Settings Screen&quot;)
+    }
+}
+</code></pre>
+<h3 id="important-points-to-note">Important Points to Note</h3>
+<ol>
+<li>
+<p>The menu is managed by a <code>showMenu</code> state that controls the <code>DropdownMenu</code> display</p>
+</li>
+<li>
+<p>Each menu item uses <code>navController.navigate()</code> for navigation</p>
+</li>
+<li>
+<p>For the home screen, we use <code>popUpTo</code> with <code>inclusive = true</code> to avoid accumulating screens in the navigation stack</p>
+</li>
+<li>
+<p>The <code>Scaffold</code> automatically manages the necessary padding to prevent content from being hidden behind the TopBar</p>
+</li>
+<li>
+<p>The screens are simple but can be enriched according to the application's needs</p>
+</li>
+</ol>
+<p>This implementation offers clear and intuitive navigation via a dropdown menu in the application's top bar.</p>
+<p>Citations:
+https://saurabhjadhavblogs.com/ultimate-guide-to-jetpack-compose-navigation
+https://proandroiddev.com/android-jetpack-compose-navigation-1cdfc488b891?gi=d31e0323b815
+https://proandroiddev.com/implement-bottom-bar-navigation-in-jetpack-compose-b530b1cd9ee2?gi=5c1ab6e9d027
+https://proandroiddev.com/mastering-navigation-in-jetpack-compose-a-guide-to-using-the-inclusive-attribute-b66916a5f15c?gi=401071494588
+https://blog.kotlin-academy.com/mastery-navigation-in-jetpack-compose-db00b0a0ef75?gi=007e50484ede
+https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation
+https://www.youtube.com/watch?v=JLICaBEiJS0
+https://developer.android.com/develop/ui/compose/navigation</p>
+<h2 id="example-with-icons-in-bottom-bar">Example with Icons in Bottom Bar</h2>
+<h3 id="application-structure_1">Application Structure</h3>
+<pre><code class="language-kotlin">sealed class Screen(
+    val route: String,
+    val title: String,
+    val icon: ImageVector
+) {
+    object Home : Screen(
+        route = &quot;home&quot;,
+        title = &quot;Home&quot;,
+        icon = Icons.Default.Home
+    )
+    object Profile : Screen(
+        route = &quot;profile&quot;,
+        title = &quot;Profile&quot;,
+        icon = Icons.Default.Person
+    )
+    object Settings : Screen(
+        route = &quot;settings&quot;,
+        title = &quot;Settings&quot;,
+        icon = Icons.Default.Settings
+    )
+
+    companion object {
+        val items = listOf(Home, Profile, Settings)
+    }
+}
+</code></pre>
+<h3 id="navigation-configuration_2">Navigation Configuration</h3>
+<pre><code class="language-kotlin">@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(&quot;My Application&quot;) }
+            )
+        },
+        bottomBar = {
+            NavigationBar {
+                Screen.items.forEach { screen -&gt;
+                    NavigationBarItem(
+                        icon = {
+                            Icon(screen.icon, contentDescription = screen.title)
+                        },
+                        label = { Text(screen.title) },
+                        selected = currentRoute == screen.route,
+                        onClick = {
+                            navController.navigate(screen.route) {
+                                // Avoid stacking destinations
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                // Avoid multiple copies of the same destination
+                                launchSingleTop = true
+                                // Restore state when reselecting
+                                restoreState = true
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    ) { paddingValues -&gt;
+        NavHost(
+            navController = navController,
+            startDestination = Screen.Home.route,
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            composable(Screen.Home.route) {
+                HomeScreen()
+            }
+            composable(Screen.Profile.route) {
+                ProfileScreen()
+            }
+            composable(Screen.Settings.route) {
+                SettingsScreen()
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="application-screens_1">Application Screens</h3>
+<pre><code class="language-kotlin">@Composable
+fun HomeScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            Icons.Default.Home,
+            contentDescription = null,
+            modifier = Modifier.size(48.dp)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            &quot;Home Screen&quot;,
+            style = MaterialTheme.typography.headlineMedium
+        )
+    }
+}
+
+@Composable
+fun ProfileScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            Icons.Default.Person,
+            contentDescription = null,
+            modifier = Modifier.size(48.dp)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            &quot;Profile Screen&quot;,
+            style = MaterialTheme.typography.headlineMedium
+        )
+    }
+}
+
+@Composable
+fun SettingsScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            Icons.Default.Settings,
+            contentDescription = null,
+            modifier = Modifier.size(48.dp)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            &quot;Settings Screen&quot;,
+            style = MaterialTheme.typography.headlineMedium
+        )
+    }
+}
+</code></pre>
+<h3 id="important-points_1">Important Points</h3>
+<ol>
+<li>
+<p>The <code>NavigationBar</code> uses <code>NavigationBarItem</code> for each destination</p>
+</li>
+<li>
+<p>The <code>selected</code> state is managed by comparing the current route with the item's route</p>
+</li>
+<li>
+<p>Navigation includes important options:</p>
+<ul>
+<li><code>launchSingleTop</code> avoids multiple copies</li>
+<li><code>popUpTo</code> with <code>saveState</code> properly manages the navigation stack</li>
+<li><code>restoreState</code> preserves state during reselection</li>
+</ul>
+</li>
+<li>
+<p>Icons and titles are defined in the sealed <code>Screen</code> class</p>
+</li>
+<li>
+<p><code>currentBackStackEntryAsState()</code> allows tracking the current destination</p>
+</li>
+</ol>
+<p>This implementation offers smooth and intuitive navigation with a bottom navigation bar, commonly used in modern mobile
+applications. Users can easily switch between different sections of the application by touching the corresponding icons.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../13-architecture/" class="btn btn-neutral float-left" title="13. Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../15-intentions/" class="btn btn-neutral float-right" title="15. Intents">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../13-architecture/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../15-intentions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

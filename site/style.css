@@ -1,0 +1,11 @@
+.wy-nav-content {
+    max-width: 1000px;
+}
+
+blockquote {
+    background-color: lightgoldenrodyellow;
+    padding: 4px;
+    border-color: darkgoldenrod;
+    border-style: groove;
+    border-width: 1px;
+}

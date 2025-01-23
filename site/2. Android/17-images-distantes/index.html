@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>17. Displaying Remote Images and Videos - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "17. Displaying Remote Images and Videos";
+        var mkdocs_page_input_path = "2. Android/17-images-distantes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">17. Displaying Remote Images and Videos</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#displaying-an-image-from-a-url-in-jetpack-compose">Displaying an Image from a URL in Jetpack Compose</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-composable">Basic Composable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-complete-version-with-loading-management">More Complete Version with Loading Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#important-points">Important Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#complete-usage-example">Complete Usage Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#video-integration-in-jetpack-compose">Video Integration in Jetpack Compose</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#playing-mp4-videos-with-exoplayer">Playing MP4 Videos with ExoPlayer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#complete-version-with-error-and-loading-management">Complete Version with Error and Loading Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#important-points_1">Important Points</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">17. Displaying Remote Images and Videos</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="17-displaying-remote-images-and-videos">17. Displaying Remote Images and Videos</h1>
+<p><a href="https://github.com/profdenis/ImagesVideos">Git Repository</a></p>
+<h2 id="displaying-an-image-from-a-url-in-jetpack-compose">Displaying an Image from a URL in Jetpack Compose</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>To display an image from a URL, we need to:</p>
+<ol>
+<li>Add the Coil dependency in the <code>build.gradle</code> file (app level)</li>
+<li>Add Internet permission in <code>AndroidManifest.xml</code></li>
+</ol>
+<pre><code class="language-gradle">// build.gradle
+dependencies {
+    implementation(&quot;io.coil-kt:coil-compose:2.5.0&quot;)
+}
+</code></pre>
+<pre><code class="language-xml">&lt;!-- AndroidManifest.xml --&gt;
+&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
+</code></pre>
+<h3 id="basic-composable">Basic Composable</h3>
+<p>Here's a simple usage example:</p>
+<pre><code class="language-kotlin">import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+
+@Composable
+fun RemoteImage() {
+    AsyncImage(
+        model = &quot;https://example.com/image.jpg&quot;,
+        contentDescription = &quot;Image description&quot;,
+        modifier = Modifier.size(200.dp)
+    )
+}
+</code></pre>
+<h3 id="more-complete-version-with-loading-management">More Complete Version with Loading Management</h3>
+<pre><code class="language-kotlin">import androidx.compose.foundation.layout.*
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
+import coil.compose.SubcomposeAsyncImage
+
+@Composable
+fun AdvancedRemoteImage() {
+    SubcomposeAsyncImage(
+        model = &quot;https://example.com/image.jpg&quot;,
+        contentDescription = &quot;Image description&quot;,
+        modifier = Modifier.size(200.dp),
+        contentScale = ContentScale.Fit,
+        loading = {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        },
+        error = {
+            // You can customize the error display
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(&quot;Loading error&quot;)
+            }
+        }
+    )
+}
+</code></pre>
+<h3 id="important-points">Important Points</h3>
+<ol>
+<li>
+<p><strong>Coil</strong> is an image loading library for Android, optimized for Kotlin and Jetpack Compose.</p>
+</li>
+<li>
+<p>Two main composables are available:</p>
+<ul>
+<li><code>AsyncImage</code>: simple version for basic cases</li>
+<li><code>SubcomposeAsyncImage</code>: advanced version allowing management of loading states</li>
+</ul>
+</li>
+<li>
+<p>Main parameters:</p>
+<ul>
+<li><code>model</code>: the image URL</li>
+<li><code>contentDescription</code>: description for accessibility</li>
+<li><code>modifier</code>: to customize size and appearance</li>
+<li><code>contentScale</code>: to define how the image should adapt to its container</li>
+</ul>
+</li>
+<li>
+<p>For testing, here are some royalty-free image URLs:</p>
+</li>
+</ol>
+<pre><code class="language-kotlin">&quot;https://picsum.photos/200&quot;  // Random 200x200 image
+&quot;https://via.placeholder.com/200&quot;  // 200x200 placeholder image
+</code></pre>
+<h3 id="complete-usage-example">Complete Usage Example</h3>
+<pre><code class="language-kotlin">@Composable
+fun ExampleImageScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Simple image
+        AsyncImage(
+            model = &quot;https://picsum.photos/200&quot;,
+            contentDescription = &quot;Random image&quot;,
+            modifier = Modifier.size(200.dp)
+        )
+
+        // Image with loading management
+        SubcomposeAsyncImage(
+            model = &quot;https://picsum.photos/300&quot;,
+            contentDescription = &quot;Random image with loading&quot;,
+            modifier = Modifier.size(300.dp),
+            loading = { CircularProgressIndicator() }
+        )
+    }
+}
+</code></pre>
+<h2 id="video-integration-in-jetpack-compose">Video Integration in Jetpack Compose</h2>
+<h3 id="playing-mp4-videos-with-exoplayer">Playing MP4 Videos with ExoPlayer</h3>
+<p>To play MP4 videos, we'll use ExoPlayer, which is recommended by Google for media playback on Android.</p>
+<p>First, add the dependencies in <code>build.gradle</code>:</p>
+<pre><code class="language-gradle">dependencies {
+    implementation(&quot;androidx.media3:media3-exoplayer:1.2.0&quot;)
+    implementation(&quot;androidx.media3:media3-ui:1.2.0&quot;)
+}
+</code></pre>
+<p>Then, create the video composable:</p>
+<pre><code class="language-kotlin">import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.PlayerView
+
+@Composable
+fun VideoPlayer(
+    videoUrl: String,
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+
+    // Creating ExoPlayer
+    val exoPlayer = remember {
+        ExoPlayer.Builder(context).build().apply {
+            setMediaItem(MediaItem.fromUri(videoUrl))
+            prepare()
+        }
+    }
+
+    // Lifecycle management
+    DisposableEffect(Unit) {
+        onDispose {
+            exoPlayer.release()
+        }
+    }
+
+    // Player user interface
+    AndroidView(
+        factory = { context -&gt;
+            PlayerView(context).apply {
+                player = exoPlayer
+            }
+        },
+        modifier = modifier
+    )
+}
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-kotlin">@Composable
+fun VideoPlayerScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        // Example with MP4 video
+        VideoPlayer(
+            videoUrl = &quot;https://example.com/video.mp4&quot;,
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(16f / 9f)
+        )
+    }
+}
+</code></pre>
+<h3 id="complete-version-with-error-and-loading-management">Complete Version with Error and Loading Management</h3>
+<pre><code class="language-kotlin">@Composable
+fun AdvancedVideoPlayer(
+    videoUrl: String,
+    modifier: Modifier = Modifier
+) {
+    var isLoading by remember { mutableStateOf(true) }
+    var hasError by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+
+    val exoPlayer = remember {
+        ExoPlayer.Builder(context).build().apply {
+            addListener(object : Player.Listener {
+                override fun onPlaybackStateChanged(state: Int) {
+                    when (state) {
+                        Player.STATE_READY -&gt; isLoading = false
+                        Player.STATE_ENDED -&gt; { /* Handle end */
+                        }
+                        Player.STATE_BUFFERING -&gt; isLoading = true
+                        Player.STATE_IDLE -&gt; { /* Initial state */
+                        }
+                    }
+                }
+
+                override fun onPlayerError(error: PlaybackException) {
+                    hasError = true
+                    isLoading = false
+                }
+            })
+
+            setMediaItem(MediaItem.fromUri(videoUrl))
+            prepare()
+        }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            exoPlayer.release()
+        }
+    }
+
+    Box(modifier = modifier) {
+        AndroidView(
+            factory = { context -&gt;
+                PlayerView(context).apply {
+                    player = exoPlayer
+                }
+            },
+            modifier = Modifier.matchParentSize()
+        )
+
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center)
+            )
+        }
+
+        if (hasError) {
+            Text(
+                text = &quot;Video playback error&quot;,
+                modifier = Modifier.align(Alignment.Center),
+                color = Color.Red
+            )
+        }
+    }
+}
+</code></pre>
+<h3 id="important-points_1">Important Points</h3>
+<ol>
+<li>
+<p>Add Internet permission in <code>AndroidManifest.xml</code>:
+   <code>xml
+   &lt;uses-permission android:name="android.permission.INTERNET"/&gt;</code></p>
+</li>
+<li>
+<p>For ExoPlayer:</p>
+<ul>
+<li>It's Google's recommended solution</li>
+<li>Supports many video formats</li>
+<li>Handles caching automatically</li>
+<li>Offers advanced playback controls</li>
+</ul>
+</li>
+<li>
+<p>Performance Considerations:</p>
+<ul>
+<li>Videos consume a lot of resources</li>
+<li>Important to properly manage lifecycle</li>
+<li>Plan for cache and bandwidth management</li>
+</ul>
+</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../16-intentions-vs-navigation/" class="btn btn-neutral float-left" title="16. Intents vs. Navigation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../16-intentions-vs-navigation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

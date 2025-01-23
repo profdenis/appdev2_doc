@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2. Introduction to Jetpack Compose - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2. Introduction to Jetpack Compose";
+        var mkdocs_page_input_path = "2. Android/02-intro-compose.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2. Introduction to Jetpack Compose</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#motivations-and-history">Motivations and History</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#motivations">Motivations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#history">History</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#companies-and-organizations-using-kotlin-and-compose">Companies and Organizations Using Kotlin and Compose</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-principles-of-a-compose-application">Basic Principles of a Compose Application</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#application-structure">Application Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#typical-components">Typical Components</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advantages-of-jetpack-compose">Advantages of Jetpack Compose</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-code-simplicity-and-conciseness">1. Code Simplicity and Conciseness</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-faster-development">2. Faster Development</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-declarative-approach">3. Declarative Approach</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-flexibility-and-reusability">4. Flexibility and Reusability</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-improved-performance">5. Improved Performance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-better-interoperability">6. Better Interoperability</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-simplified-testing">7. Simplified Testing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-material-design-consistency">8. Material Design Consistency</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9-multiplatform-support">9. Multiplatform Support</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10-reduced-learning-curve">10. Reduced Learning Curve</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#11-better-animation-management">11. Better Animation Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12-adaptation-to-different-screen-sizes">12. Adaptation to Different Screen Sizes</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">2. Introduction to Jetpack Compose</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2-introduction-to-jetpack-compose">2. Introduction to Jetpack Compose</h1>
+<p>Jetpack Compose is a modern toolkit for developing native user interfaces on Android. Launched by Google, it represents
+a major evolution in how developers create interfaces for Android applications.</p>
+<h2 id="motivations-and-history">Motivations and History</h2>
+<h3 id="motivations">Motivations</h3>
+<ol>
+<li><strong>UI Development Simplification</strong>: Reduce complexity and boilerplate code associated with creating user interfaces.</li>
+<li><strong>Declarative Approach</strong>: Allow developers to describe what they want to display rather than how to build it.</li>
+<li><strong>Improved Performance</strong>: Optimize rendering and user interface updates.</li>
+<li><strong>Alignment with Modern Trends</strong>: Align with modern UI development approaches like React and SwiftUI.</li>
+</ol>
+<h3 id="history">History</h3>
+<ul>
+<li><strong>2019</strong>: Initial announcement of Jetpack Compose at Google I/O.</li>
+<li><strong>2020</strong>: Release of first alpha versions for developers.</li>
+<li><strong>July 2021</strong>: Official launch of stable version 1.0.</li>
+<li>Since then, Compose continues to evolve with regular updates bringing new features and improvements.</li>
+</ul>
+<h2 id="companies-and-organizations-using-kotlin-and-compose">Companies and Organizations Using Kotlin and Compose</h2>
+<ol>
+<li>
+<p><strong>Google</strong>: Uses Kotlin and Compose in many applications like Google Play, Google Home, and Google Drive.</p>
+<ul>
+<li>Reason: Improved developer productivity and alignment with Android recommendations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Netflix</strong>: Has adopted Kotlin for its Android application.</p>
+<ul>
+<li>Reason: Type safety, error reduction, and code expressiveness.</li>
+</ul>
+</li>
+<li>
+<p><strong>Airbnb</strong>: Uses Kotlin in its mobile application.</p>
+<ul>
+<li>Reason: Interoperability with existing Java and improved code quality.</li>
+</ul>
+</li>
+<li>
+<p><strong>Pinterest</strong>: Migrated to Kotlin for its Android development.</p>
+<ul>
+<li>Reason: Concise syntax and modern language features.</li>
+</ul>
+</li>
+<li>
+<p><strong>Uber</strong>: Uses Kotlin in its mobile applications.</p>
+<ul>
+<li>Reason: Improved developer productivity and bug reduction.</li>
+</ul>
+</li>
+<li>
+<p><strong>Trello</strong>: Has adopted Kotlin for its Android application.</p>
+<ul>
+<li>Reason: Language expressiveness and better programming practices.</li>
+</ul>
+</li>
+<li>
+<p><strong>Evernote</strong>: Uses Kotlin in its Android application.</p>
+<ul>
+<li>Reason: Cleaner and more maintainable code.</li>
+</ul>
+</li>
+<li>
+<p><strong>Basecamp</strong>: Migrated its application to Kotlin.</p>
+<ul>
+<li>Reason: Increased security and more pleasant syntax for developers.</li>
+</ul>
+</li>
+<li>
+<p><strong>Corda</strong>: Blockchain platform developed entirely in Kotlin.</p>
+<ul>
+<li>Reason: Language robustness for critical systems.</li>
+</ul>
+</li>
+<li>
+<p><strong>Coursera</strong>: Uses Kotlin for its mobile application.</p>
+<ul>
+<li>Reason: Improved code quality and development speed.</li>
+</ul>
+</li>
+</ol>
+<p>These companies have chosen Kotlin and, for some, Compose, mainly for:</p>
+<ul>
+<li>Increased developer productivity</li>
+<li>Reduction in errors and crashes</li>
+<li>Language modernity and expressiveness</li>
+<li>Compatibility with existing Java ecosystem</li>
+<li>Improved code maintainability</li>
+</ul>
+<p>The growing adoption of Compose, although more recent, is motivated by its ability to simplify and accelerate the
+development of modern and performant user interfaces on Android.</p>
+<h2 id="basic-principles-of-a-compose-application">Basic Principles of a Compose Application</h2>
+<h3 id="application-structure">Application Structure</h3>
+<ol>
+<li><strong>Composables</strong>: Functions annotated with <code>@Composable</code> that describe a part of the user interface.</li>
+<li><strong>State</strong>: Data that can change over time and influences the UI (user interface).</li>
+<li><strong>Recomposition</strong>: Process of updating the UI when state changes.</li>
+</ol>
+<h3 id="typical-components">Typical Components</h3>
+<ol>
+<li><strong>Layout</strong>: <code>Column</code>, <code>Row</code>, <code>Box</code> for structuring the UI.</li>
+<li><strong>UI Elements</strong>: <code>Text</code>, <code>Button</code>, <code>Image</code>, etc., for displaying content.</li>
+<li><strong>Modifiers</strong>: For customizing composable appearance and behavior.</li>
+<li><strong>State Hoisting</strong>: Technique for managing and sharing state between components.</li>
+<li><strong>Navigation</strong>: Management of different screens and application flow.</li>
+<li><strong>Themes</strong>: Consistent customization of application appearance.</li>
+</ol>
+<p>Jetpack Compose offers several significant advantages compared to traditional Android development methods based on XML
+and the view system. Here are the main advantages of Jetpack Compose:</p>
+<h2 id="advantages-of-jetpack-compose">Advantages of Jetpack Compose</h2>
+<h3 id="1-code-simplicity-and-conciseness">1. Code Simplicity and Conciseness</h3>
+<ul>
+<li><strong>Less boilerplate code</strong>: Compose significantly reduces the amount of code needed to create complex user interfaces.</li>
+<li><strong>More readable code</strong>: The declarative nature of Compose makes code easier to read and understand.</li>
+<li><strong>UI code unification</strong>: No more juggling between XML and Java/Kotlin, everything is in a single language (Kotlin).</li>
+</ul>
+<h3 id="2-faster-development">2. Faster Development</h3>
+<ul>
+<li><strong>Real-time preview</strong>: Developers can see UI changes instantly without having to recompile the entire application.</li>
+<li><strong>Faster iterations</strong>: The combination of real-time preview and more concise code enables faster development
+  iterations.</li>
+</ul>
+<h3 id="3-declarative-approach">3. Declarative Approach</h3>
+<ul>
+<li><strong>Final state description</strong>: Developers describe what the UI should be, rather than the steps to get there.</li>
+<li><strong>Simplified state management</strong>: Compose facilitates application state management and its synchronization with the UI.</li>
+</ul>
+<h3 id="4-flexibility-and-reusability">4. Flexibility and Reusability</h3>
+<ul>
+<li><strong>Highly reusable components</strong>: It's easy to create reusable UI components and share them between different parts of
+  the application.</li>
+<li><strong>Easy customization</strong>: Components can be easily customized through modifiers and parameters.</li>
+</ul>
+<h3 id="5-improved-performance">5. Improved Performance</h3>
+<ul>
+<li><strong>Automatic optimizations</strong>: Compose automatically optimizes recompositions to minimize unnecessary UI updates.</li>
+<li><strong>Efficient rendering</strong>: Compose's rendering system is designed to be more efficient than the traditional view system.</li>
+</ul>
+<h3 id="6-better-interoperability">6. Better Interoperability</h3>
+<ul>
+<li><strong>Integration with existing views</strong>: Compose can be gradually integrated into existing applications, allowing for
+  smooth migration.</li>
+<li><strong>Support for existing Android libraries</strong>: Compose works well with existing Android libraries and components.</li>
+</ul>
+<h3 id="7-simplified-testing">7. Simplified Testing</h3>
+<ul>
+<li><strong>Easier unit tests</strong>: Since composables are Kotlin functions, they are easier to unit test.</li>
+<li><strong>Fewer UI tests needed</strong>: The declarative nature of Compose reduces the need for exhaustive UI testing.</li>
+</ul>
+<h3 id="8-material-design-consistency">8. Material Design Consistency</h3>
+<ul>
+<li><strong>Native Material Design implementation</strong>: Compose provides ready-to-use Material Design components, making it easy to
+  create interfaces that comply with Google's guidelines.</li>
+</ul>
+<h3 id="9-multiplatform-support">9. Multiplatform Support</h3>
+<ul>
+<li><strong>Potential for multiplatform development</strong>: Although primarily for Android, Compose has the potential to be used for
+  desktop and web application development (with Compose for Desktop and Compose for Web).</li>
+</ul>
+<h3 id="10-reduced-learning-curve">10. Reduced Learning Curve</h3>
+<ul>
+<li><strong>Unified concepts</strong>: Once basic concepts are mastered, it's easier to create complex interfaces.</li>
+<li><strong>Quality documentation and resources</strong>: Google provides extensive documentation and codelabs to facilitate learning.</li>
+</ul>
+<h3 id="11-better-animation-management">11. Better Animation Management</h3>
+<ul>
+<li><strong>Intuitive animation API</strong>: Compose offers simpler and more powerful animation APIs than traditional methods.</li>
+</ul>
+<h3 id="12-adaptation-to-different-screen-sizes">12. Adaptation to Different Screen Sizes</h3>
+<ul>
+<li><strong>Facilitated responsive design</strong>: Compose simplifies the creation of interfaces that adapt to different screen sizes,
+  a crucial aspect for modern Android applications.</li>
+</ul>
+<p>In conclusion, Jetpack Compose represents a major evolution in Android development, offering a more modern, efficient,
+and enjoyable approach to creating user interfaces. Although there is an initial learning curve, the long-term benefits
+in terms of productivity, maintainability, and code quality are significant.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../01-intro/" class="btn btn-neutral float-left" title="1. Introduction to Mobile and Android Programming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../03-premi%C3%A8re-app/" class="btn btn-neutral float-right" title="3. First Application with Jetpack Compose">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../01-intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../03-premi%C3%A8re-app/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

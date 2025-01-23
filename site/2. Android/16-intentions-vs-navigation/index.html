@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>16. Intents vs. Navigation - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "16. Intents vs. Navigation";
+        var mkdocs_page_input_path = "2. Android/16-intentions-vs-navigation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">16. Intents vs. Navigation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#intent-vs-navigation">Intent vs. Navigation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#navigation-compose">Navigation Compose</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#advantages">Advantages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#disadvantages">Disadvantages</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#intent-navigation">Intent Navigation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#advantages_1">Advantages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#disadvantages_1">Disadvantages</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recommendation">Recommendation</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">16. Intents vs. Navigation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="16-intents-vs-navigation">16. Intents vs. Navigation</h1>
+<h2 id="intent-vs-navigation"><code>Intent</code> vs. <code>Navigation</code></h2>
+<h3 id="navigation-compose">Navigation Compose</h3>
+<h4 id="advantages">Advantages</h4>
+<ul>
+<li><strong>Type safety</strong>: Compile-time checks, reducing potential errors</li>
+<li><strong>Native integration</strong> with Jetpack Compose and modern Android architecture</li>
+<li><strong>More readable and maintainable code</strong>, less repetitive code</li>
+<li><strong>Declarative approach</strong> that simplifies navigation</li>
+</ul>
+<h4 id="disadvantages">Disadvantages</h4>
+<ul>
+<li>Limited to basic data types for navigation arguments</li>
+<li>Requires adding an additional dependency</li>
+</ul>
+<h3 id="intent-navigation">Intent Navigation</h3>
+<h4 id="advantages_1">Advantages</h4>
+<ul>
+<li><strong>Flexibility</strong>: Usable in any Android project</li>
+<li><strong>Familiarity</strong>: Extensive documentation and community support</li>
+<li><strong>Ability to pass Parcelable objects</strong> easily</li>
+<li><strong>Easy integration</strong> with other Android components</li>
+</ul>
+<h4 id="disadvantages_1">Disadvantages</h4>
+<ul>
+<li><strong>No compile-time checking</strong>: Risk of runtime errors</li>
+<li><strong>More verbose</strong>: Requires more code for navigation management</li>
+<li><strong>Manual management</strong> of lifecycle and state</li>
+</ul>
+<h3 id="recommendation">Recommendation</h3>
+<p>For a new application using Jetpack Compose:</p>
+<ul>
+<li>Prefer <strong>Navigation Compose</strong> for internal application navigation</li>
+<li>Use <strong>Intents</strong> only for:<ul>
+<li>Navigation to other applications</li>
+<li>Cases requiring passing complex objects</li>
+<li>Integration with traditional Android components</li>
+</ul>
+</li>
+</ul>
+<p>This hybrid approach allows benefiting from Navigation Compose advantages while maintaining Intent flexibility when
+needed.</p>
+<p>Citations:</p>
+<ul>
+<li>https://stackoverflow.com/questions/65088035/how-to-navigate-from-a-composable-to-an-activity-in-jetpack-compose</li>
+<li>https://guides.peruzal.com/v1/android-guides/navigation/intents/</li>
+<li>https://www.geeksforgeeks.org/start-a-new-activity-using-intent-in-android-using-jetpack-compose/</li>
+<li>https://developer.android.com/develop/ui/compose/navigation</li>
+<li>https://developer.android.com/develop/ui/compose/navigation?hl=fr</li>
+<li>https://betterprogramming.pub/intent-based-compose-navigation-1087634b984a</li>
+<li>https://blog.kotlin-academy.com/mastery-navigation-in-jetpack-compose-db00b0a0ef75?gi=007e50484ede</li>
+<li>https://rommansabbir.com/typesafe-navigation-or-traditional-intent-passing</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../15-intentions/" class="btn btn-neutral float-left" title="15. Intents"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../17-images-distantes/" class="btn btn-neutral float-right" title="17. Displaying Remote Images and Videos">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../15-intentions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../17-images-distantes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
