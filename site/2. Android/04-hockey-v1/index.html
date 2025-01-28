@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">4. Hockey Application Version 1</a>
     <ul class="current">
@@ -122,32 +122,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="4-hockey-application-version-1">4. Hockey Application Version 1</h1>
+                <h1 id="4-hockey-application-version-1">4. Hockey Application Version 1<a class="headerlink" href="#4-hockey-application-version-1" title="Permanent link">&para;</a></h1>
 <p>This code defines a structure to represent hockey players and creates user interface components using Jetpack Compose to
 display these players in a list. It includes a data class for players, a function to generate sample players, and two
 main composable functions: one to display an individual player card and another to display a list of these cards.</p>
-<h2 id="detailed-explanation-of-composable-functions">Detailed Explanation of Composable Functions</h2>
-<h3 id="playercard"><code>PlayerCard</code></h3>
-<pre><code class="language-kotlin">@Composable
-fun PlayerCard(player: Player, modifier: Modifier = Modifier) {
-    // ...
-}
-</code></pre>
+<h2 id="detailed-explanation-of-composable-functions">Detailed Explanation of Composable Functions<a class="headerlink" href="#detailed-explanation-of-composable-functions" title="Permanent link">&para;</a></h2>
+<h3 id="playercard"><code>PlayerCard</code><a class="headerlink" href="#playercard" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PlayerCard</span><span class="p">(</span><span class="n">player</span><span class="p">:</span><span class="w"> </span><span class="n">Player</span><span class="p">,</span><span class="w"> </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>This composable function creates a card to display information about an individual player.</p>
 <ul>
 <li>It takes a <code>Player</code> object and an optional <code>Modifier</code> as parameters.</li>
 <li>Uses a <code>Card</code> component to create a card with rounded corners and a border.</li>
 <li>Inside the card, it organizes content in a <code>Column</code> (vertical column).</li>
-<li>The first <code>Row</code> (horizontal line) contains the player's image.</li>
-<li>The second <code>Row</code> displays the player's number and name.</li>
+<li>The first <code>Row</code> (horizontal line) contains the player&rsquo;s image.</li>
+<li>The second <code>Row</code> displays the player&rsquo;s number and name.</li>
 </ul>
 <p>Components used:</p>
 <ul>
 <li><code>Card</code>: Creates an elevated surface with shadow and content.</li>
 <li><code>Column</code>: Arranges elements vertically.</li>
 <li><code>Row</code>: Arranges elements horizontally.</li>
-<li><code>Image</code>: Displays the player's image.</li>
-<li><code>Text</code>: Displays text (player's number and name).</li>
+<li><code>Image</code>: Displays the player&rsquo;s image.</li>
+<li><code>Text</code>: Displays text (player&rsquo;s number and name).</li>
 <li><code>Spacer</code>: Creates space between elements.</li>
 </ul>
 <p>Modifiers used:</p>
@@ -157,16 +157,16 @@ fun PlayerCard(player: Player, modifier: Modifier = Modifier) {
 <li><code>background()</code>: Sets the background color.</li>
 <li><code>width()</code>: Sets a specific width.</li>
 </ul>
-<h3 id="playerlist"><code>PlayerList</code></h3>
-<pre><code class="language-kotlin">@Composable
-fun PlayerList(modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier) {
-        items(getSamplePlayers()) {
-            PlayerCard(player = it)
-        }
-    }
-}
-</code></pre>
+<h3 id="playerlist"><code>PlayerList</code><a class="headerlink" href="#playerlist" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PlayerList</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">LazyColumn</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">items</span><span class="p">(</span><span class="n">getSamplePlayers</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">PlayerCard</span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>This composable function creates a scrollable list of player cards.</p>
 <ul>
 <li>It uses <code>LazyColumn</code>, which is optimized for displaying long lists of items.</li>
@@ -186,7 +186,7 @@ cards in a scrollable list.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../03-premi%C3%A8re-app/" class="btn btn-neutral float-left" title="3. First Application with Jetpack Compose"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../03b-usb-wifi-debugging/" class="btn btn-neutral float-left" title="3.1 USB and Wifi debugging"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../05-etats-evenements/" class="btn btn-neutral float-right" title="5. State and Event Management">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -210,7 +210,7 @@ cards in a scrollable list.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../03-premi%C3%A8re-app/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../03b-usb-wifi-debugging/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../05-etats-evenements/" style="color: #fcfcfc">Next &raquo;</a></span>
@@ -221,7 +221,11 @@ cards in a scrollable list.</p>
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

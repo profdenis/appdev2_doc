@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -138,10 +138,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="13-architecture">13. Architecture</h1>
-<h2 id="layered-architecture">Layered Architecture</h2>
+                <h1 id="13-architecture">13. Architecture<a class="headerlink" href="#13-architecture" title="Permanent link">&para;</a></h1>
+<h2 id="layered-architecture">Layered Architecture<a class="headerlink" href="#layered-architecture" title="Permanent link">&para;</a></h2>
 <p>A modern Android application with Jetpack Compose should follow a distinct layered architecture:</p>
-<h3 id="ui-layer-presentation">UI Layer (Presentation)</h3>
+<h3 id="ui-layer-presentation">UI Layer (Presentation)<a class="headerlink" href="#ui-layer-presentation" title="Permanent link">&para;</a></h3>
 <p>The UI layer is responsible for displaying data and handling user interactions. With Jetpack Compose, it includes:</p>
 <p><strong>Main Components:</strong></p>
 <ul>
@@ -150,106 +150,106 @@
 <li>UI State</li>
 <li>UI Events</li>
 </ul>
-<pre><code class="language-kotlin">@Composable
-fun MyScreen(
-    viewModel: MyViewModel = viewModel()
-) {
-    val uiState by viewModel.uiState.collectAsState()
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyScreen</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">MyViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">uiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span><span class="w"></span>
 
-    Column {
-        // UI elements
-    }
-}
-</code></pre>
-<h3 id="domain-layer-optional">Domain Layer (Optional)</h3>
+<span class="w">    </span><span class="n">Column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// UI elements</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="domain-layer-optional">Domain Layer (Optional)<a class="headerlink" href="#domain-layer-optional" title="Permanent link">&para;</a></h3>
 <p>This intermediate layer contains the business logic and bridges UI and Data:</p>
 <ul>
 <li>Use cases</li>
 <li>Domain models</li>
 <li>Business logic</li>
 </ul>
-<pre><code class="language-kotlin">class GetUserUseCase(
-    private val userRepository: UserRepository
-) {
-    suspend operator fun invoke(userId: String): User {
-        return userRepository.getUser(userId)
-    }
-}
-</code></pre>
-<h3 id="data-layer">Data Layer</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">GetUserUseCase</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">userRepository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">operator</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span><span class="n">userId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">getUser</span><span class="p">(</span><span class="n">userId</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="data-layer">Data Layer<a class="headerlink" href="#data-layer" title="Permanent link">&para;</a></h3>
 <p>Manages application data:</p>
 <ul>
 <li>Repositories</li>
 <li>Data sources (API, database)</li>
 <li>Data models</li>
 </ul>
-<pre><code class="language-kotlin">class UserRepository(
-    private val api: ApiService,
-    private val database: AppDatabase
-) {
-    suspend fun getUser(id: String): User {
-        return database.userDao().getUser(id)
-            ?: api.fetchUser(id).also { user -&gt;
-                database.userDao().insert(user)
-            }
-    }
-}
-</code></pre>
-<h2 id="state-management-with-compose">State Management with Compose</h2>
-<h3 id="ui-state">UI State</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserRepository</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">api</span><span class="p">:</span><span class="w"> </span><span class="n">ApiService</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">database</span><span class="p">:</span><span class="w"> </span><span class="n">AppDatabase</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">database</span><span class="p">.</span><span class="na">userDao</span><span class="p">().</span><span class="na">getUser</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="o">?:</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">fetchUser</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">also</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="n">database</span><span class="p">.</span><span class="na">userDao</span><span class="p">().</span><span class="na">insert</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="state-management-with-compose">State Management with Compose<a class="headerlink" href="#state-management-with-compose" title="Permanent link">&para;</a></h2>
+<h3 id="ui-state">UI State<a class="headerlink" href="#ui-state" title="Permanent link">&para;</a></h3>
 <p>UI state is managed through:</p>
 <ul>
 <li>State hoisting</li>
 <li><code>ViewModel</code> with <code>StateFlow</code>/<code>SharedFlow</code></li>
 <li><code>remember</code>/<code>rememberSaveable</code></li>
 </ul>
-<pre><code class="language-kotlin">class MyViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(MyUiState())
-    val uiState: StateFlow&lt;MyUiState&gt; = _uiState.asStateFlow()
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MyViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_uiState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">MyUiState</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">uiState</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">MyUiState</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_uiState</span><span class="p">.</span><span class="na">asStateFlow</span><span class="p">()</span><span class="w"></span>
 
-    fun handleEvent(event: MyUiEvent) {
-        // Update state based on events
-    }
-}
-</code></pre>
-<h3 id="side-effects">Side Effects</h3>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handleEvent</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="w"> </span><span class="n">MyUiEvent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Update state based on events</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="side-effects">Side Effects<a class="headerlink" href="#side-effects" title="Permanent link">&para;</a></h3>
 <p>Effects are managed with Compose APIs:</p>
-<pre><code class="language-kotlin">@Composable
-fun MyScreen() {
-    LaunchedEffect(key1) {
-        // One-time setup
-    }
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">LaunchedEffect</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// One-time setup</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    DisposableEffect(key1) {
-        onDispose {
-            // Cleanup
-        }
-    }
-}
-</code></pre>
-<h2 id="navigation">Navigation</h2>
+<span class="w">    </span><span class="n">DisposableEffect</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">onDispose</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Cleanup</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
 <p>Navigation is handled by Navigation Compose:</p>
-<pre><code class="language-kotlin">@Composable
-fun AppNavigation() {
-    val navController = rememberNavController()
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AppNavigation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">()</span><span class="w"></span>
 
-    NavHost(navController, startDestination = &quot;home&quot;) {
-        composable(&quot;home&quot;) { HomeScreen() }
-        composable(&quot;details/{id}&quot;) { backStackEntry -&gt;
-            DetailsScreen(backStackEntry.arguments?.getString(&quot;id&quot;))
-        }
-    }
-}
-</code></pre>
-<h2 id="dependency-injection">Dependency Injection</h2>
+<span class="w">    </span><span class="n">NavHost</span><span class="p">(</span><span class="n">navController</span><span class="p">,</span><span class="w"> </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;home&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;home&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">HomeScreen</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="s">&quot;details/{id}&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">backStackEntry</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">            </span><span class="n">DetailsScreen</span><span class="p">(</span><span class="n">backStackEntry</span><span class="p">.</span><span class="na">arguments</span><span class="o">?.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="dependency-injection">Dependency Injection<a class="headerlink" href="#dependency-injection" title="Permanent link">&para;</a></h2>
 <p>Hilt is recommended for dependency injection:</p>
-<pre><code class="language-kotlin">@HiltViewModel
-class MainViewModel @Inject constructor(
-    private val userRepository: UserRepository
-) : ViewModel()
-</code></pre>
-<h2 id="best-practices">Best Practices</h2>
-<ol>
+<div class="highlight"><pre><span></span><code><span class="nd">@HiltViewModel</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MainViewModel</span><span class="w"> </span><span class="nd">@Inject</span><span class="w"> </span><span class="k">constructor</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">userRepository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol type="1">
 <li>
 <p><strong>Unidirectional Data Flow (UDF)</strong></p>
 <ul>
@@ -337,7 +337,11 @@ class MainViewModel @Inject constructor(
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

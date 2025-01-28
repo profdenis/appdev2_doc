@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -146,87 +146,87 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="11-reading-and-writing-json-files">11. Reading and Writing JSON Files</h1>
-<h2 id="saving-and-reading-json-data-in-kotlin">Saving and Reading JSON Data in Kotlin</h2>
-<h3 id="step-1-preparation">Step 1: Preparation</h3>
+                <h1 id="11-reading-and-writing-json-files">11. Reading and Writing JSON Files<a class="headerlink" href="#11-reading-and-writing-json-files" title="Permanent link">&para;</a></h1>
+<h2 id="saving-and-reading-json-data-in-kotlin">Saving and Reading JSON Data in Kotlin<a class="headerlink" href="#saving-and-reading-json-data-in-kotlin" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-preparation">Step 1: Preparation<a class="headerlink" href="#step-1-preparation" title="Permanent link">&para;</a></h3>
 <p>For example, the <code>Player</code> class is defined as follows:</p>
-<pre><code class="language-kotlin">data class Player(
-    val id: Int,
-    val number: Int,
-    val name: String,
-    val image_resource: Int = R.drawable.nhl_logo
-)
-</code></pre>
-<p>We'll use the <code>Gson</code> library for JSON serialization and deserialization. Add the following dependency in the module's
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">number</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">image_resource</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">nhl_logo</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<p>We&rsquo;ll use the <code>Gson</code> library for JSON serialization and deserialization. Add the following dependency in the module&rsquo;s
 <code>build.gradle</code> file directly in the dependencies section of the <code>app/build.gradle.kts</code> file:</p>
-<pre><code class="language-kotlin">implementation(&quot;com.google.code.gson:gson:2.10.1&quot;)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.google.code.gson:gson:2.10.1&quot;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <p>Another option offered by Android Studio is to convert this dependency to the Version Catalogs format. You can accept
 this format change. The line above will be replaced by:</p>
-<pre><code class="language-kotlin">implementation(libs.gson)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">gson</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <p>And two lines will be added to <code>gradle/libs.versions.toml</code> for <code>gson</code>:</p>
-<pre><code class="language-toml">[versions]
-gson = &quot;2.10.1&quot;
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span><span class="w"></span>
+<span class="n">gson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.10.1&quot;</span><span class="w"></span>
 
-[libraries]
-gson = { module = &quot;com.google.code.gson:gson&quot;, version.ref = &quot;gson&quot; }
-</code></pre>
-<h3 id="step-2-saving-data-to-a-json-file">Step 2: Saving Data to a JSON File</h3>
-<p>To save a list of <code>Player</code> to a JSON file, we'll create an extension function:</p>
-<pre><code class="language-kotlin">import com.google.gson.Gson
-import java.io.File
+<span class="k">[libraries]</span><span class="w"></span>
+<span class="n">gson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;com.google.code.gson:gson&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gson&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="step-2-saving-data-to-a-json-file">Step 2: Saving Data to a JSON File<a class="headerlink" href="#step-2-saving-data-to-a-json-file" title="Permanent link">&para;</a></h3>
+<p>To save a list of <code>Player</code> to a JSON file, we&rsquo;ll create an extension function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.google.gson.Gson</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.io.File</span><span class="w"></span>
 
-fun List&lt;Player&gt;.saveToFile(filename: String) {
-    val jsonString = Gson().toJson(this)
-    File(filename).writeText(jsonString)
-}
-</code></pre>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">.</span><span class="na">saveToFile</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">jsonString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gson</span><span class="p">().</span><span class="na">toJson</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">).</span><span class="na">writeText</span><span class="p">(</span><span class="n">jsonString</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>This function converts the list of <code>Player</code> to a JSON string, then writes it to a file.</p>
-<h3 id="step-3-reading-data-from-a-json-file">Step 3: Reading Data from a JSON File</h3>
-<p>To read the list of <code>Player</code> from a JSON file, we'll create another function:</p>
-<pre><code class="language-kotlin">import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.io.File
+<h3 id="step-3-reading-data-from-a-json-file">Step 3: Reading Data from a JSON File<a class="headerlink" href="#step-3-reading-data-from-a-json-file" title="Permanent link">&para;</a></h3>
+<p>To read the list of <code>Player</code> from a JSON file, we&rsquo;ll create another function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.google.gson.Gson</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.google.gson.reflect.TypeToken</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.io.File</span><span class="w"></span>
 
-fun readPlayersFromFile(filename: String): List&lt;Player&gt; {
-    val jsonString = File(filename).readText()
-    val playerListType = object : TypeToken&lt;List&lt;Player&gt;&gt;() {}.type
-    return Gson().fromJson(jsonString, playerListType)
-}
-</code></pre>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">readPlayersFromFile</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">jsonString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">).</span><span class="na">readText</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">playerListType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">TypeToken</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{}.</span><span class="na">type</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Gson</span><span class="p">().</span><span class="na">fromJson</span><span class="p">(</span><span class="n">jsonString</span><span class="p">,</span><span class="w"> </span><span class="n">playerListType</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>This function reads the content of the JSON file, then converts it to a list of <code>Player</code>.</p>
-<h3 id="step-4-using-the-functions">Step 4: Using the Functions</h3>
-<p>Here's an example of using these functions:</p>
-<pre><code class="language-kotlin">fun main() {
-    // Creating a list of players
-    val players = listOf(
-        Player(1, 99, &quot;Wayne Gretzky&quot;),
-        Player(2, 87, &quot;Sidney Crosby&quot;),
-        Player(3, 9, &quot;Bobby Orr&quot;)
-    )
+<h3 id="step-4-using-the-functions">Step 4: Using the Functions<a class="headerlink" href="#step-4-using-the-functions" title="Permanent link">&para;</a></h3>
+<p>Here&rsquo;s an example of using these functions:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Creating a list of players</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">players</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">Player</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">99</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Wayne Gretzky&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">Player</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">87</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sidney Crosby&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">Player</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bobby Orr&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
 
-    // Saving players to a JSON file
-    players.saveToFile(&quot;players.json&quot;)
-    println(&quot;Players saved to players.json&quot;)
+<span class="w">    </span><span class="c1">// Saving players to a JSON file</span><span class="w"></span>
+<span class="w">    </span><span class="n">players</span><span class="p">.</span><span class="na">saveToFile</span><span class="p">(</span><span class="s">&quot;players.json&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Players saved to players.json&quot;</span><span class="p">)</span><span class="w"></span>
 
-    // Reading players from the JSON file
-    val loadedPlayers = readPlayersFromFile(&quot;players.json&quot;)
-    println(&quot;Players loaded from players.json:&quot;)
-    loadedPlayers.forEach { println(it) }
-}
-</code></pre>
-<h3 id="important-points">Important Points</h3>
-<ol>
+<span class="w">    </span><span class="c1">// Reading players from the JSON file</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">loadedPlayers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readPlayersFromFile</span><span class="p">(</span><span class="s">&quot;players.json&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Players loaded from players.json:&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">loadedPlayers</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="important-points">Important Points<a class="headerlink" href="#important-points" title="Permanent link">&para;</a></h3>
+<ol type="1">
 <li><strong>Serialization</strong>: This is the process of converting objects to JSON format.</li>
 <li><strong>Deserialization</strong>: This is the reverse process, converting JSON to Kotlin objects.</li>
 <li><strong>File Management</strong>: Kotlin offers simple methods for reading and writing files.</li>
 <li><strong>Gson Library</strong>: It greatly simplifies working with JSON in Kotlin.</li>
 <li><strong>Data Class</strong>: Using <code>data class</code> for Player facilitates serialization/deserialization.</li>
 </ol>
-<h2 id="file-management-in-android">File Management in Android</h2>
-<h3 id="overwriting-and-creating-files">Overwriting and Creating Files</h3>
-<ol>
+<h2 id="file-management-in-android">File Management in Android<a class="headerlink" href="#file-management-in-android" title="Permanent link">&para;</a></h2>
+<h3 id="overwriting-and-creating-files">Overwriting and Creating Files<a class="headerlink" href="#overwriting-and-creating-files" title="Permanent link">&para;</a></h3>
+<ol type="1">
 <li>
 <p><strong>Overwriting Existing File</strong>
    When using the <code>File(filename).writeText(jsonString)</code> method, if the specified file already exists, its content will
@@ -234,18 +234,18 @@ fun readPlayersFromFile(filename: String): List&lt;Player&gt; {
 </li>
 <li>
 <p><strong>Creating a New File</strong>
-   If the specified file doesn't exist, Android will automatically create it before writing the data. This means you
-   don't need to check for the file's existence or create it manually.</p>
+   If the specified file doesn&rsquo;t exist, Android will automatically create it before writing the data. This means you
+   don&rsquo;t need to check for the file&rsquo;s existence or create it manually.</p>
 </li>
 </ol>
-<h3 id="file-location">File Location</h3>
+<h3 id="file-location">File Location<a class="headerlink" href="#file-location" title="Permanent link">&para;</a></h3>
 <p>The file location depends on the path you specify in the <code>filename</code> parameter. In the context of an Android application,
-it's crucial to understand the different storage options:</p>
-<ol>
+it&rsquo;s crucial to understand the different storage options:</p>
+<ol type="1">
 <li>
 <p><strong>Internal Storage</strong></p>
 <ul>
-<li>By default, if you use a relative path, the file will be created in your application's private directory.</li>
+<li>By default, if you use a relative path, the file will be created in your application&rsquo;s private directory.</li>
 <li>Typical path: <code>/data/data/[your_app_package_name]/files/</code></li>
 <li>This directory is private and accessible only by your application.</li>
 </ul>
@@ -259,51 +259,51 @@ it's crucial to understand the different storage options:</p>
 </ul>
 </li>
 </ol>
-<h3 id="best-practices-for-android-applications">Best Practices for Android Applications</h3>
-<h4 id="using-application-context">Using Application Context</h4>
-<p>For better file management in an Android application, it's recommended to use the application context to get the
+<h3 id="best-practices-for-android-applications">Best Practices for Android Applications<a class="headerlink" href="#best-practices-for-android-applications" title="Permanent link">&para;</a></h3>
+<h4 id="using-application-context">Using Application Context<a class="headerlink" href="#using-application-context" title="Permanent link">&para;</a></h4>
+<p>For better file management in an Android application, it&rsquo;s recommended to use the application context to get the
 appropriate directory:</p>
-<pre><code class="language-kotlin">fun Context.saveToFile(players: List&lt;Player&gt;, filename: String) {
-    val file = File(this.filesDir, filename)
-    file.writeText(Gson().toJson(players))
-}
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Context</span><span class="p">.</span><span class="nf">saveToFile</span><span class="p">(</span><span class="n">players</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">filesDir</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">file</span><span class="p">.</span><span class="na">writeText</span><span class="p">(</span><span class="n">Gson</span><span class="p">().</span><span class="na">toJson</span><span class="p">(</span><span class="n">players</span><span class="p">))</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-fun Context.readPlayersFromFile(filename: String): List&lt;Player&gt; {
-    val file = File(this.filesDir, filename)
-    val jsonString = file.readText()
-    val playerListType = object : TypeToken&lt;List&lt;Player&gt;&gt;() {}.type
-    return Gson().fromJson(jsonString, playerListType)
-}
-</code></pre>
-<h4 id="error-handling">Error Handling</h4>
-<p>It's important to add error handling to handle cases where writing or reading might fail:</p>
-<pre><code class="language-kotlin">fun Context.saveToFile(players: List&lt;Player&gt;, filename: String) {
-    try {
-        val file = File(this.filesDir, filename)
-        file.writeText(Gson().toJson(players))
-    } catch (e: Exception) {
-        Log.e(&quot;FileIO&quot;, &quot;Error writing file&quot;, e)
-    }
-}
-</code></pre>
-<h4 id="checking-file-existence">Checking File Existence</h4>
-<p>Before reading a file, it's wise to check its existence:</p>
-<pre><code class="language-kotlin">fun Context.readPlayersFromFile(filename: String): List&lt;Player&gt;? {
-    val file = File(this.filesDir, filename)
-    return if (file.exists()) {
-        try {
-            val jsonString = file.readText()
-            val playerListType = object : TypeToken&lt;List&lt;Player&gt;&gt;() {}.type
-            Gson().fromJson(jsonString, playerListType)
-        } catch (e: Exception) {
-            Log.e(&quot;FileIO&quot;, &quot;Error reading file&quot;, e)
-            emptyList()
-        }
-    } else {
-        emptyList()
-    }
-}
-</code></pre>
+<span class="kd">fun</span><span class="w"> </span><span class="n">Context</span><span class="p">.</span><span class="nf">readPlayersFromFile</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">filesDir</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">jsonString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">readText</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">playerListType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">TypeToken</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{}.</span><span class="na">type</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Gson</span><span class="p">().</span><span class="na">fromJson</span><span class="p">(</span><span class="n">jsonString</span><span class="p">,</span><span class="w"> </span><span class="n">playerListType</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h4>
+<p>It&rsquo;s important to add error handling to handle cases where writing or reading might fail:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Context</span><span class="p">.</span><span class="nf">saveToFile</span><span class="p">(</span><span class="n">players</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">filesDir</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeText</span><span class="p">(</span><span class="n">Gson</span><span class="p">().</span><span class="na">toJson</span><span class="p">(</span><span class="n">players</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;FileIO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error writing file&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="checking-file-existence">Checking File Existence<a class="headerlink" href="#checking-file-existence" title="Permanent link">&para;</a></h4>
+<p>Before reading a file, it&rsquo;s wise to check its existence:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Context</span><span class="p">.</span><span class="nf">readPlayersFromFile</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;?</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">filesDir</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">jsonString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">readText</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">playerListType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">TypeToken</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{}.</span><span class="na">type</span><span class="w"></span>
+<span class="w">            </span><span class="n">Gson</span><span class="p">().</span><span class="na">fromJson</span><span class="p">(</span><span class="n">jsonString</span><span class="p">,</span><span class="w"> </span><span class="n">playerListType</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;FileIO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error reading file&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">emptyList</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">emptyList</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
               
             </div>
           </div><footer>
@@ -343,7 +343,11 @@ fun Context.readPlayersFromFile(filename: String): List&lt;Player&gt; {
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

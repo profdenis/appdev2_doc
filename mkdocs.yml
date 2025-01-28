@@ -8,3 +8,31 @@ theme:
 
 extra_css:
   - style.css
+
+markdown_extensions:
+    smarty: { }
+    toc:
+      permalink: true
+    sane_lists: { }
+    admonition: { }
+    codehilite: { }
+    pymdownx.superfences: { }
+    pymdownx.fancylists: { }
+    pymdownx.saneheaders: { }
+    pymdownx.mark: { }
+    pymdownx.tabbed: { }
+    pymdownx.tasklist: { }
+    pymdownx.tilde: { }
+    pymdownx.details: { }
+    pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+    - javascripts/mathjax.js
+    - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+    - plantuml:
+        puml_url: https://www.plantuml.com/plantuml/
+        theme:
+          enabled: false

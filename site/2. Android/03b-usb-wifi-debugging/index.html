@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>3.1 USB and Wifi debugging - Android Programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.1 USB and Wifi debugging";
+        var mkdocs_page_input_path = "2. Android/03b-usb-wifi-debugging.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Android Programming
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Android Programming</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. Kotlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/01-kotlin/">The Kotlin Programming Language</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%20Kotlin/02-kotlin-android/">Kotlin for Android</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Android</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-intro/">1. Introduction to Mobile and Android Programming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.1 USB and Wifi debugging</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#enable-developer-mode">Enable Developer Mode</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enable-usb-debugging">Enable USB Debugging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connect-to-android-studio">Connect to Android Studio</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wireless-debugging-setup">Wireless Debugging Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-hockey-v2/">6. Hockey Application Version 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-orientation/">7. Screen Orientation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-hockey-v3/">8. Hockey Application Version 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-etats-evenements-v2/">9. State and Event Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-localisation/">10. Localization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-json/">11. Reading and Writing JSON Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-cycle-de-vie/">12. Lifecycle and Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-architecture/">13. Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-navigation/">14. Navigation in Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15-intentions/">15. Intents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../16-intentions-vs-navigation/">16. Intents vs. Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../17-images-distantes/">17. Displaying Remote Images and Videos</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Android Programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. Android</li>
+      <li class="breadcrumb-item active">3.1 USB and Wifi debugging</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="31-usb-and-wifi-debugging">3.1 USB and Wifi debugging<a class="headerlink" href="#31-usb-and-wifi-debugging" title="Permanent link">&para;</a></h1>
+<h2 id="enable-developer-mode">Enable Developer Mode<a class="headerlink" href="#enable-developer-mode" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1: Access Build Number</strong></p>
+<ul>
+<li>Open Settings on your Android device</li>
+<li>Navigate to &ldquo;About phone&rdquo; (location may vary by manufacturer)[1][2]</li>
+<li>Find &ldquo;Build number&rdquo; (locations vary by device manufacturer):</li>
+<li>Google Pixel: Settings &gt; About phone &gt; Build number</li>
+<li>Samsung Galaxy: Settings &gt; About phone &gt; Software information &gt; Build number</li>
+<li>OnePlus: Settings &gt; About phone &gt; Build number[1]</li>
+</ul>
+<p><strong>Step 2: Activate Developer Mode</strong></p>
+<ul>
+<li>Tap &ldquo;Build number&rdquo; seven times</li>
+<li>You&rsquo;ll see a countdown message as you tap</li>
+<li>Enter your device PIN/password if prompted</li>
+<li>You&rsquo;ll see &ldquo;You are now a developer!&rdquo; message when successful[2]</li>
+</ul>
+<h2 id="enable-usb-debugging">Enable USB Debugging<a class="headerlink" href="#enable-usb-debugging" title="Permanent link">&para;</a></h2>
+<p><strong>Step 3: Configure Developer Options</strong></p>
+<ul>
+<li>Return to Settings</li>
+<li>Find &ldquo;Developer options&rdquo; (usually under System or Additional Settings)</li>
+<li>Toggle Developer options ON</li>
+<li>Scroll down to find &ldquo;USB debugging&rdquo;</li>
+<li>Enable the USB debugging toggle</li>
+<li>Accept the warning message when prompted[4][7]</li>
+</ul>
+<h2 id="connect-to-android-studio">Connect to Android Studio<a class="headerlink" href="#connect-to-android-studio" title="Permanent link">&para;</a></h2>
+<p><strong>Step 4: Physical Connection</strong></p>
+<ul>
+<li>Connect your Android device to your computer using a USB cable</li>
+<li>On your device, when prompted:</li>
+<li>Check &ldquo;Always allow from this computer&rdquo;</li>
+<li>Tap &ldquo;Allow&rdquo; to authorize USB debugging[7]</li>
+</ul>
+<p><strong>Step 5: Device Settings</strong></p>
+<ul>
+<li>Pull down the notification shade on your device</li>
+<li>Tap the &ldquo;Charging this device via USB&rdquo; notification</li>
+<li>Select &ldquo;File Transfer&rdquo; or &ldquo;Transfer files&rdquo; mode[26]</li>
+</ul>
+<p><strong>Step 6: Android Studio Recognition</strong></p>
+<ul>
+<li>Open your project in Android Studio</li>
+<li>Your device should appear in the device dropdown menu</li>
+<li>Select your device to run and debug your application[10]</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>If Android Studio doesn&rsquo;t recognize your device:</p>
+<ul>
+<li>Ensure USB debugging is enabled</li>
+<li>Try disconnecting and reconnecting the USB cable</li>
+<li>Check if proper USB drivers are installed on your computer</li>
+<li>Restart Android Studio[3]</li>
+</ul>
+<details class="note">
+<summary>Citations</summary>
+<ul>
+<li>[1] https://www.delasign.com/blog/how-to-enable-developer-mode-on-an-android-phone-or-tablet/</li>
+<li>[2] https://adapty.io/blog/how-to-turn-on-developer-mode-android/</li>
+<li>[3] https://itoolab.com/unlock-android/enable-usb-debugging-from-pc/</li>
+<li>[4] https://www.asus.com/support/faq/1046846/</li>
+<li>[5] https://developer.android.com/studio/debug/apk-debugger</li>
+<li>[6] https://www.youtube.com/watch?v=8lCYnAe-cc0</li>
+<li>[7] https://developer.android.com/codelabs/basic-android-kotlin-compose-connect-device</li>
+<li>[8] https://stackoverflow.com/questions/62019006/how-to-debug-an-android-app-using-android-studio</li>
+<li>[9] https://www.zipy.ai/guide/android-debugging</li>
+<li>[10] https://developer.android.com/codelabs/basic-android-kotlin-compose-intro-debugger</li>
+<li>[11] https://developer.android.com/studio/run/rundebugconfig.html</li>
+<li>[12] https://www.javatpoint.com/how-to-enable-or-disable-developer-options-on-android</li>
+<li>[13] https://www.digitaltrends.com/mobile/how-to-get-developer-options-on-android/</li>
+<li>[14] https://www.xda-developers.com/android-developer-options/</li>
+<li>[15] https://www.youtube.com/watch?v=EdID5Xo1fa8</li>
+<li>[16] https://www.geeksforgeeks.org/enable-or-disable-developer-mode-option/</li>
+<li>[17] https://docs.zebra.com/us/en/mobile-computers/handheld/ps2-series/ps20-product-reference-guide/ps20-product-reference-guide/application-deployment/android-development-tools/enabling-developer-options.html</li>
+<li>[18] https://www.youtube.com/watch?v=7K6AWPCAkiU</li>
+<li>[19] https://en-gb.support.motorola.com/app/answers/detail/a_id/159678/~/developer-options</li>
+<li>[20] https://developer.android.com/studio/debug/dev-options</li>
+<li>[21] https://www.youtube.com/watch?v=WF-zAgxArYk</li>
+<li>[22] https://docs.kony.com/konylibrary/visualizer/visualizer_user_guide/Content/AndroidUSBDebugging_Windows10.htm</li>
+<li>[23] https://developer.chrome.com/docs/devtools/remote-debugging</li>
+<li>[24] https://help.litecam.net/hc/en-us/articles/360002145074-How-Do-I-Install-Android-USB-Driver-And-Enable-USB-Debugging-Mode</li>
+<li>[25] https://www.reddit.com/r/AndroidQuestions/comments/156lij7/forcing_usb_debug_on_a_broken_phonecontrol_phone/</li>
+<li>[26] https://www.wideanglesoftware.com/support/droidtransfer/how-to-connect-your-android-phone-with-a-usb-cable.php</li>
+<li>[27] https://www.wideanglesoftware.com/droidtransfer/help/connect-android-phone-to-pc-with-usb.php</li>
+<li>[28] https://developer.android.com/tools/adb</li>
+<li>[29] https://developer.android.com/studio/run/device.html</li>
+<li>[30] https://docs.digital.ai/continuous-testing/docs/lt/live-testing-home/resources-for-developers/remote-application-debugging/android-studio-connect-remote-devices</li>
+<li>[31] https://documentation.xojo.com/topics/debugging/android/android_debugging_on_device.html</li>
+</ul>
+</details>
+<h2 id="wireless-debugging-setup">Wireless Debugging Setup<a class="headerlink" href="#wireless-debugging-setup" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1: Enable and Configure</strong></p>
+<ul>
+<li>Enable Wireless Debugging in Developer Options</li>
+<li>Ensure your device and computer are connected to the same WiFi network</li>
+<li>In Android Studio, select &ldquo;Pair Devices Using WiFi&rdquo; from the run configurations menu</li>
+<li>On your device, tap &ldquo;Wireless Debugging&rdquo; and select either:</li>
+<li>&ldquo;Pair device with QR code&rdquo; and scan the displayed QR code</li>
+<li>&ldquo;Pair device with pairing code&rdquo; and enter the six-digit code shown[12]</li>
+</ul>
+<p><strong>Step 2: Connect and Debug</strong></p>
+<ul>
+<li>Once paired, your device will appear in Android Studio&rsquo;s device dropdown menu</li>
+<li>You can now deploy and debug your applications wirelessly</li>
+<li>The connection will persist until you disconnect or turn off wireless debugging[1]</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using wireless debugging on public WiFi networks poses significant security risks</p>
+<ul>
+<li>Malicious actors could potentially intercept debugging data through man-in-the-middle attacks[4]</li>
+<li>Unsecured networks make your device vulnerable to packet sniffing and data interception[4]</li>
+<li>Public networks may have rogue access points that mimic legitimate networks[16]</li>
+</ul>
+</div>
+<p><strong>Best Practices for Secure Debugging</strong>:</p>
+<ul>
+<li>Only use wireless debugging on trusted, secure networks</li>
+<li>Consider setting up a mobile hotspot instead of using public WiFi[3]</li>
+<li>Disable wireless debugging when not actively using it to prevent unauthorized access[19]</li>
+<li>Remember that wireless debugging automatically turns off when WiFi is disconnected[20]</li>
+</ul>
+<details class="note">
+<summary>Citations</summary>
+<ul>
+<li>[1] https://www.androidpolice.com/use-wireless-adb-android-phone/</li>
+<li>[2] https://developer.android.com/studio/run/device.html</li>
+<li>[3] https://www.reddit.com/r/androiddev/comments/cn2ph7/debug_over_wifi_on_a_public_wifi/</li>
+<li>[4] https://us.norton.com/blog/privacy/public-wifi</li>
+<li>[5] https://blog.stackademic.com/wireless-debugging-on-any-android-device-android-tips-81701131cd21?gi=692d03bd87ce</li>
+<li>[6] https://www.youtube.com/watch?v=RjjE0Fro61Q</li>
+<li>[7] https://stackoverflow.com/questions/4893953/run-install-debug-android-applications-over-wi-fi</li>
+<li>[8] https://www.youtube.com/watch?v=ElahzmTPCYE</li>
+<li>[9] https://www.howtogeek.com/how-to-enable-and-use-wireless-adb-on-your-android-phone/</li>
+<li>[10] https://www.muvi.com/blogs/wireless-debugging-setup-in-android-studio/</li>
+<li>[11] https://www.youtube.com/watch?v=SEGC-FxGf40</li>
+<li>[12] https://developer.android.com/tools/adb</li>
+<li>[13] https://helpcenter.trendmicro.com/en-us/article/tmka-19373</li>
+<li>[14] https://www.kaspersky.com/resource-center/preemptive-safety/public-wifi-risks</li>
+<li>[15] https://stackoverflow.com/questions/71221039/wi-fi-debug-adb-there-was-an-error-pairing-the-device</li>
+<li>[16] https://www.cyber.gc.ca/en/guidance/protecting-your-organization-while-using-wi-fi-itsap80009</li>
+<li>[17] https://xdaforums.com/t/adb-wireless-debugging-wi-fi-is-there-an-updated-xda-tutorial-yet-on-setting-up-adb-completely-wirelessly-as-of-android-11-no-usb-cable.4476819/</li>
+<li>[18] https://source.android.com/docs/core/connect/wifi-debug</li>
+<li>[19] https://xdaforums.com/t/is-it-fine-to-leave-wireless-debugging-enabled-or-does-it-drain-battery.4634619/</li>
+<li>[20] https://xdaforums.com/t/android-12-developer-options-adb-wireless-debugging-option-keeps-turning-off.4461375/</li>
+</ul>
+</details>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../03-premi%C3%A8re-app/" class="btn btn-neutral float-left" title="3. First Application with Jetpack Compose"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../04-hockey-v1/" class="btn btn-neutral float-right" title="4. Hockey Application Version 1">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../03-premi%C3%A8re-app/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../04-hockey-v1/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

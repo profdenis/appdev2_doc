@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -134,41 +134,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="6-hockey-application-version-2">6. Hockey Application Version 2</h1>
-<h2 id="explanation-of-playerlistwithsearch">Explanation of <code>PlayerListWithSearch</code></h2>
-<p>This new version adds a search functionality to the player list. Here's a detailed explanation of the modifications:</p>
-<h3 id="getplayers-function"><code>getPlayers</code> Function</h3>
-<pre><code class="language-kotlin">fun getPlayers(name: String? = null): List&lt;Player&gt; =
-    if (name == null)
-        getSamplePlayers()
-    else
-        getSamplePlayers().filter { it.name.lowercase().contains(name.lowercase()) }.toList()
-</code></pre>
+                <h1 id="6-hockey-application-version-2">6. Hockey Application Version 2<a class="headerlink" href="#6-hockey-application-version-2" title="Permanent link">&para;</a></h1>
+<h2 id="explanation-of-playerlistwithsearch">Explanation of <code>PlayerListWithSearch</code><a class="headerlink" href="#explanation-of-playerlistwithsearch" title="Permanent link">&para;</a></h2>
+<p>This new version adds a search functionality to the player list. Here&rsquo;s a detailed explanation of the modifications:</p>
+<h3 id="getplayers-function"><code>getPlayers</code> Function<a class="headerlink" href="#getplayers-function" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">getPlayers</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">):</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">getSamplePlayers</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">        </span><span class="n">getSamplePlayers</span><span class="p">().</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">name</span><span class="p">.</span><span class="na">lowercase</span><span class="p">().</span><span class="na">contains</span><span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="na">lowercase</span><span class="p">())</span><span class="w"> </span><span class="p">}.</span><span class="na">toList</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
 <p>This function allows filtering the player list based on a search criterion:</p>
 <ul>
 <li>If <code>name</code> is <code>null</code>, it returns all players.</li>
 <li>Otherwise, it filters the list to return only players whose name contains the search string (case-insensitive).</li>
 </ul>
-<h3 id="playerlistwithsearch-composable"><code>PlayerListWithSearch</code> Composable</h3>
-<pre><code class="language-kotlin">@Composable
-fun PlayerListWithSearch(modifier: Modifier = Modifier) {
-    var searchCriteria by rememberSaveable { mutableStateOf(&quot;&quot;) }
-    Column {
-        TextField(
-            value = searchCriteria,
-            onValueChange = { searchCriteria = it },
-            modifier = modifier
-        )
-        LazyColumn(modifier = modifier.fillMaxSize()) {
-            items(getPlayers(searchCriteria)) {
-                PlayerCard(player = it)
-            }
-        }
-    }
-}
-</code></pre>
+<h3 id="playerlistwithsearch-composable"><code>PlayerListWithSearch</code> Composable<a class="headerlink" href="#playerlistwithsearch-composable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PlayerListWithSearch</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">searchCriteria</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchCriteria</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">searchCriteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">LazyColumn</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">items</span><span class="p">(</span><span class="n">getPlayers</span><span class="p">(</span><span class="n">searchCriteria</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">PlayerCard</span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>This composable replaces <code>PlayerList</code> and adds search functionality:</p>
-<ol>
+<ol type="1">
 <li>
 <p><code>searchCriteria</code>:</p>
 <ul>
@@ -204,23 +204,23 @@ fun PlayerListWithSearch(modifier: Modifier = Modifier) {
 </ul>
 </li>
 </ol>
-<p>This new version offers a more interactive user experience, allowing users to search for specific players in the list. The list updates automatically with each change in the search field text, thanks to the use of state (<code>searchCriteria</code>) and Jetpack Compose's automatic recomposition.</p>
-<h2 id="connections-between-textfield-mutablestateof-onvaluechange-and-getplayers">Connections between <code>TextField</code>, <code>mutableStateOf</code>, <code>onValueChange</code>, and <code>getPlayers()</code></h2>
-<h3 id="1-mutablestateof-and-composable-state">1. <code>mutableStateOf</code> and Composable State</h3>
-<pre><code class="language-kotlin">var searchCriteria by rememberSaveable { mutableStateOf(&quot;&quot;) }
-</code></pre>
+<p>This new version offers a more interactive user experience, allowing users to search for specific players in the list. The list updates automatically with each change in the search field text, thanks to the use of state (<code>searchCriteria</code>) and Jetpack Compose&rsquo;s automatic recomposition.</p>
+<h2 id="connections-between-textfield-mutablestateof-onvaluechange-and-getplayers">Connections between <code>TextField</code>, <code>mutableStateOf</code>, <code>onValueChange</code>, and <code>getPlayers()</code><a class="headerlink" href="#connections-between-textfield-mutablestateof-onvaluechange-and-getplayers" title="Permanent link">&para;</a></h2>
+<h3 id="1-mutablestateof-and-composable-state">1. <code>mutableStateOf</code> and Composable State<a class="headerlink" href="#1-mutablestateof-and-composable-state" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">searchCriteria</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>mutableStateOf("")</code> creates a mutable state initialized with an empty string.</li>
 <li><code>rememberSaveable</code> allows preserving this state even during recompositions or configuration changes.</li>
 <li><code>by</code> is used to delegate the property, allowing direct access and modification of <code>searchCriteria</code>.</li>
 </ul>
-<h3 id="2-textfield-and-onvaluechange">2. <code>TextField</code> and <code>onValueChange</code></h3>
-<pre><code class="language-kotlin">TextField(
-    value = searchCriteria,
-    onValueChange = { searchCriteria = it },
-    modifier = modifier
-)
-</code></pre>
+<h3 id="2-textfield-and-onvaluechange">2. <code>TextField</code> and <code>onValueChange</code><a class="headerlink" href="#2-textfield-and-onvaluechange" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchCriteria</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">searchCriteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>value = searchCriteria</code>: The <code>TextField</code> displays the current value of <code>searchCriteria</code>.</li>
 <li><code>onValueChange = { searchCriteria = it }</code>: When the user types in the field:<ul>
@@ -230,13 +230,13 @@ fun PlayerListWithSearch(modifier: Modifier = Modifier) {
 </ul>
 </li>
 </ul>
-<h3 id="3-connection-with-getplayers">3. Connection with <code>getPlayers()</code></h3>
-<pre><code class="language-kotlin">LazyColumn(modifier = modifier.fillMaxSize()) {
-    items(getPlayers(searchCriteria)) {
-        PlayerCard(player = it)
-    }
-}
-</code></pre>
+<h3 id="3-connection-with-getplayers">3. Connection with <code>getPlayers()</code><a class="headerlink" href="#3-connection-with-getplayers" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">LazyColumn</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">items</span><span class="p">(</span><span class="n">getPlayers</span><span class="p">(</span><span class="n">searchCriteria</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">PlayerCard</span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>getPlayers(searchCriteria)</code> is called with the current value of <code>searchCriteria</code>.</li>
 <li>Each time <code>searchCriteria</code> changes:<ul>
@@ -246,8 +246,8 @@ fun PlayerListWithSearch(modifier: Modifier = Modifier) {
 </ul>
 </li>
 </ul>
-<h3 id="4-data-flow-and-recomposition">4. Data Flow and Recomposition</h3>
-<ol>
+<h3 id="4-data-flow-and-recomposition">4. Data Flow and Recomposition<a class="headerlink" href="#4-data-flow-and-recomposition" title="Permanent link">&para;</a></h3>
+<ol type="1">
 <li>The user types in the <code>TextField</code>.</li>
 <li><code>onValueChange</code> is called, updating <code>searchCriteria</code>.</li>
 <li>Updating <code>searchCriteria</code> triggers a recomposition.</li>
@@ -298,7 +298,11 @@ fun PlayerListWithSearch(modifier: Modifier = Modifier) {
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

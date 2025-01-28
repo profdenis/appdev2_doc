@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -146,126 +146,126 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="15-intents">15. Intents</h1>
+                <h1 id="15-intents">15. Intents<a class="headerlink" href="#15-intents" title="Permanent link">&para;</a></h1>
 <p><a href="https://github.com/profdenis/Activites_Multiples">Git Repository</a></p>
-<h2 id="general-structure">General Structure</h2>
+<h2 id="general-structure">General Structure<a class="headerlink" href="#general-structure" title="Permanent link">&para;</a></h2>
 <p>The code defines a main activity (<code>MainActivity</code>) that contains two Composable components to start other activities.</p>
-<h3 id="mainactivity">MainActivity</h3>
-<pre><code class="language-kotlin">class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Column {
-                StartOtherActivity()
-                StartOtherActivityWithValue()
-            }
-        }
-    }
-}
-</code></pre>
+<h3 id="mainactivity">MainActivity<a class="headerlink" href="#mainactivity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">StartOtherActivity</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="n">StartOtherActivityWithValue</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This is the main activity that inherits from <code>ComponentActivity</code></li>
 <li>In <code>onCreate</code>, it defines its content with two Composable components in a <code>Column</code></li>
 </ul>
-<h3 id="startotheractivity">StartOtherActivity</h3>
-<pre><code class="language-kotlin">@Composable
-fun StartOtherActivity() {
-    val context = LocalContext.current
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = &quot;Main Screen&quot;)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = {
-            val intent = Intent(context, SecondActivity::class.java)
-            context.startActivity(intent)
-        }) {
-            Text(&quot;Go to secondary screen&quot;)
-        }
-    }
-}
-</code></pre>
+<h3 id="startotheractivity">StartOtherActivity<a class="headerlink" href="#startotheractivity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">StartOtherActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Main Screen&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">intent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">SecondActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">context</span><span class="p">.</span><span class="na">startActivity</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Go to secondary screen&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This component displays a title and a button</li>
 <li>When the button is clicked, it creates an <code>Intent</code> to start <code>SecondActivity</code></li>
 <li>The <code>Intent</code> is an Android mechanism to start another activity</li>
 </ul>
-<h3 id="startotheractivitywithvalue">StartOtherActivityWithValue</h3>
-<pre><code class="language-kotlin">@Composable
-fun StartOtherActivityWithValue() {
-    val context = LocalContext.current
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Button(onClick = {
-            val intent = Intent(context, ThirdActivity::class.java)
-            intent.putExtra(&quot;buttonValue&quot;, 1)
-            context.startActivity(intent)
-        }) {
-            Text(&quot;Button 1&quot;)
-        }
-        // Similar second button with value 2
-    }
-}
-</code></pre>
+<h3 id="startotheractivitywithvalue">StartOtherActivityWithValue<a class="headerlink" href="#startotheractivitywithvalue" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">StartOtherActivityWithValue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">intent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">ThirdActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">intent</span><span class="p">.</span><span class="na">putExtra</span><span class="p">(</span><span class="s">&quot;buttonValue&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">context</span><span class="p">.</span><span class="na">startActivity</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Button 1&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Similar second button with value 2</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This component displays two buttons</li>
 <li>Each button starts <code>ThirdActivity</code> passing a different value</li>
 <li><code>putExtra</code> allows passing data to the next activity</li>
 </ul>
-<h2 id="important-points-to-note">Important Points to Note</h2>
-<ol>
+<h2 id="important-points-to-note">Important Points to Note<a class="headerlink" href="#important-points-to-note" title="Permanent link">&para;</a></h2>
+<ol type="1">
 <li>The use of <code>LocalContext.current</code> to get the context needed for creating <code>Intent</code></li>
 <li>The difference between a simple activity change and a change with data passing</li>
 <li>Layout organization with <code>Column</code>, <code>Spacer</code>, and modifiers for alignment</li>
 <li>The use of Jetpack Compose components (<code>Button</code>, <code>Text</code>, etc.)</li>
 </ol>
 <p>Let me explain this code that represents a secondary activity in the application.</p>
-<h2 id="secondactivity-structure">SecondActivity Structure</h2>
-<h3 id="the-secondactivity-class">The SecondActivity Class</h3>
-<pre><code class="language-kotlin">class SecondActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            SecondScreen(
-                onNavigateBack = {
-                    finish()
-                }
-            )
-        }
-    }
-}
-</code></pre>
+<h2 id="secondactivity-structure">SecondActivity Structure<a class="headerlink" href="#secondactivity-structure" title="Permanent link">&para;</a></h2>
+<h3 id="the-secondactivity-class">The SecondActivity Class<a class="headerlink" href="#the-secondactivity-class" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">SecondActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">SecondScreen</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">onNavigateBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">finish</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This class inherits from <code>ComponentActivity</code>, like the main activity</li>
 <li>In <code>onCreate</code>, it defines its content with the <code>SecondScreen</code> component</li>
 <li>The <code>finish()</code> function is passed as a callback to handle returning to the previous screen</li>
 <li><code>finish()</code> is an Android method that ends the current activity and returns to the previous activity</li>
 </ul>
-<h3 id="the-secondscreen-component">The SecondScreen Component</h3>
-<pre><code class="language-kotlin">@Composable
-fun SecondScreen(onNavigateBack: () -&gt; Unit) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = &quot;Secondary Screen&quot;)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = onNavigateBack) {
-            Text(&quot;Return to main screen&quot;)
-        }
-    }
-}
-</code></pre>
+<h3 id="the-secondscreen-component">The SecondScreen Component<a class="headerlink" href="#the-secondscreen-component" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">SecondScreen</span><span class="p">(</span><span class="n">onNavigateBack</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Secondary Screen&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNavigateBack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Return to main screen&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>The component takes an <code>onNavigateBack</code> parameter which is a lambda function with no parameters (<code>() -&gt; Unit</code>)</li>
 <li>The interface is simple with:<ul>
-<li>A "Secondary Screen" title</li>
+<li>A &ldquo;Secondary Screen&rdquo; title</li>
 <li>A 16dp vertical space</li>
 <li>A button to return to the main screen</li>
 </ul>
@@ -273,8 +273,8 @@ fun SecondScreen(onNavigateBack: () -&gt; Unit) {
 <li>The layout uses a <code>Column</code> centered horizontally and vertically</li>
 <li>The <code>fillMaxSize()</code> modifier makes the column occupy all available space</li>
 </ul>
-<h2 id="important-points-to-note_1">Important Points to Note</h2>
-<ol>
+<h2 id="important-points-to-note_1">Important Points to Note<a class="headerlink" href="#important-points-to-note_1" title="Permanent link">&para;</a></h2>
+<ol type="1">
 <li>
 <p><strong>Navigation Management</strong></p>
 <ul>
@@ -305,48 +305,48 @@ fun SecondScreen(onNavigateBack: () -&gt; Unit) {
 </ul>
 </li>
 </ol>
-<h2 id="thirdactivity-structure">ThirdActivity Structure</h2>
-<h3 id="the-thirdactivity-class">The ThirdActivity Class</h3>
-<pre><code class="language-kotlin">class ThirdActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val buttonValue = intent.getIntExtra(&quot;buttonValue&quot;, 0)
+<h2 id="thirdactivity-structure">ThirdActivity Structure<a class="headerlink" href="#thirdactivity-structure" title="Permanent link">&para;</a></h2>
+<h3 id="the-thirdactivity-class">The ThirdActivity Class<a class="headerlink" href="#the-thirdactivity-class" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">ThirdActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">buttonValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intent</span><span class="p">.</span><span class="na">getIntExtra</span><span class="p">(</span><span class="s">&quot;buttonValue&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"></span>
 
-        setContent {
-            ThirdScreen(
-                buttonValue = buttonValue,
-                onNavigateBack = {
-                    finish()
-                }
-            )
-        }
-    }
-}
-</code></pre>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ThirdScreen</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">buttonValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buttonValue</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">onNavigateBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">finish</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This activity retrieves a value passed via the <code>Intent</code> with <code>getIntExtra</code></li>
 <li>The second parameter <code>0</code> is the default value if no value is found</li>
 <li>The retrieved value is passed to the <code>ThirdScreen</code> component</li>
 </ul>
-<h3 id="the-thirdscreen-component">The ThirdScreen Component</h3>
-<pre><code class="language-kotlin">@Composable
-fun ThirdScreen(
-    buttonValue: Int,
-    onNavigateBack: () -&gt; Unit
-) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = &quot;Received value: $buttonValue&quot;)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = onNavigateBack) {
-            Text(&quot;Back&quot;)
-        }
-    }
-}
-</code></pre>
+<h3 id="the-thirdscreen-component">The ThirdScreen Component<a class="headerlink" href="#the-thirdscreen-component" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ThirdScreen</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">buttonValue</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">onNavigateBack</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Received value: </span><span class="si">$</span><span class="n">buttonValue</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNavigateBack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Back&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>The component takes two parameters:<ul>
 <li><code>buttonValue</code>: the value received from the previous activity</li>
@@ -355,8 +355,8 @@ fun ThirdScreen(
 </li>
 <li>The interface displays the received value and a back button</li>
 </ul>
-<h2 id="important-points-to-note_2">Important Points to Note</h2>
-<ol>
+<h2 id="important-points-to-note_2">Important Points to Note<a class="headerlink" href="#important-points-to-note_2" title="Permanent link">&para;</a></h2>
+<ol type="1">
 <li>
 <p><strong>Data Passing</strong></p>
 <ul>
@@ -433,7 +433,11 @@ fun ThirdScreen(
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

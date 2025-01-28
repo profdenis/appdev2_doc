@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -138,80 +138,80 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="9-state-and-event-management">9. State and Event Management</h1>
-<h2 id="example-inputexamples">Example: InputExamples</h2>
+                <h1 id="9-state-and-event-management">9. State and Event Management<a class="headerlink" href="#9-state-and-event-management" title="Permanent link">&para;</a></h1>
+<h2 id="example-inputexamples">Example: InputExamples<a class="headerlink" href="#example-inputexamples" title="Permanent link">&para;</a></h2>
 <p>Example on <a href="https://github.com/profdenis/ExemplesEntrees">GitHub</a></p>
-<h3 id="first-version">First Version</h3>
-<pre><code class="language-kotlin">@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FruitSelector(modifier: Modifier = Modifier) {
-    val fruits = listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Strawberry&quot;, &quot;Kiwi&quot;)
-    var expanded by remember { mutableStateOf(false) }
-    var selectedFruit by remember { mutableStateOf(&quot;&quot;) }
+<h3 id="first-version">First Version<a class="headerlink" href="#first-version" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="w"></span>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">FruitSelector</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">fruits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Banana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Strawberry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kiwi&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">expanded</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedFruit</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
-    Column(modifier = modifier.padding(16.dp)) {
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
-        ) {
-            TextField(
-                value = selectedFruit,
-                onValueChange = {},
-                readOnly = true,
-                label = { Text(&quot;Choose a fruit&quot;) },
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                modifier = Modifier
-                    .menuAnchor()
-                    .fillMaxWidth()
-            )
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ExposedDropdownMenuBox</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">onExpandedChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">expanded</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">selectedFruit</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="w">                </span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Choose a fruit&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">trailingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ExposedDropdownMenuDefaults</span><span class="p">.</span><span class="na">TrailingIcon</span><span class="p">(</span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">menuAnchor</span><span class="p">()</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
 
-            ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
-                fruits.forEach { fruit -&gt;
-                    DropdownMenuItem(
-                        text = { Text(fruit) },
-                        onClick = {
-                            selectedFruit = fruit
-                            expanded = false
-                        }
-                    )
-                }
-            }
-        }
+<span class="w">            </span><span class="n">ExposedDropdownMenu</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">onDismissRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">fruits</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">                    </span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="w"></span>
+<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="n">selectedFruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fruit</span><span class="w"></span>
+<span class="w">                            </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        Spacer(modifier = Modifier.height(16.dp))
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
 
-        if (selectedFruit.isNotEmpty()) {
-            Text(&quot;Selected fruit: $selectedFruit&quot;)
-        }
-    }
-}
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">selectedFruit</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Selected fruit: </span><span class="si">$</span><span class="n">selectedFruit</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Composable
-fun App(modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
-        TextLengthCounter()
-        Spacer(modifier = Modifier.height(100.dp))
-        FruitSelector()
-    }
-}
-</code></pre>
-<h4 id="general-description">General Description</h4>
-<ol>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">App</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextLengthCounter</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">100.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">FruitSelector</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="general-description">General Description<a class="headerlink" href="#general-description" title="Permanent link">&para;</a></h4>
+<ol type="1">
 <li>
 <p><code>FruitSelector</code>: This is a composable function that creates a fruit selector in the form of a dropdown menu.</p>
 </li>
 <li>
-<p><code>App</code>: This is the main composable function that structures the application's user interface by combining different
+<p><code>App</code>: This is the main composable function that structures the application&rsquo;s user interface by combining different
    components.</p>
 </li>
 </ol>
-<h4 id="focus-on-fruitselector">Focus on FruitSelector</h4>
+<h4 id="focus-on-fruitselector">Focus on FruitSelector<a class="headerlink" href="#focus-on-fruitselector" title="Permanent link">&para;</a></h4>
 <p>The <code>FruitSelector</code> function is a Jetpack Compose component that creates a dropdown menu allowing users to select a
 fruit from a predefined list. Here are its main features:</p>
-<ol>
+<ol type="1">
 <li>
 <p><strong>Fruit List</strong>: A static list of fruits is defined at the beginning of the function.</p>
 </li>
@@ -255,93 +255,93 @@ fruit from a predefined list. Here are its main features:</p>
 <p>This function demonstrates the use of several important Jetpack Compose concepts, such as state management, Material 3
 UI components, and the creation of interactive components. It provides an intuitive user interface for selecting items
 from a list, which is a common functionality in many applications.</p>
-<h3 id="second-version">Second Version</h3>
-<pre><code class="language-kotlin">@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FruitSelector(
-    modifier: Modifier = Modifier,
-    fruits: List&lt;String&gt;,
-    selectedFruit: String,
-    onFruitSelected: (String) -&gt; Unit = {}
-) {
-    var expanded by remember { mutableStateOf(false) }
+<h3 id="second-version">Second Version<a class="headerlink" href="#second-version" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="w"></span>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">FruitSelector</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fruits</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">selectedFruit</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">onFruitSelected</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">expanded</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
-    Column(modifier = modifier.padding(16.dp)) {
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
-        ) {
-            TextField(
-                value = selectedFruit,
-                onValueChange = {},
-                readOnly = true,
-                label = { Text(&quot;Choose a fruit&quot;) },
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults
-                        .TrailingIcon(expanded = expanded)
-                },
-                modifier = Modifier
-                    .menuAnchor()
-                    .fillMaxWidth()
-            )
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ExposedDropdownMenuBox</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">onExpandedChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">expanded</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">selectedFruit</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="w">                </span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Choose a fruit&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">trailingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">ExposedDropdownMenuDefaults</span><span class="w"></span>
+<span class="w">                        </span><span class="p">.</span><span class="na">TrailingIcon</span><span class="p">(</span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">menuAnchor</span><span class="p">()</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
 
-            ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
-                fruits.forEach { fruit -&gt;
-                    DropdownMenuItem(
-                        text = { Text(fruit) },
-                        onClick = {
-                            onFruitSelected(fruit)
-                            expanded = false
-                        }
-                    )
-                }
-            }
-        }
+<span class="w">            </span><span class="n">ExposedDropdownMenu</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">onDismissRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">fruits</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">                    </span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="w"></span>
+<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="n">onFruitSelected</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span><span class="w"></span>
+<span class="w">                            </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        Spacer(modifier = Modifier.height(16.dp))
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
 
-        if (selectedFruit.isNotEmpty()) {
-            Text(&quot;Selected fruit: $selectedFruit&quot;)
-        }
-    }
-}
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">selectedFruit</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Selected fruit: </span><span class="si">$</span><span class="n">selectedFruit</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Composable
-fun App(modifier: Modifier = Modifier) {
-    var selectedFruit1 by rememberSaveable { mutableStateOf(&quot;&quot;) }
-    var selectedFruit2 by rememberSaveable { mutableStateOf(&quot;&quot;) }
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">App</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedFruit1</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedFruit2</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
-    Column(modifier = modifier) {
-        TextLengthCounter()
-        Spacer(modifier = Modifier.height(100.dp))
-        FruitSelector(
-            fruits = listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Strawberry&quot;, &quot;Kiwi&quot;),
-            selectedFruit = selectedFruit1,
-            onFruitSelected = { fruit -&gt; selectedFruit1 = fruit }
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        FruitSelector(
-            fruits = listOf(&quot;Pear&quot;, &quot;Mango&quot;, &quot;Orange&quot;, &quot;Blueberry&quot;, &quot;Grapefruit&quot;),
-            selectedFruit = selectedFruit2,
-            onFruitSelected = { fruit -&gt; selectedFruit2 = fruit }
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Text(&quot;Selected fruit 1: ${selectedFruit1 ?: &quot;None&quot;}&quot;)
-        Text(&quot;Selected fruit 2: ${selectedFruit2 ?: &quot;None&quot;}&quot;)
-    }
-}
-</code></pre>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextLengthCounter</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">100.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">FruitSelector</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">fruits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Banana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Strawberry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kiwi&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">selectedFruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">selectedFruit1</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">onFruitSelected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">selectedFruit1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">10.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">FruitSelector</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">fruits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="s">&quot;Pear&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mango&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Blueberry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Grapefruit&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">selectedFruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">selectedFruit2</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">onFruitSelected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">selectedFruit2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">10.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Selected fruit 1: </span><span class="si">${</span><span class="n">selectedFruit1</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;</span><span class="n">None</span><span class="s">&quot;</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Selected fruit 2: </span><span class="si">${</span><span class="n">selectedFruit2</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;</span><span class="n">None</span><span class="s">&quot;</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>This new version of the application demonstrates significant refactoring, primarily focused on state hoisting and
-component reusability. Let's examine the changes and their implications in detail:</p>
-<h4 id="fruitselector-refactoring">FruitSelector Refactoring</h4>
-<ol>
+component reusability. Let&rsquo;s examine the changes and their implications in detail:</p>
+<h4 id="fruitselector-refactoring">FruitSelector Refactoring<a class="headerlink" href="#fruitselector-refactoring" title="Permanent link">&para;</a></h4>
+<ol type="1">
 <li>
 <p><strong>State Hoisting</strong>:</p>
 <ul>
-<li><code>selectedFruit</code> is no longer managed inside <code>FruitSelector</code>. It's now passed as a parameter.</li>
+<li><code>selectedFruit</code> is no longer managed inside <code>FruitSelector</code>. It&rsquo;s now passed as a parameter.</li>
 <li>A new <code>onFruitSelected</code> function is added as a parameter to handle selection changes.</li>
 </ul>
 </li>
@@ -360,8 +360,8 @@ component reusability. Let's examine the changes and their implications in detai
 </ul>
 </li>
 </ol>
-<h4 id="changes-in-app">Changes in App</h4>
-<ol>
+<h4 id="changes-in-app">Changes in App<a class="headerlink" href="#changes-in-app" title="Permanent link">&para;</a></h4>
+<ol type="1">
 <li>
 <p><strong>State Management</strong>:</p>
 <ul>
@@ -383,8 +383,8 @@ component reusability. Let's examine the changes and their implications in detai
 </ul>
 </li>
 </ol>
-<h4 id="benefits-of-this-refactoring">Benefits of this Refactoring</h4>
-<ol>
+<h4 id="benefits-of-this-refactoring">Benefits of this Refactoring<a class="headerlink" href="#benefits-of-this-refactoring" title="Permanent link">&para;</a></h4>
+<ol type="1">
 <li>
 <p><strong>Reusability</strong>: <code>FruitSelector</code> can now be used multiple times with different fruit lists.</p>
 </li>
@@ -396,13 +396,13 @@ component reusability. Let's examine the changes and their implications in detai
    needed.</p>
 </li>
 <li>
-<p><strong>Improved Testability</strong>: It's easier to test <code>FruitSelector</code> as its behavior depends entirely on passed props.</p>
+<p><strong>Improved Testability</strong>: It&rsquo;s easier to test <code>FruitSelector</code> as its behavior depends entirely on passed props.</p>
 </li>
 <li>
 <p><strong>Flexibility</strong>: The fruit list can be dynamic, coming from an API or database, for example.</p>
 </li>
 </ol>
-<h4 id="focus-on-state-variables">Focus on State Variables</h4>
+<h4 id="focus-on-state-variables">Focus on State Variables<a class="headerlink" href="#focus-on-state-variables" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
 <p>In <code>App</code>, <code>selectedFruit1</code> and <code>selectedFruit2</code> are state variables created with <code>rememberSaveable</code>. This means they
@@ -455,7 +455,11 @@ interface.</p>
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

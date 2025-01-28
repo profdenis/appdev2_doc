@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -136,36 +136,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="16-intents-vs-navigation">16. Intents vs. Navigation</h1>
-<h2 id="intent-vs-navigation"><code>Intent</code> vs. <code>Navigation</code></h2>
-<h3 id="navigation-compose">Navigation Compose</h3>
-<h4 id="advantages">Advantages</h4>
+                <h1 id="16-intents-vs-navigation">16. Intents vs. Navigation<a class="headerlink" href="#16-intents-vs-navigation" title="Permanent link">&para;</a></h1>
+<h2 id="intent-vs-navigation"><code>Intent</code> vs. <code>Navigation</code><a class="headerlink" href="#intent-vs-navigation" title="Permanent link">&para;</a></h2>
+<h3 id="navigation-compose">Navigation Compose<a class="headerlink" href="#navigation-compose" title="Permanent link">&para;</a></h3>
+<h4 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Type safety</strong>: Compile-time checks, reducing potential errors</li>
 <li><strong>Native integration</strong> with Jetpack Compose and modern Android architecture</li>
 <li><strong>More readable and maintainable code</strong>, less repetitive code</li>
 <li><strong>Declarative approach</strong> that simplifies navigation</li>
 </ul>
-<h4 id="disadvantages">Disadvantages</h4>
+<h4 id="disadvantages">Disadvantages<a class="headerlink" href="#disadvantages" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Limited to basic data types for navigation arguments</li>
 <li>Requires adding an additional dependency</li>
 </ul>
-<h3 id="intent-navigation">Intent Navigation</h3>
-<h4 id="advantages_1">Advantages</h4>
+<h3 id="intent-navigation">Intent Navigation<a class="headerlink" href="#intent-navigation" title="Permanent link">&para;</a></h3>
+<h4 id="advantages_1">Advantages<a class="headerlink" href="#advantages_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Flexibility</strong>: Usable in any Android project</li>
 <li><strong>Familiarity</strong>: Extensive documentation and community support</li>
 <li><strong>Ability to pass Parcelable objects</strong> easily</li>
 <li><strong>Easy integration</strong> with other Android components</li>
 </ul>
-<h4 id="disadvantages_1">Disadvantages</h4>
+<h4 id="disadvantages_1">Disadvantages<a class="headerlink" href="#disadvantages_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>No compile-time checking</strong>: Risk of runtime errors</li>
 <li><strong>More verbose</strong>: Requires more code for navigation management</li>
 <li><strong>Manual management</strong> of lifecycle and state</li>
 </ul>
-<h3 id="recommendation">Recommendation</h3>
+<h3 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h3>
 <p>For a new application using Jetpack Compose:</p>
 <ul>
 <li>Prefer <strong>Navigation Compose</strong> for internal application navigation</li>
@@ -228,7 +228,11 @@ needed.</p>
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

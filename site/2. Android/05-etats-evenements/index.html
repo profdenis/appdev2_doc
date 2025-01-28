@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -172,222 +172,219 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="5-state-and-event-management">5. State and Event Management</h1>
-<h2 id="example-inputexamples">Example: InputExamples</h2>
+                <h1 id="5-state-and-event-management">5. State and Event Management<a class="headerlink" href="#5-state-and-event-management" title="Permanent link">&para;</a></h1>
+<h2 id="example-inputexamples">Example: InputExamples<a class="headerlink" href="#example-inputexamples" title="Permanent link">&para;</a></h2>
 <p>Example on <a href="https://github.com/profdenis/ExemplesEntrees">GitHub</a></p>
-<h3 id="textlengthcounter-function"><code>TextLengthCounter</code> Function</h3>
+<h3 id="textlengthcounter-function"><code>TextLengthCounter</code> Function<a class="headerlink" href="#textlengthcounter-function" title="Permanent link">&para;</a></h3>
 <p>The <code>TextLengthCounter</code> function is a Jetpack Compose composable that creates a user interface allowing users to enter text and display its length in characters. It uses states to manage the entered text and its length, and dynamically updates the display.</p>
-<p>Here's a detailed description of the function:</p>
-<h3 id="function-declaration">Function Declaration:</h3>
-<pre><code class="language-kotlin">@Composable
-fun TextLengthCounter(modifier: Modifier = Modifier)
-</code></pre>
-<ul>
-<li>It's a composable function that can receive a <code>Modifier</code> as a parameter.</li>
-</ul>
-<h3 id="state-management">State Management:</h3>
-<pre><code class="language-kotlin">var text by remember { mutableStateOf(&quot;&quot;) }
-var length by remember { mutableIntStateOf(0) }
-</code></pre>
-<ul>
-<li>Two state variables are created: <code>text</code> to store the entered text and <code>length</code> for the text length.</li>
-<li><code>remember</code> is used to preserve these states between recompositions.</li>
-</ul>
-<h3 id="interface-structure">Interface Structure:</h3>
-<pre><code class="language-kotlin">Column(
-    modifier = Modifier
-        .padding(16.dp)
-        .fillMaxWidth(),
-    horizontalAlignment = Alignment.CenterHorizontally
-) {
-    // Column content
-}
-</code></pre>
+<p>Here&rsquo;s a detailed description of the function:</p>
+<h3 id="function-declaration">Function Declaration:<a class="headerlink" href="#function-declaration" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">TextLengthCounter</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+- It&rsquo;s a composable function that can receive a <code>Modifier</code> as a parameter.</p>
+<h3 id="state-management">State Management:<a class="headerlink" href="#state-management" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableIntStateOf</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+- Two state variables are created: <code>text</code> to store the entered text and <code>length</code> for the text length.
+- <code>remember</code> is used to preserve these states between recompositions.</p>
+<h3 id="interface-structure">Interface Structure:<a class="headerlink" href="#interface-structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Column content</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>A <code>Column</code> is used to organize interface elements vertically.</li>
 <li>A padding of 16dp is applied, and the column occupies all available width.</li>
 <li>Elements are horizontally centered.</li>
 </ul>
-<h3 id="input-field">Input Field:</h3>
-<pre><code class="language-kotlin">TextField(
-    value = text,
-    onValueChange = {
-        text = it
-        length = text.length
-    },
-    label = { Text(&quot;Enter text&quot;) },
-    modifier = Modifier.fillMaxWidth()
-)
-</code></pre>
+<h3 id="input-field">Input Field:<a class="headerlink" href="#input-field" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="w"></span>
+<span class="w">        </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Enter text&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>A <code>TextField</code> allows users to enter text.</li>
 <li>The field value is bound to the <code>text</code> state.</li>
 <li>With each change, <code>text</code> is updated and <code>length</code> is recalculated.</li>
 </ul>
-<h3 id="spacing">Spacing:</h3>
-<pre><code class="language-kotlin">Spacer(modifier = Modifier.height(16.dp))
-</code></pre>
+<h3 id="spacing">Spacing:<a class="headerlink" href="#spacing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>Spacer</code>s are used to add vertical space between elements.</li>
 </ul>
-<h3 id="calculate-button">Calculate Button:</h3>
-<pre><code class="language-kotlin">Button(
-    onClick = { length = text.length }
-) {
-    Text(&quot;Calculate length&quot;)
-}
-</code></pre>
+<h3 id="calculate-button">Calculate Button:<a class="headerlink" href="#calculate-button" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Button</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Calculate length&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>A button allows manual recalculation of the text length.</li>
 </ul>
-<h3 id="length-display">Length Display:</h3>
-<pre><code class="language-kotlin">Text(&quot;Text length: $length characters&quot;)
-</code></pre>
+<h3 id="length-display">Length Display:<a class="headerlink" href="#length-display" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Text length: </span><span class="si">$</span><span class="n">length</span><span class="s"> characters&quot;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>A <code>Text</code> displays the current text length.</li>
 </ul>
 <p>This function illustrates several important Jetpack Compose concepts, including state management, component reactivity, and user interface organization. It shows how to create a simple but functional interactive interface.</p>
-<h2 id="state-management-with-remember-and-mutablestateof">State Management with <code>remember</code> and <code>mutableStateOf</code></h2>
+<h2 id="state-management-with-remember-and-mutablestateof">State Management with <code>remember</code> and <code>mutableStateOf</code><a class="headerlink" href="#state-management-with-remember-and-mutablestateof" title="Permanent link">&para;</a></h2>
 <p>In Jetpack Compose, state is a crucial concept. It represents any data that can change over time and, when changed, can trigger a recomposition of the user interface.</p>
-<pre><code class="language-kotlin">var text by remember { mutableStateOf(&quot;&quot;) }
-var length by remember { mutableIntStateOf(0) }
-</code></pre>
-<h3 id="role-of-remember">Role of <code>remember</code></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableIntStateOf</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="role-of-remember">Role of <code>remember</code><a class="headerlink" href="#role-of-remember" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>remember</code> is a function that allows preserving an object between recompositions.</li>
 <li>Without <code>remember</code>, each recomposition would create a new object, losing the previous state.</li>
-<li><code>remember</code> "memorizes" the initial object and reuses it during subsequent recompositions.</li>
+<li><code>remember</code> &ldquo;memorizes&rdquo; the initial object and reuses it during subsequent recompositions.</li>
 </ul>
-<h3 id="function-of-mutablestateof">Function of <code>mutableStateOf</code></h3>
+<h3 id="function-of-mutablestateof">Function of <code>mutableStateOf</code><a class="headerlink" href="#function-of-mutablestateof" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>mutableStateOf</code> creates a <code>MutableState&lt;T&gt;</code> object that encapsulates a mutable value.</li>
 <li>When this value changes, Compose is notified and can trigger a recomposition if necessary.</li>
 <li><code>mutableIntStateOf</code> is a specialized version for integers, optimized for performance.</li>
 </ul>
-<h3 id="delegation-with-by">Delegation with <code>by</code></h3>
+<h3 id="delegation-with-by">Delegation with <code>by</code><a class="headerlink" href="#delegation-with-by" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The <code>by</code> keyword is used for property delegation in Kotlin.</li>
 <li>It allows using <code>text</code> and <code>length</code> directly as if they were normal variables, while benefiting from <code>MutableState</code> reactivity.</li>
 </ul>
-<h2 id="lambdas-and-state-updates">Lambdas and State Updates</h2>
+<h2 id="lambdas-and-state-updates">Lambdas and State Updates<a class="headerlink" href="#lambdas-and-state-updates" title="Permanent link">&para;</a></h2>
 <p>Lambdas are used to define behaviors in response to events, such as value changes or clicks.</p>
-<h3 id="in-textfield">In TextField</h3>
-<pre><code class="language-kotlin">onValueChange = {
-    text = it
-    length = text.length
-}
-</code></pre>
+<h3 id="in-textfield">In TextField<a class="headerlink" href="#in-textfield" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="w"></span>
+<span class="w">    </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This lambda is called each time the <code>TextField</code> content changes.</li>
 <li><code>it</code> represents the new text field value.</li>
 <li>The lambda updates <code>text</code> with the new value and immediately recalculates <code>length</code>.</li>
 <li>These updates trigger a recomposition, updating the user interface.</li>
 </ul>
-<h3 id="in-button">In Button</h3>
-<pre><code class="language-kotlin">onClick = { length = text.length }
-</code></pre>
+<h3 id="in-button">In Button<a class="headerlink" href="#in-button" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This lambda is simpler, called when the button is clicked.</li>
 <li>It recalculates <code>length</code> based on the current value of <code>text</code>.</li>
 <li>While this may seem redundant here (since <code>length</code> is already up to date), it could be useful in more complex scenarios.</li>
 </ul>
-<h3 id="reactivity-and-data-flow">Reactivity and Data Flow</h3>
-<ol>
+<h3 id="reactivity-and-data-flow">Reactivity and Data Flow<a class="headerlink" href="#reactivity-and-data-flow" title="Permanent link">&para;</a></h3>
+<ol type="1">
 <li>When the user types text, <code>onValueChange</code> is called.</li>
 <li><code>text</code> is updated, which notifies Compose of a state change.</li>
 <li><code>length</code> is also immediately updated.</li>
 <li>Compose detects these state changes and triggers a recomposition.</li>
 <li>During recomposition, the <code>TextField</code> displays the new text, and the <code>Text</code> below displays the new length.</li>
 </ol>
-<p>This approach ensures that the user interface always stays synchronized with the application's internal state, providing a reactive and consistent user experience.</p>
-<h2 id="fruitselector-function">FruitSelector Function</h2>
+<p>This approach ensures that the user interface always stays synchronized with the application&rsquo;s internal state, providing a reactive and consistent user experience.</p>
+<h2 id="fruitselector-function">FruitSelector Function<a class="headerlink" href="#fruitselector-function" title="Permanent link">&para;</a></h2>
 <p>The <code>FruitSelector</code> function is a Jetpack Compose composable that creates a fruit selector as a dropdown menu. It allows users to choose a fruit from a predefined list and displays the selected fruit.</p>
-<pre><code class="language-kotlin">@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FruitSelector(modifier: Modifier = Modifier) {
-</code></pre>
-<h3 id="function-declaration_1">Function Declaration</h3>
-<pre><code>- `@OptIn(ExperimentalMaterial3Api::class)` indicates the use of experimental Material 3 APIs.
-- It's a composable function that accepts an optional `modifier`.
-</code></pre>
-<pre><code class="language-kotlin">    val fruits = listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Strawberry&quot;, &quot;Kiwi&quot;)
-    var expanded by remember { mutableStateOf(false) }
-    var selectedFruit by rememberSaveable { mutableStateOf(&quot;&quot;) }
-</code></pre>
-<h3 id="state-initialization">State Initialization</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="w"></span>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">FruitSelector</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+</code></pre></div>
+<h3 id="function-declaration_1">Function Declaration<a class="headerlink" href="#function-declaration_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`@OptIn(ExperimentalMaterial3Api::class)`</span><span class="w"> </span><span class="n">indicates</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">experimental</span><span class="w"> </span><span class="n">Material</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">APIs</span><span class="p">.</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n">It</span><span class="s1">&#39;s a composable function that accepts an optional `modifier`.</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">fruits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Banana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Strawberry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kiwi&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">expanded</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedFruit</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="state-initialization">State Initialization<a class="headerlink" href="#state-initialization" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>fruits</code> is a static list of fruits.</li>
 <li><code>expanded</code> is a boolean state to control opening/closing the dropdown menu.</li>
 <li><code>selectedFruit</code> is a state to store the selected fruit. <code>rememberSaveable</code> is used to preserve the selection even after a configuration change (like screen rotation).</li>
 </ul>
-<pre><code class="language-kotlin">    Column(modifier = modifier.padding(16.dp)) {
-       ExposedDropdownMenuBox(
-           expanded = expanded,
-           onExpandedChange = { expanded = !expanded }
-       ) {
-</code></pre>
-<h3 id="interface-structure_1">Interface Structure</h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">ExposedDropdownMenuBox</span><span class="p">(</span><span class="w"></span>
+<span class="w">           </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="n">onExpandedChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">expanded</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+</code></pre></div>
+<h3 id="interface-structure_1">Interface Structure<a class="headerlink" href="#interface-structure_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A <code>Column</code> contains all elements with 16dp padding.</li>
 <li><code>ExposedDropdownMenuBox</code> is the main container for the dropdown menu.</li>
 </ul>
-<pre><code class="language-kotlin">            TextField(
-                value = selectedFruit,
-                onValueChange = {},
-                readOnly = true,
-                label = { Text(&quot;Choose a fruit&quot;) },
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults
-                        .TrailingIcon(expanded = expanded)
-                },
-                modifier = Modifier
-                    .menuAnchor()
-                    .fillMaxWidth()
-            )
-</code></pre>
-<h3 id="selector-text-field">Selector Text Field</h3>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">selectedFruit</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="w">                </span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Choose a fruit&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">trailingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">ExposedDropdownMenuDefaults</span><span class="w"></span>
+<span class="w">                        </span><span class="p">.</span><span class="na">TrailingIcon</span><span class="p">(</span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">menuAnchor</span><span class="p">()</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<h3 id="selector-text-field">Selector Text Field<a class="headerlink" href="#selector-text-field" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A <code>TextField</code> displays the selected fruit.</li>
 <li>It is read-only (<code>readOnly = true</code>).</li>
 <li>A dropdown icon is added on the right.</li>
 <li><code>.menuAnchor()</code> links this field to the dropdown menu.</li>
 </ul>
-<pre><code class="language-kotlin">            ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
-                fruits.forEach { fruit -&gt;
-                    DropdownMenuItem(
-                        text = { Text(fruit) },
-                        onClick = {
-                            selectedFruit = fruit
-                            expanded = false
-                        }
-                    )
-                }
-            }
-</code></pre>
-<h3 id="dropdown-menu">Dropdown Menu</h3>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="n">ExposedDropdownMenu</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">onDismissRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">fruits</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">                    </span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="w"></span>
+<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="n">selectedFruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fruit</span><span class="w"></span>
+<span class="w">                            </span><span class="n">expanded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="dropdown-menu">Dropdown Menu<a class="headerlink" href="#dropdown-menu" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>ExposedDropdownMenu</code> contains the list of fruits.</li>
 <li>Each fruit is represented by a <code>DropdownMenuItem</code>.</li>
 <li>When clicking a fruit, <code>selectedFruit</code> is updated and the menu closes.</li>
 </ul>
-<pre><code class="language-kotlin">        Spacer(modifier = Modifier.height(16.dp))
-        if (selectedFruit.isNotEmpty()) {
-            Text(&quot;Selected fruit: $selectedFruit&quot;)
-        }
-    }
-}
-</code></pre>
-<h3 id="selection-display">Selection Display</h3>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">selectedFruit</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Selected fruit: </span><span class="si">$</span><span class="n">selectedFruit</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="selection-display">Selection Display<a class="headerlink" href="#selection-display" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A vertical space is added.</li>
 <li>If a fruit is selected, it is displayed below the menu.</li>
 </ul>
-<h3 id="overall-operation">Overall Operation</h3>
+<h3 id="overall-operation">Overall Operation<a class="headerlink" href="#overall-operation" title="Permanent link">&para;</a></h3>
 <ul>
-<li>The user sees a text field with the label "Choose a fruit".</li>
+<li>The user sees a text field with the label &ldquo;Choose a fruit&rdquo;.</li>
 <li>Clicking on the field opens a dropdown menu with the list of fruits.</li>
 <li>Selecting a fruit updates the <code>selectedFruit</code> state and closes the menu.</li>
 <li>The selected fruit is displayed in the text field and below it.</li>
@@ -439,7 +436,11 @@ fun FruitSelector(modifier: Modifier = Modifier) {
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -128,201 +128,197 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="10-localization">10. Localization</h1>
-<p>Here's a guide to integrate localization in an Android application developed with Jetpack Compose:</p>
-<h2 id="general-principles-of-localization">General Principles of Localization</h2>
+                <h1 id="10-localization">10. Localization<a class="headerlink" href="#10-localization" title="Permanent link">&para;</a></h1>
+<p>Here&rsquo;s a guide to integrate localization in an Android application developed with Jetpack Compose:</p>
+<h2 id="general-principles-of-localization">General Principles of Localization<a class="headerlink" href="#general-principles-of-localization" title="Permanent link">&para;</a></h2>
 <p>Localizing an Android application involves adapting its content and user interface to different languages and cultures.
 Here are the key principles to follow:</p>
-<ol>
+<ol type="1">
 <li>Externalize all strings in resource files.</li>
-<li>Use neutral identifiers for resources (e.g., "welcome_message" instead of "english_welcome").</li>
+<li>Use neutral identifiers for resources (e.g., &ldquo;welcome_message&rdquo; instead of &ldquo;english_welcome&rdquo;).</li>
 <li>Avoid hardcoding text in your code.</li>
 <li>Consider cultural differences (date formats, measurement units, etc.).</li>
 <li>Plan for extra space in your interface for longer translations.</li>
 <li>Test your application in different languages and configurations.</li>
 </ol>
-<h2 id="simple-example-with-strings-in-english-and-french">Simple Example with Strings in English and French</h2>
-<h3 id="step-1-configure-language-resources">Step 1: Configure Language Resources</h3>
+<h2 id="simple-example-with-strings-in-english-and-french">Simple Example with Strings in English and French<a class="headerlink" href="#simple-example-with-strings-in-english-and-french" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-configure-language-resources">Step 1: Configure Language Resources<a class="headerlink" href="#step-1-configure-language-resources" title="Permanent link">&para;</a></h3>
 <p>1- In the <code>res</code> folder, create a <code>values-fr</code> folder for French resources.</p>
 <p>2- In <code>res/values/strings.xml</code> (default English):</p>
-<pre><code class="language-xml">
-&lt;resources&gt;
-    &lt;string name=&quot;app_name&quot;&gt;My App&lt;/string&gt;
-    &lt;string name=&quot;welcome_message&quot;&gt;Welcome to My App!&lt;/string&gt;
-    &lt;string name=&quot;language_selection&quot;&gt;Select a language&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>My App<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;welcome_message&quot;</span><span class="nt">&gt;</span>Welcome to My App!<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;language_selection&quot;</span><span class="nt">&gt;</span>Select a language<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
 <p>3- In <code>res/values-fr/strings.xml</code>:</p>
-<pre><code class="language-xml">
-&lt;resources&gt;
-    &lt;string name=&quot;app_name&quot;&gt;Mon Application&lt;/string&gt;
-    &lt;string name=&quot;welcome_message&quot;&gt;Bienvenue dans Mon Application !&lt;/string&gt;
-    &lt;string name=&quot;language_selection&quot;&gt;Sélectionnez une langue&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre>
-<h3 id="step-2-use-localized-strings-in-jetpack-compose">Step 2: Use Localized Strings in Jetpack Compose</h3>
-<pre><code class="language-kotlin">@Composable
-fun WelcomeScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = stringResource(R.string.welcome_message),
-            style = MaterialTheme.typography.h4
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = stringResource(R.string.language_selection),
-            style = MaterialTheme.typography.body1
-        )
-    }
-}
-</code></pre>
-<h2 id="date-formatting">Date Formatting</h2>
-<p>To format dates according to the user's locale, use the <code>DateTimeFormatter</code> class with <code>ofLocalizedDate()</code>:</p>
-<pre><code class="language-kotlin">import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>Mon Application<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;welcome_message&quot;</span><span class="nt">&gt;</span>Bienvenue dans Mon Application !<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;language_selection&quot;</span><span class="nt">&gt;</span>Sélectionnez une langue<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
+<h3 id="step-2-use-localized-strings-in-jetpack-compose">Step 2: Use Localized Strings in Jetpack Compose<a class="headerlink" href="#step-2-use-localized-strings-in-jetpack-compose" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">WelcomeScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">welcome_message</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">h4</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">language_selection</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">body1</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="date-formatting">Date Formatting<a class="headerlink" href="#date-formatting" title="Permanent link">&para;</a></h2>
+<p>To format dates according to the user&rsquo;s locale, use the <code>DateTimeFormatter</code> class with <code>ofLocalizedDate()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">java.time.LocalDate</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.time.format.DateTimeFormatter</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.time.format.FormatStyle</span><span class="w"></span>
 
-@Composable
-fun DisplayLocalizedDate() {
-    val currentDate = LocalDate.now()
-    val dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
-    val formattedDate = remember(currentDate) {
-        currentDate.format(dateFormatter)
-    }
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DisplayLocalizedDate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">currentDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">dateFormatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateTimeFormatter</span><span class="p">.</span><span class="na">ofLocalizedDate</span><span class="p">(</span><span class="n">FormatStyle</span><span class="p">.</span><span class="na">LONG</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">formattedDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="p">(</span><span class="n">currentDate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">currentDate</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">dateFormatter</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    Text(
-        text = formattedDate,
-        style = MaterialTheme.typography.body1
-    )
-}
-</code></pre>
-<p>This code will display the current date in the appropriate long format for the user's locale. For example:</p>
+<span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">formattedDate</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">body1</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>This code will display the current date in the appropriate long format for the user&rsquo;s locale. For example:</p>
 <ul>
-<li>In English (US): "September 18, 2024"</li>
-<li>In French: "18 septembre 2024"</li>
+<li>In English (US): &ldquo;September 18, 2024&rdquo;</li>
+<li>In French: &ldquo;18 septembre 2024&rdquo;</li>
 </ul>
 <p>By following these steps, your Jetpack Compose application will be properly localized in English and French, with the
 ability to easily add other languages in the future.</p>
 <p>Citations:</p>
 <ul>
-<li><a href="https://www.translized.com/blog/android-localization-with-jetpack-compose---a-comprehensive-guide">https://www.translized.com/blog/android-localization-with-jetpack-compose---a-comprehensive-guide</a></li>
+<li><a href="https://www.translized.com/blog/android-localization-with-jetpack-compose---a-comprehensive-guide">https://www.translized.com/blog/android-localization-with-jetpack-compose&mdash;a-comprehensive-guide</a></li>
 <li><a href="https://phrase.com/blog/posts/localized-date-time-android/">https://phrase.com/blog/posts/localized-date-time-android/</a></li>
 <li><a href="https://www.youtube.com/watch?v=VdwDawvfH98">https://www.youtube.com/watch?v=VdwDawvfH98</a></li>
 <li><a href="https://phrase.com/blog/posts/internationalizing-jetpack-compose-android-apps/">https://phrase.com/blog/posts/internationalizing-jetpack-compose-android-apps/</a></li>
 <li><a href="https://www.adamormsby.com/posts/013-android-localization-formatting-dates/">https://www.adamormsby.com/posts/013-android-localization-formatting-dates/</a></li>
 </ul>
-<h2 id="complete-example">Complete Example</h2>
-<p>Here's a complete example of a simple application using Jetpack Compose with localization, without buttons to change the
+<h2 id="complete-example">Complete Example<a class="headerlink" href="#complete-example" title="Permanent link">&para;</a></h2>
+<p>Here&rsquo;s a complete example of a simple application using Jetpack Compose with localization, without buttons to change the
 language. This application will display a localized welcome message and the current date formatted according to the
-device's locale.</p>
-<pre><code class="language-kotlin">import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
+device&rsquo;s locale.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.ComponentActivity</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.compose.setContent</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.*</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material.*</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.*</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.stringResource</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.time.LocalDate</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.time.format.DateTimeFormatter</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.time.format.FormatStyle</span><span class="w"></span>
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MyApp()
-        }
-    }
-}
+<span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">MyApp</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Composable
-fun MyApp() {
-    MaterialTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
-        ) {
-            LocalizedContent()
-        }
-    }
-}
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyApp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">MaterialTheme</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Surface</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span><span class="w"></span>
+<span class="w">            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colors</span><span class="p">.</span><span class="na">background</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">LocalizedContent</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Composable
-fun LocalizedContent() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = stringResource(R.string.welcome_message),
-            style = MaterialTheme.typography.h4
-        )
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">LocalizedContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">welcome_message</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">h4</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
 
-        Spacer(modifier = Modifier.height(16.dp))
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"></span>
 
-        DisplayLocalizedDate()
-    }
-}
+<span class="w">        </span><span class="n">DisplayLocalizedDate</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Composable
-fun DisplayLocalizedDate() {
-    val currentDate = remember { LocalDate.now() }
-    val dateFormatter = remember { DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG) }
-    val formattedDate = remember(currentDate) {
-        currentDate.format(dateFormatter)
-    }
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DisplayLocalizedDate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">currentDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">dateFormatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">DateTimeFormatter</span><span class="p">.</span><span class="na">ofLocalizedDate</span><span class="p">(</span><span class="n">FormatStyle</span><span class="p">.</span><span class="na">LONG</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">formattedDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="p">(</span><span class="n">currentDate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">currentDate</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">dateFormatter</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    Text(
-        text = formattedDate,
-        style = MaterialTheme.typography.body1
-    )
-}
-</code></pre>
+<span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">formattedDate</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">body1</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>For this application to work correctly, you also need to configure the following resource files:</p>
 <ul>
 <li>In <code>res/values/strings.xml</code> (default English):</li>
 </ul>
-<pre><code class="language-xml">
-&lt;resources&gt;
-    &lt;string name=&quot;app_name&quot;&gt;My Localized App&lt;/string&gt;
-    &lt;string name=&quot;welcome_message&quot;&gt;Welcome to My Localized App!&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>My Localized App<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;welcome_message&quot;</span><span class="nt">&gt;</span>Welcome to My Localized App!<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
 <ul>
 <li>In <code>res/values-fr/strings.xml</code> (for French):</li>
 </ul>
-<pre><code class="language-xml">
-&lt;resources&gt;
-    &lt;string name=&quot;app_name&quot;&gt;Mon Application Localisée&lt;/string&gt;
-    &lt;string name=&quot;welcome_message&quot;&gt;Bienvenue dans Mon Application Localisée !&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>Mon Application Localisée<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;welcome_message&quot;</span><span class="nt">&gt;</span>Bienvenue dans Mon Application Localisée !<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
 <ul>
 <li>Make sure you have the necessary dependencies in your <code>build.gradle</code> (Module: app) file:</li>
 </ul>
-<pre><code class="language-gradle">dependencies {
+<div class="highlight"><pre><span></span><code>dependencies {
     implementation &quot;androidx.compose.ui:ui:1.5.0&quot;
     implementation &quot;androidx.compose.material:material:1.5.0&quot;
     implementation &quot;androidx.compose.ui:ui-tooling-preview:1.5.0&quot;
     implementation &quot;androidx.activity:activity-compose:1.7.2&quot;
 }
-</code></pre>
+</code></pre></div>
 <p>This simple application displays:</p>
-<ol>
+<ol type="1">
 <li>A localized welcome message</li>
-<li>The current date formatted according to the device's locale</li>
+<li>The current date formatted according to the device&rsquo;s locale</li>
 </ol>
-<p>The application will automatically use the appropriate resources based on the language configured on the user's device.
+<p>The application will automatically use the appropriate resources based on the language configured on the user&rsquo;s device.
 If the device is set to French, it will use the strings from the <code>values-fr/strings.xml</code> file. For any other language,
 it will use the default strings from the <code>values/strings.xml</code> file.</p>
 <p>To test different languages, you can change the language of your device or emulator in the system settings. The
@@ -366,7 +362,11 @@ application will automatically adapt to the new language without requiring a res
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

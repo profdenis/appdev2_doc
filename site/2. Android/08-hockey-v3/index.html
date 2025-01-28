@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -128,121 +128,121 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="8-hockey-application-version-3">8. Hockey Application Version 3</h1>
-<h2 id="different-versions-of-playerlistwithsearch">Different Versions of <code>PlayerListWithSearch</code></h2>
-<h3 id="previous-version">Previous Version</h3>
-<pre><code class="language-kotlin">@Composable
-fun PlayerListWithSearch(modifier: Modifier = Modifier) {
-    var nameSearch by rememberSaveable { mutableStateOf(&quot;&quot;) }
-    var numberSearch: Int? by rememberSaveable { mutableStateOf(null) }
-    Column(modifier = modifier) {
-        Column(modifier = Modifier.padding(top = 20.dp, bottom = 20.dp)) {
-            TextField(
-                value = nameSearch,
-                label = { Text(text = &quot;Name&quot;) },
-                onValueChange = { nameSearch = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp)
-            )
-            TextField(
-                value = (numberSearch ?: &quot;&quot;).toString(),
-                label = { Text(text = &quot;Number&quot;) },
-                onValueChange = {
-                    numberSearch = if (it.isEmpty()) null else it.toIntOrNull() ?: numberSearch
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp)
-            )
-        }
+                <h1 id="8-hockey-application-version-3">8. Hockey Application Version 3<a class="headerlink" href="#8-hockey-application-version-3" title="Permanent link">&para;</a></h1>
+<h2 id="different-versions-of-playerlistwithsearch">Different Versions of <code>PlayerListWithSearch</code><a class="headerlink" href="#different-versions-of-playerlistwithsearch" title="Permanent link">&para;</a></h2>
+<h3 id="previous-version">Previous Version<a class="headerlink" href="#previous-version" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PlayerListWithSearch</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">nameSearch</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">numberSearch</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nameSearch</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Name&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nameSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">numberSearch</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">).</span><span class="na">toString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Number&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">numberSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">numberSearch</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(getPlayers(nameSearch, numberSearch)) {
-                HockeyPlayerCard(player = it)
-            }
-        }
-    }
-}
-</code></pre>
-<h4 id="general-description">General Description</h4>
+<span class="w">        </span><span class="n">LazyColumn</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">items</span><span class="p">(</span><span class="n">getPlayers</span><span class="p">(</span><span class="n">nameSearch</span><span class="p">,</span><span class="w"> </span><span class="n">numberSearch</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">HockeyPlayerCard</span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="general-description">General Description<a class="headerlink" href="#general-description" title="Permanent link">&para;</a></h4>
 <p>This code defines a composable function named <code>PlayerListWithSearch</code> that creates a user interface to display a list of
 hockey players with search functionality. The interface includes two text fields for searching (one for name and one for
 number) and a scrollable list of players matching the search criteria.</p>
-<h4 id="detailed-description">Detailed Description</h4>
+<h4 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h4>
 <p>1- Function Declaration:</p>
-<pre><code class="language-kotlin">@Composable
-fun PlayerListWithSearch(modifier: Modifier = Modifier)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PlayerListWithSearch</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <ul>
-<li>It's a composable function that accepts an optional <code>modifier</code> as a parameter.</li>
+<li>It&rsquo;s a composable function that accepts an optional <code>modifier</code> as a parameter.</li>
 </ul>
 <p>2- State Variables:</p>
-<pre><code class="language-kotlin">var nameSearch by rememberSaveable { mutableStateOf(&quot;&quot;) }
-var numberSearch: Int? by rememberSaveable { mutableStateOf(null) }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">nameSearch</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nv">numberSearch</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>nameSearch</code>: A string to store the name search.</li>
 <li><code>numberSearch</code>: A nullable integer to store the number search.</li>
 <li>These variables use <code>rememberSaveable</code> to preserve their state even after reconfiguration.</li>
 </ul>
 <p>3- Main Structure:</p>
-<pre><code class="language-kotlin">Column(modifier = modifier) {
-    // Content
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Content</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>Uses a <code>Column</code> as the main container with the modifier passed as parameter.</li>
 </ul>
 <p>4- Search Fields:</p>
-<pre><code class="language-kotlin">Column(modifier = Modifier.padding(top = 20.dp, bottom = 20.dp)) {
-    // Text fields
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Text fields</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>An inner <code>Column</code> with padding to contain the search fields.</li>
 </ul>
 <p>5- Name Search Field:</p>
-<pre><code class="language-kotlin">TextField(
-    value = nameSearch,
-    label = { Text(text = &quot;Name&quot;) },
-    onValueChange = { nameSearch = it },
-    modifier = Modifier
-        .fillMaxWidth()
-        .padding(start = 20.dp, end = 20.dp)
-)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nameSearch</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Name&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nameSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>A <code>TextField</code> for name search.</li>
 <li>The value is bound to <code>nameSearch</code>.</li>
-<li>The label displays "Name".</li>
+<li>The label displays &ldquo;Name&rdquo;.</li>
 <li><code>onValueChange</code> updates <code>nameSearch</code> with the new value.</li>
 </ul>
 <p>6- Number Search Field:</p>
-<pre><code class="language-kotlin">TextField(
-    value = (numberSearch ?: &quot;&quot;).toString(),
-    label = { Text(text = &quot;Number&quot;) },
-    onValueChange = {
-        numberSearch = if (it.isEmpty()) null else it.toIntOrNull() ?: numberSearch
-    },
-    modifier = Modifier
-        .fillMaxWidth()
-        .padding(start = 20.dp, end = 20.dp)
-)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">numberSearch</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">).</span><span class="na">toString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Number&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">numberSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">numberSearch</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>A <code>TextField</code> for number search.</li>
 <li>The displayed value is the string conversion of <code>numberSearch</code> (or empty string if null).</li>
-<li>The label displays "Number".</li>
+<li>The label displays &ldquo;Number&rdquo;.</li>
 <li><code>onValueChange</code> attempts to convert the input to an integer, keeping the previous value if conversion fails.</li>
 </ul>
 <p>7- Player List:</p>
-<pre><code class="language-kotlin">LazyColumn(modifier = Modifier.fillMaxSize()) {
-    items(getPlayers(nameSearch, numberSearch)) {
-        HockeyPlayerCard(player = it)
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">LazyColumn</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">items</span><span class="p">(</span><span class="n">getPlayers</span><span class="p">(</span><span class="n">nameSearch</span><span class="p">,</span><span class="w"> </span><span class="n">numberSearch</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">HockeyPlayerCard</span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>Uses a <code>LazyColumn</code> to efficiently display a potentially long list of players.</li>
 <li><code>getPlayers(nameSearch, numberSearch)</code> is called to get the filtered list of players.</li>
@@ -250,57 +250,57 @@ var numberSearch: Int? by rememberSaveable { mutableStateOf(null) }
 </ul>
 <p>This code creates an interactive user interface allowing users to search for hockey players by name and number, with
 dynamic updating of the displayed list based on search criteria.</p>
-<h3 id="new-version">New Version</h3>
-<pre><code class="language-kotlin">@Composable
-fun PlayerListWithSearch(modifier: Modifier = Modifier) {
-    var nameSearch by rememberSaveable { mutableStateOf(&quot;&quot;) }
-    var numberSearch: Int? by rememberSaveable { mutableStateOf(null) }
-    Column(modifier = modifier) {
-        SearchTextFields(
-            nameSearch = nameSearch,
-            onNameChange = { nameSearch = it },
-            numberSearch = numberSearch,
-            onNumberChange =
-                { numberSearch = if (it.isEmpty()) null else it.toIntOrNull() ?: numberSearch })
+<h3 id="new-version">New Version<a class="headerlink" href="#new-version" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">PlayerListWithSearch</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">nameSearch</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">numberSearch</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">SearchTextFields</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">nameSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nameSearch</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">onNameChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nameSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="n">numberSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numberSearch</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">onNumberChange</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="n">numberSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">numberSearch</span><span class="w"> </span><span class="p">})</span><span class="w"></span>
 
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(getPlayers(nameSearch, numberSearch)) {
-                HockeyPlayerCard(player = it)
-            }
-        }
-    }
-}
+<span class="w">        </span><span class="n">LazyColumn</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">items</span><span class="p">(</span><span class="n">getPlayers</span><span class="p">(</span><span class="n">nameSearch</span><span class="p">,</span><span class="w"> </span><span class="n">numberSearch</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">HockeyPlayerCard</span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Composable
-private fun SearchTextFields(
-    nameSearch: String,
-    onNameChange: (String) -&gt; Unit,
-    numberSearch: Int?,
-    onNumberChange: (String) -&gt; Unit,
-) {
-    Column(modifier = Modifier.padding(top = 20.dp, bottom = 20.dp)) {
-        TextField(
-            value = nameSearch,
-            label = { Text(text = &quot;Name&quot;) },
-            onValueChange = onNameChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp)
-        )
-        TextField(
-            value = (numberSearch ?: &quot;&quot;).toString(),
-            label = { Text(text = &quot;Number&quot;) },
-            onValueChange = onNumberChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp)
-        )
-    }
-}
-</code></pre>
-<p>This refactoring illustrates how to improve code structure and reusability in Jetpack Compose. Here's a detailed
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">SearchTextFields</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">nameSearch</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">onNameChange</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">numberSearch</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">onNumberChange</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nameSearch</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Name&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNameChange</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextField</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">numberSearch</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">).</span><span class="na">toString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Number&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNumberChange</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>This refactoring illustrates how to improve code structure and reusability in Jetpack Compose. Here&rsquo;s a detailed
 explanation of the transition between the two versions, focusing on state management and lambda functions:</p>
-<ol>
+<ol type="1">
 <li>
 <p>Creation of the new <code>SearchTextFields</code> composable:</p>
 <ul>
@@ -331,8 +331,8 @@ explanation of the transition between the two versions, focusing on state manage
 <li>For <code>onNameChange</code>, a simple lambda is passed: <code>{ nameSearch = it }</code>.
   This lambda directly updates the <code>nameSearch</code> state variable.</li>
 <li>For <code>onNumberChange</code>, the conversion logic is passed as a lambda:
-  <code>kotlin
-  { numberSearch = if (it.isEmpty()) null else it.toIntOrNull() ?: numberSearch }</code>
+  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="n">numberSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">numberSearch</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
   This lambda handles the string to integer conversion and updating <code>numberSearch</code>.</li>
 </ul>
 </li>
@@ -349,7 +349,7 @@ explanation of the transition between the two versions, focusing on state manage
 <ul>
 <li>Separation of concerns: <code>SearchTextFields</code> only handles display and input collection.</li>
 <li>State hoisting: State remains in the parent component, making <code>SearchTextFields</code> more flexible and reusable.</li>
-<li>Improved testability: It's easier to test <code>SearchTextFields</code> independently.</li>
+<li>Improved testability: It&rsquo;s easier to test <code>SearchTextFields</code> independently.</li>
 </ul>
 </li>
 <li>
@@ -360,7 +360,7 @@ explanation of the transition between the two versions, focusing on state manage
 </ul>
 </li>
 </ol>
-<p>This refactoring is an excellent example of how to apply the "state hoisting" principle in Jetpack Compose, by elevating
+<p>This refactoring is an excellent example of how to apply the &ldquo;state hoisting&rdquo; principle in Jetpack Compose, by elevating
 state and state modification functions to the parent component. This makes the code more modular, easier to maintain and
 test, while maintaining a clear separation of responsibilities between components.</p>
               
@@ -402,7 +402,11 @@ test, while maintaining a clear separation of responsibilities between component
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

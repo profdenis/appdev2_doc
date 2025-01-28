@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -93,6 +91,8 @@
     </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
@@ -146,95 +146,95 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="3-first-application-with-jetpack-compose">3. First Application with Jetpack Compose</h1>
-<p>Here's a simple example of a "Hello!" application using Jetpack Compose. I will present the code, then explain each
+                <h1 id="3-first-application-with-jetpack-compose">3. First Application with Jetpack Compose<a class="headerlink" href="#3-first-application-with-jetpack-compose" title="Permanent link">&para;</a></h1>
+<p>Here&rsquo;s a simple example of a &ldquo;Hello!&rdquo; application using Jetpack Compose. I will present the code, then explain each
 important element step by step.</p>
-<pre><code class="language-kotlin">import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.ComponentActivity</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.compose.setContent</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Box</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material.Text</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span><span class="w"></span>
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Box(modifier = Modifier.fillMaxSize()) {
-                Text(
-                    text = &quot;Hello!&quot;,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-        }
-    }
-}
-</code></pre>
-<p>Now, let's explain the important elements of this application step by step:</p>
-<h2 id="explanation-of-key-elements">Explanation of Key Elements</h2>
-<h3 id="1-imports">1. Imports</h3>
-<pre><code class="language-kotlin">import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-</code></pre>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Now, let&rsquo;s explain the important elements of this application step by step:</p>
+<h2 id="explanation-of-key-elements">Explanation of Key Elements<a class="headerlink" href="#explanation-of-key-elements" title="Permanent link">&para;</a></h2>
+<h3 id="1-imports">1. Imports<a class="headerlink" href="#1-imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.ComponentActivity</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.compose.setContent</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Box</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material.Text</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>These imports are necessary to use Jetpack Compose classes and functions.</li>
 </ul>
-<h3 id="2-main-activity-definition">2. Main Activity Definition</h3>
-<pre><code class="language-kotlin">class MainActivity : ComponentActivity() {
-    // ...
-}
-</code></pre>
+<h3 id="2-main-activity-definition">2. Main Activity Definition<a class="headerlink" href="#2-main-activity-definition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>MainActivity</code> inherits from <code>ComponentActivity</code>, which is the recommended base class for activities using Compose.</li>
 </ul>
-<h3 id="3-oncreate-method">3. onCreate Method</h3>
-<pre><code class="language-kotlin">override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    // ...
-}
-</code></pre>
+<h3 id="3-oncreate-method">3. onCreate Method<a class="headerlink" href="#3-oncreate-method" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This method is called when the activity is created.</li>
 </ul>
-<h3 id="4-setcontent">4. setContent</h3>
-<pre><code class="language-kotlin">setContent {
-    // Compose content
-}
-</code></pre>
+<h3 id="4-setcontent">4. setContent<a class="headerlink" href="#4-setcontent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Compose content</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>setContent</code> is a Compose-specific function that defines the user interface content.</li>
 <li>Everything inside this function is Compose code.</li>
 </ul>
-<h3 id="5-box-layout">5. Box Layout</h3>
-<pre><code class="language-kotlin">Box(modifier = Modifier.fillMaxSize()) {
-    // Box content
-}
-</code></pre>
+<h3 id="5-box-layout">5. Box Layout<a class="headerlink" href="#5-box-layout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Box</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Box content</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>Box</code> is a layout component that allows stacking elements.</li>
 <li><code>Modifier.fillMaxSize()</code> makes the Box occupy all available screen space.</li>
 </ul>
-<h3 id="6-text-composable">6. Text Composable</h3>
-<pre><code class="language-kotlin">Text(
-    text = &quot;Hello!&quot;,
-    modifier = Modifier.align(Alignment.Center)
-)
-</code></pre>
+<h3 id="6-text-composable">6. Text Composable<a class="headerlink" href="#6-text-composable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">)</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li><code>Text</code> is a Compose component for displaying text.</li>
 <li><code>text = "Hello!"</code> defines the text to display.</li>
 <li><code>Modifier.align(Alignment.Center)</code> centers the text in the Box.</li>
 </ul>
-<h2 id="key-points-to-remember">Key Points to Remember</h2>
-<ol>
+<h2 id="key-points-to-remember">Key Points to Remember<a class="headerlink" href="#key-points-to-remember" title="Permanent link">&para;</a></h2>
+<ol type="1">
 <li>
 <p><strong>Composables</strong>: In Compose, the user interface is built from composable functions (like <code>Text</code>).</p>
 </li>
@@ -251,92 +251,92 @@ import androidx.compose.ui.Modifier
 <p><strong>No XML</strong>: Unlike traditional Android development, there are no XML files to define the layout.</p>
 </li>
 </ol>
-<p>This simple application displays "Hello!" in the center of the screen. It's an ideal starting point to begin exploring
+<p>This simple application displays &ldquo;Hello!&rdquo; in the center of the screen. It&rsquo;s an ideal starting point to begin exploring
 Jetpack Compose, as it illustrates the basic concepts without too much complexity.</p>
-<h2 id="defining-composable-functions">Defining Composable Functions</h2>
-<p>Here's the modified example with a composable function defined for the <code>Box</code>, and its call in <code>onCreate</code>. I will then
+<h2 id="defining-composable-functions">Defining Composable Functions<a class="headerlink" href="#defining-composable-functions" title="Permanent link">&para;</a></h2>
+<p>Here&rsquo;s the modified example with a composable function defined for the <code>Box</code>, and its call in <code>onCreate</code>. I will then
 explain the modifications.</p>
-<pre><code class="language-kotlin">import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.ComponentActivity</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.activity.compose.setContent</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.Box</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.fillMaxSize</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material.Text</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.tooling.preview.Preview</span><span class="w"></span>
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            HelloScreen()
-        }
-    }
-}
+<span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">HelloScreen</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Composable
-fun HelloScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(
-            text = &quot;Hello World!&quot;,
-            modifier = Modifier.align(Alignment.Center)
-        )
-    }
-}
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HelloScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Box</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-@Preview(showBackground = true)
-@Composable
-fun HelloPreview() {
-    HelloScreen()
-}
-</code></pre>
-<p>Let's now explain the modifications and their implications:</p>
-<h2 id="explanation-of-changes">Explanation of Changes</h2>
-<h3 id="1-new-helloscreen-composable-function">1. New <code>HelloScreen</code> Composable Function</h3>
-<pre><code class="language-kotlin">@Composable
-fun HelloScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(
-            text = &quot;Hello World!&quot;,
-            modifier = Modifier.align(Alignment.Center)
-        )
-    }
-}
-</code></pre>
+<span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"></span>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HelloPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">HelloScreen</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Let&rsquo;s now explain the modifications and their implications:</p>
+<h2 id="explanation-of-changes">Explanation of Changes<a class="headerlink" href="#explanation-of-changes" title="Permanent link">&para;</a></h2>
+<h3 id="1-new-helloscreen-composable-function">1. New <code>HelloScreen</code> Composable Function<a class="headerlink" href="#1-new-helloscreen-composable-function" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HelloScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Box</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
-<li>This new function is annotated with <code>@Composable</code>, indicating it's a Jetpack Compose composable function.</li>
+<li>This new function is annotated with <code>@Composable</code>, indicating it&rsquo;s a Jetpack Compose composable function.</li>
 <li>It encapsulates the display logic that was previously directly in <code>setContent</code>.</li>
 <li>This approach improves code reusability and readability.</li>
 </ul>
-<h3 id="2-modification-of-oncreate">2. Modification of <code>onCreate</code></h3>
-<pre><code class="language-kotlin">override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContent {
-        HelloScreen()
-    }
-}
-</code></pre>
+<h3 id="2-modification-of-oncreate">2. Modification of <code>onCreate</code><a class="headerlink" href="#2-modification-of-oncreate" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">HelloScreen</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>Instead of defining the content directly in <code>setContent</code>, we now call our <code>HelloScreen</code> composable function.</li>
 <li>This makes the <code>onCreate</code> code more concise and clear.</li>
 </ul>
-<h3 id="3-adding-a-preview-function">3. Adding a Preview Function</h3>
-<pre><code class="language-kotlin">@Preview(showBackground = true)
-@Composable
-fun HelloPreview() {
-    HelloScreen()
-}
-</code></pre>
+<h3 id="3-adding-a-preview-function">3. Adding a Preview Function<a class="headerlink" href="#3-adding-a-preview-function" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"></span>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HelloPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">HelloScreen</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>This new function is annotated with <code>@Preview</code>, which allows previewing the component in Android Studio without
   running the application.</li>
 <li><code>showBackground = true</code> adds a background to the preview for better visibility.</li>
 <li>It calls <code>HelloScreen()</code>, allowing you to see exactly what will be displayed in the application.</li>
 </ul>
-<h2 id="implications-and-benefits-of-these-changes">Implications and Benefits of These Changes</h2>
-<ol>
+<h2 id="implications-and-benefits-of-these-changes">Implications and Benefits of These Changes<a class="headerlink" href="#implications-and-benefits-of-these-changes" title="Permanent link">&para;</a></h2>
+<ol type="1">
 <li>
 <p><strong>Separation of Concerns</strong>: Display logic is now separated from activity logic, which is a good programming practice.</p>
 </li>
@@ -344,7 +344,7 @@ fun HelloPreview() {
 <p><strong>Reusability</strong>: <code>HelloScreen</code> can be easily reused elsewhere in the application if needed.</p>
 </li>
 <li>
-<p><strong>Testability</strong>: It's easier to test <code>HelloScreen</code> in isolation.</p>
+<p><strong>Testability</strong>: It&rsquo;s easier to test <code>HelloScreen</code> in isolation.</p>
 </li>
 <li>
 <p><strong>Preview</strong>: Adding the preview function allows developers to quickly see interface changes without having to compile
@@ -361,14 +361,14 @@ fun HelloPreview() {
 </li>
 </ol>
 <p>This approach is typical of development with Jetpack Compose, where the user interface is built from reusable and
-previewable components. It's a solid foundation for developing more complex applications while maintaining clean and
+previewable components. It&rsquo;s a solid foundation for developing more complex applications while maintaining clean and
 organized code.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../02-intro-compose/" class="btn btn-neutral float-left" title="2. Introduction to Jetpack Compose"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../04-hockey-v1/" class="btn btn-neutral float-right" title="4. Hockey Application Version 1">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../03b-usb-wifi-debugging/" class="btn btn-neutral float-right" title="3.1 USB and Wifi debugging">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -394,7 +394,7 @@ organized code.</p>
       <span><a href="../02-intro-compose/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../04-hockey-v1/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../03b-usb-wifi-debugging/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -402,7 +402,11 @@ organized code.</p>
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -109,6 +107,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../05-etats-evenements/">5. State and Event Management</a>
@@ -162,13 +162,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="1-introduction-to-mobile-and-android-programming">1. Introduction to Mobile and Android Programming</h1>
+                <h1 id="1-introduction-to-mobile-and-android-programming">1. Introduction to Mobile and Android Programming<a class="headerlink" href="#1-introduction-to-mobile-and-android-programming" title="Permanent link">&para;</a></h1>
 <p>Mobile programming represents an exciting and constantly evolving field in software development. It offers developers
 the opportunity to create applications that accompany users everywhere, transforming how we interact with technology in
 our daily lives.</p>
-<h2 id="mobile-programming-challenges">Mobile Programming Challenges</h2>
+<h2 id="mobile-programming-challenges">Mobile Programming Challenges<a class="headerlink" href="#mobile-programming-challenges" title="Permanent link">&para;</a></h2>
 <p>Mobile application development presents unique challenges compared to traditional platforms:</p>
-<ol>
+<ol type="1">
 <li>
 <p><strong>Limited resources</strong>: Mobile devices typically have less processing power, memory, and battery life than desktop
    computers.</p>
@@ -188,7 +188,7 @@ our daily lives.</p>
    system events.</p>
 </li>
 </ol>
-<h2 id="android-vs-other-platforms">Android vs Other Platforms</h2>
+<h2 id="android-vs-other-platforms">Android vs Other Platforms<a class="headerlink" href="#android-vs-other-platforms" title="Permanent link">&para;</a></h2>
 <p>Android distinguishes itself in several aspects:</p>
 <ul>
 <li><strong>Open source</strong>: Unlike iOS, Android is an open-source operating system, offering more flexibility to developers.</li>
@@ -196,9 +196,9 @@ our daily lives.</p>
 <li><strong>Device diversity</strong>: Android runs on a wide variety of devices from different manufacturers, unlike iOS which is
   limited to Apple devices.</li>
 <li><strong>Publication process</strong>: Publishing applications on the Google Play Store is generally faster and less restrictive
-  than on Apple's App Store.</li>
+  than on Apple&rsquo;s App Store.</li>
 </ul>
-<h2 id="history-of-android-versions">History of Android Versions</h2>
+<h2 id="history-of-android-versions">History of Android Versions<a class="headerlink" href="#history-of-android-versions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>2008: Android 1.0 (API 1)</li>
 <li>2009: Android 2.0 (Eclair, API 5)</li>
@@ -217,13 +217,13 @@ our daily lives.</p>
 <li>2022: Android 13 (API 33)</li>
 <li>2023: Android 14 (API 34)</li>
 </ul>
-<p>This list highlights the progression of Android versions and their corresponding APIs. It's important to note that each
+<p>This list highlights the progression of Android versions and their corresponding APIs. It&rsquo;s important to note that each
 new API version typically brings new features, performance improvements, and changes in how developers interact with the
 Android system.</p>
 <p>API numbers are particularly important for developers as they determine:</p>
-<ol>
+<ol type="1">
 <li>The features available to the application.</li>
-<li>The application's compatibility with different Android devices.</li>
+<li>The application&rsquo;s compatibility with different Android devices.</li>
 <li>The minimum and target requirements for publishing on the Google Play Store.</li>
 </ol>
 <p>When developing an Android application, developers must choose a minimum API version (which determines the oldest
@@ -231,46 +231,46 @@ supported devices) and a target API version (typically the most recent to take a
 optimizations).</p>
 <p>This constant progression of API versions underscores the importance for Android developers to stay current with the
 latest platform developments and adapt their applications accordingly.</p>
-<h2 id="classic-vs-modern-android-applications">Classic vs Modern Android Applications</h2>
-<h3 id="classic-applications-java">Classic Applications (Java)</h3>
+<h2 id="classic-vs-modern-android-applications">Classic vs Modern Android Applications<a class="headerlink" href="#classic-vs-modern-android-applications" title="Permanent link">&para;</a></h2>
+<h3 id="classic-applications-java">Classic Applications (Java)<a class="headerlink" href="#classic-applications-java" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Use of Java as the main language</li>
 <li>User interface defined in XML</li>
 <li>Use of Activities and Fragments for application structure</li>
 <li>More complex component lifecycle management</li>
 </ul>
-<h3 id="modern-applications-kotlin-with-jetpack-compose">Modern Applications (Kotlin with Jetpack Compose)</h3>
+<h3 id="modern-applications-kotlin-with-jetpack-compose">Modern Applications (Kotlin with Jetpack Compose)<a class="headerlink" href="#modern-applications-kotlin-with-jetpack-compose" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Use of Kotlin, a more modern and concise language</li>
 <li>User interface defined declaratively with Jetpack Compose</li>
 <li>More flexible and modular application structure</li>
 <li>Simplified component lifecycle management</li>
 <li>Better performance and less boilerplate code</li>
-<li>Native support for asynchronous and reactive programming... The transition from Java to Kotlin and the adoption of
+<li>Native support for asynchronous and reactive programming&hellip; The transition from Java to Kotlin and the adoption of
   Jetpack Compose represent a major evolution in Android development, offering developers more powerful tools and a more
   enjoyable development experience.</li>
 </ul>
 <p>In conclusion, Android mobile programming offers numerous opportunities and challenges. With the constant evolution of
 the platform and development tools, it is crucial for developers to stay up-to-date and adopt best practices to create
 performant and attractive applications.</p>
-<h2 id="android-mobile-application-development-steps">Android Mobile Application Development Steps</h2>
+<h2 id="android-mobile-application-development-steps">Android Mobile Application Development Steps<a class="headerlink" href="#android-mobile-application-development-steps" title="Permanent link">&para;</a></h2>
 <p>Mobile application development is a complex process that involves several steps, from initial design to final
-deployment. Here's a detailed overview of the main steps to develop an Android mobile application, including testing and
+deployment. Here&rsquo;s a detailed overview of the main steps to develop an Android mobile application, including testing and
 deployment phases:</p>
-<h3 id="1-design-and-planning">1. Design and Planning</h3>
+<h3 id="1-design-and-planning">1. Design and Planning<a class="headerlink" href="#1-design-and-planning" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Define application objectives and features</li>
 <li>Conduct market research and competitive analysis</li>
 <li>Create user interface wireframes and mockups</li>
 <li>Develop a development plan and schedule</li>
 </ul>
-<h3 id="2-development-environment-setup">2. Development Environment Setup</h3>
+<h3 id="2-development-environment-setup">2. Development Environment Setup<a class="headerlink" href="#2-development-environment-setup" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Install Android Studio</li>
 <li>Configure Android SDK and necessary tools</li>
 <li>Set up version control system (e.g., Git)</li>
 </ul>
-<h3 id="3-development">3. Development</h3>
+<h3 id="3-development">3. Development<a class="headerlink" href="#3-development" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Code the user interface (UI) with Jetpack Compose</li>
 <li>Implement business logic in Kotlin</li>
@@ -278,40 +278,40 @@ deployment phases:</p>
 <li>Manage local data storage (SharedPreferences, Room)</li>
 <li>Implement network connectivity features</li>
 </ul>
-<h3 id="4-testing">4. Testing</h3>
-<h4 id="a-unit-tests">a. Unit Tests</h4>
+<h3 id="4-testing">4. Testing<a class="headerlink" href="#4-testing" title="Permanent link">&para;</a></h3>
+<h4 id="a-unit-tests">a. Unit Tests<a class="headerlink" href="#a-unit-tests" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Write and execute unit tests for individual components</li>
 <li>Use JUnit and Mockito to test business logic</li>
 </ul>
-<h4 id="b-integration-tests">b. Integration Tests</h4>
+<h4 id="b-integration-tests">b. Integration Tests<a class="headerlink" href="#b-integration-tests" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Test interaction between different application modules</li>
 <li>Use Espresso for automated UI testing</li>
 </ul>
-<h4 id="c-manual-tests">c. Manual Tests</h4>
+<h4 id="c-manual-tests">c. Manual Tests<a class="headerlink" href="#c-manual-tests" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Perform functional tests on different devices and Android versions</li>
 <li>Test real-world usage scenarios</li>
 </ul>
-<h4 id="d-performance-tests">d. Performance Tests</h4>
+<h4 id="d-performance-tests">d. Performance Tests<a class="headerlink" href="#d-performance-tests" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Analyze application performance (CPU usage, memory, battery)</li>
 <li>Use Android Profiler to identify bottlenecks</li>
 </ul>
-<h3 id="5-debugging-and-optimization">5. Debugging and Optimization</h3>
+<h3 id="5-debugging-and-optimization">5. Debugging and Optimization<a class="headerlink" href="#5-debugging-and-optimization" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Fix bugs identified during testing</li>
 <li>Optimize application performance</li>
 <li>Improve user experience based on feedback</li>
 </ul>
-<h3 id="6-deployment-preparation">6. Deployment Preparation</h3>
+<h3 id="6-deployment-preparation">6. Deployment Preparation<a class="headerlink" href="#6-deployment-preparation" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Generate a signed APK or App bundle</li>
 <li>Prepare marketing resources (icons, screenshots, descriptions)</li>
 <li>Write privacy policy and terms of use</li>
 </ul>
-<h3 id="7-google-play-store-deployment">7. Google Play Store Deployment</h3>
+<h3 id="7-google-play-store-deployment">7. Google Play Store Deployment<a class="headerlink" href="#7-google-play-store-deployment" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Create a Google Play developer account</li>
 <li>Configure the application listing on Google Play console</li>
@@ -319,20 +319,20 @@ deployment phases:</p>
 <li>Define distribution countries and prices (if applicable)</li>
 <li>Submit application for review</li>
 </ul>
-<h3 id="8-post-launch-monitoring-and-maintenance">8. Post-launch Monitoring and Maintenance</h3>
+<h3 id="8-post-launch-monitoring-and-maintenance">8. Post-launch Monitoring and Maintenance<a class="headerlink" href="#8-post-launch-monitoring-and-maintenance" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Monitor installation and usage statistics</li>
 <li>Collect and analyze user feedback</li>
 <li>Respond to user comments and questions</li>
 <li>Plan and develop regular updates</li>
 </ul>
-<h3 id="9-updates-and-iterations">9. Updates and Iterations</h3>
+<h3 id="9-updates-and-iterations">9. Updates and Iterations<a class="headerlink" href="#9-updates-and-iterations" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Fix bugs reported by users</li>
 <li>Add new features based on feedback</li>
 <li>Adapt application to new Android versions and devices</li>
 </ul>
-<h3 id="10-continuous-marketing-and-promotion">10. Continuous Marketing and Promotion</h3>
+<h3 id="10-continuous-marketing-and-promotion">10. Continuous Marketing and Promotion<a class="headerlink" href="#10-continuous-marketing-and-promotion" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Implement ASO (App Store Optimization) strategies</li>
 <li>Promote the application on social media and other channels</li>
@@ -340,7 +340,7 @@ deployment phases:</p>
 </ul>
 <p>This process is iterative, and many steps can overlap or be repeated as the application develops and evolves. It is
 crucial to remain flexible and responsive to market changes, user feedback, and technological advances throughout the
-application's lifecycle.</p>
+application&rsquo;s lifecycle.</p>
               
             </div>
           </div><footer>
@@ -380,7 +380,11 @@ application's lifecycle.</p>
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

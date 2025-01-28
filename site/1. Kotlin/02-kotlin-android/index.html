@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -60,6 +58,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../2.%20Android/04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -114,25 +114,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="kotlin-for-android">Kotlin for Android</h1>
+                <h1 id="kotlin-for-android">Kotlin for Android<a class="headerlink" href="#kotlin-for-android" title="Permanent link">&para;</a></h1>
 <p><a href="https://kotlinlang.org/docs/android-overview.html">Source</a></p>
 <p>Android mobile development has been <a href="https://developer.android.com/kotlin/first">Kotlin-first</a> since Google I/O in 2019.</p>
 <p>More than 50% of professional Android developers use Kotlin as their primary language, while only 30% use Java as their
 main language. 70% of developers whose primary language is Kotlin say that Kotlin makes them more productive.</p>
 <p>By using Kotlin for Android development, you can benefit from:</p>
 <ul>
-<li><strong>Less code combined with greater readability</strong>. Spend less time writing your code and trying to understand others'
+<li><strong>Less code combined with greater readability</strong>. Spend less time writing your code and trying to understand others&rsquo;
   code.</li>
 <li><strong>Fewer common errors</strong>. Applications built with Kotlin are 20% less likely to crash based
-  on <a href="https://medium.com/androiddevelopers/fewer-crashes-and-more-stability-with-kotlin-b606c6a6ac04">Google's internal data</a>.</li>
-<li><strong>Kotlin support in Jetpack libraries</strong>. <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is Android's
+  on <a href="https://medium.com/androiddevelopers/fewer-crashes-and-more-stability-with-kotlin-b606c6a6ac04">Google&rsquo;s internal data</a>.</li>
+<li><strong>Kotlin support in Jetpack libraries</strong>. <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is Android&rsquo;s
   recommended modern toolkit for building native UI in
   Kotlin. <a href="https://developer.android.com/kotlin/ktx">KTX extensions</a> add Kotlin language features like coroutines,
   extension functions, lambdas, and named parameters to existing Android libraries.</li>
 <li><strong>Support for multiplatform development</strong>. Kotlin Multiplatform enables development not only for Android but also
   for <a href="https://kotlinlang.org/lp/multiplatform/">iOS</a>, backend, and web
   applications. <a href="https://developer.android.com/kotlin/multiplatform">Some Jetpack libraries</a> are already
-  multiplatform. <a href="https://www.jetbrains.com/lp/compose-multiplatform/">Compose Multiplatform</a>, JetBrains' declarative UI
+  multiplatform. <a href="https://www.jetbrains.com/lp/compose-multiplatform/">Compose Multiplatform</a>, JetBrains&rsquo; declarative UI
   framework based on Kotlin and Jetpack Compose, makes it possible to share user interfaces across platforms - iOS,
   Android, desktop, and web.</li>
 <li><strong>Mature language and environment</strong>. Since its creation in 2011, Kotlin has continuously evolved, not only as a
@@ -146,7 +146,7 @@ main language. 70% of developers whose primary language is Kotlin say that Kotli
   of the top thousand Android applications use Kotlin.</li>
 </ul>
 <p>Many startups and Fortune 500 companies have already developed Android applications using Kotlin, see the list
-on <a href="https://developer.android.com/kotlin/stories">Google's Android Developers website</a>.</p>
+on <a href="https://developer.android.com/kotlin/stories">Google&rsquo;s Android Developers website</a>.</p>
               
             </div>
           </div><footer>
@@ -186,7 +186,11 @@ on <a href="https://developer.android.com/kotlin/stories">Google's Android Devel
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

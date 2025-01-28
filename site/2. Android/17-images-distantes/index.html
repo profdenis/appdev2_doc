@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -138,79 +138,79 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="17-displaying-remote-images-and-videos">17. Displaying Remote Images and Videos</h1>
+                <h1 id="17-displaying-remote-images-and-videos">17. Displaying Remote Images and Videos<a class="headerlink" href="#17-displaying-remote-images-and-videos" title="Permanent link">&para;</a></h1>
 <p><a href="https://github.com/profdenis/ImagesVideos">Git Repository</a></p>
-<h2 id="displaying-an-image-from-a-url-in-jetpack-compose">Displaying an Image from a URL in Jetpack Compose</h2>
-<h3 id="prerequisites">Prerequisites</h3>
+<h2 id="displaying-an-image-from-a-url-in-jetpack-compose">Displaying an Image from a URL in Jetpack Compose<a class="headerlink" href="#displaying-an-image-from-a-url-in-jetpack-compose" title="Permanent link">&para;</a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>To display an image from a URL, we need to:</p>
-<ol>
+<ol type="1">
 <li>Add the Coil dependency in the <code>build.gradle</code> file (app level)</li>
 <li>Add Internet permission in <code>AndroidManifest.xml</code></li>
 </ol>
-<pre><code class="language-gradle">// build.gradle
+<div class="highlight"><pre><span></span><code>// build.gradle
 dependencies {
     implementation(&quot;io.coil-kt:coil-compose:2.5.0&quot;)
 }
-</code></pre>
-<pre><code class="language-xml">&lt;!-- AndroidManifest.xml --&gt;
-&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
-</code></pre>
-<h3 id="basic-composable">Basic Composable</h3>
-<p>Here's a simple usage example:</p>
-<pre><code class="language-kotlin">import androidx.compose.foundation.layout.size
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- AndroidManifest.xml --&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+<h3 id="basic-composable">Basic Composable<a class="headerlink" href="#basic-composable" title="Permanent link">&para;</a></h3>
+<p>Here&rsquo;s a simple usage example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.size</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">coil.compose.AsyncImage</span><span class="w"></span>
 
-@Composable
-fun RemoteImage() {
-    AsyncImage(
-        model = &quot;https://example.com/image.jpg&quot;,
-        contentDescription = &quot;Image description&quot;,
-        modifier = Modifier.size(200.dp)
-    )
-}
-</code></pre>
-<h3 id="more-complete-version-with-loading-management">More Complete Version with Loading Management</h3>
-<pre><code class="language-kotlin">import androidx.compose.foundation.layout.*
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
-import coil.compose.SubcomposeAsyncImage
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">RemoteImage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">AsyncImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://example.com/image.jpg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Image description&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">200.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="more-complete-version-with-loading-management">More Complete Version with Loading Management<a class="headerlink" href="#more-complete-version-with-loading-management" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.*</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.CircularProgressIndicator</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.layout.ContentScale</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">coil.compose.SubcomposeAsyncImage</span><span class="w"></span>
 
-@Composable
-fun AdvancedRemoteImage() {
-    SubcomposeAsyncImage(
-        model = &quot;https://example.com/image.jpg&quot;,
-        contentDescription = &quot;Image description&quot;,
-        modifier = Modifier.size(200.dp),
-        contentScale = ContentScale.Fit,
-        loading = {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
-        },
-        error = {
-            // You can customize the error display
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(&quot;Loading error&quot;)
-            }
-        }
-    )
-}
-</code></pre>
-<h3 id="important-points">Important Points</h3>
-<ol>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AdvancedRemoteImage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">SubcomposeAsyncImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://example.com/image.jpg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Image description&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">200.</span><span class="n">dp</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">contentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentScale</span><span class="p">.</span><span class="na">Fit</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">loading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">CircularProgressIndicator</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// You can customize the error display</span><span class="w"></span>
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Loading error&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="important-points">Important Points<a class="headerlink" href="#important-points" title="Permanent link">&para;</a></h3>
+<ol type="1">
 <li>
 <p><strong>Coil</strong> is an image loading library for Android, optimized for Kotlin and Jetpack Compose.</p>
 </li>
@@ -234,182 +234,182 @@ fun AdvancedRemoteImage() {
 <p>For testing, here are some royalty-free image URLs:</p>
 </li>
 </ol>
-<pre><code class="language-kotlin">&quot;https://picsum.photos/200&quot;  // Random 200x200 image
-&quot;https://via.placeholder.com/200&quot;  // 200x200 placeholder image
-</code></pre>
-<h3 id="complete-usage-example">Complete Usage Example</h3>
-<pre><code class="language-kotlin">@Composable
-fun ExampleImageScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        // Simple image
-        AsyncImage(
-            model = &quot;https://picsum.photos/200&quot;,
-            contentDescription = &quot;Random image&quot;,
-            modifier = Modifier.size(200.dp)
-        )
+<div class="highlight"><pre><span></span><code><span class="s">&quot;https://picsum.photos/200&quot;</span><span class="w">  </span><span class="c1">// Random 200x200 image</span><span class="w"></span>
+<span class="s">&quot;https://via.placeholder.com/200&quot;</span><span class="w">  </span><span class="c1">// 200x200 placeholder image</span><span class="w"></span>
+</code></pre></div>
+<h3 id="complete-usage-example">Complete Usage Example<a class="headerlink" href="#complete-usage-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">ExampleImageScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">spacedBy</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Simple image</span><span class="w"></span>
+<span class="w">        </span><span class="n">AsyncImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://picsum.photos/200&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Random image&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">200.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
 
-        // Image with loading management
-        SubcomposeAsyncImage(
-            model = &quot;https://picsum.photos/300&quot;,
-            contentDescription = &quot;Random image with loading&quot;,
-            modifier = Modifier.size(300.dp),
-            loading = { CircularProgressIndicator() }
-        )
-    }
-}
-</code></pre>
-<h2 id="video-integration-in-jetpack-compose">Video Integration in Jetpack Compose</h2>
-<h3 id="playing-mp4-videos-with-exoplayer">Playing MP4 Videos with ExoPlayer</h3>
-<p>To play MP4 videos, we'll use ExoPlayer, which is recommended by Google for media playback on Android.</p>
+<span class="w">        </span><span class="c1">// Image with loading management</span><span class="w"></span>
+<span class="w">        </span><span class="n">SubcomposeAsyncImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://picsum.photos/300&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Random image with loading&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">300.</span><span class="n">dp</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">loading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">CircularProgressIndicator</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="video-integration-in-jetpack-compose">Video Integration in Jetpack Compose<a class="headerlink" href="#video-integration-in-jetpack-compose" title="Permanent link">&para;</a></h2>
+<h3 id="playing-mp4-videos-with-exoplayer">Playing MP4 Videos with ExoPlayer<a class="headerlink" href="#playing-mp4-videos-with-exoplayer" title="Permanent link">&para;</a></h3>
+<p>To play MP4 videos, we&rsquo;ll use ExoPlayer, which is recommended by Google for media playback on Android.</p>
 <p>First, add the dependencies in <code>build.gradle</code>:</p>
-<pre><code class="language-gradle">dependencies {
+<div class="highlight"><pre><span></span><code>dependencies {
     implementation(&quot;androidx.media3:media3-exoplayer:1.2.0&quot;)
     implementation(&quot;androidx.media3:media3-ui:1.2.0&quot;)
 }
-</code></pre>
+</code></pre></div>
 <p>Then, create the video composable:</p>
-<pre><code class="language-kotlin">import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player
-import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.ui.PlayerView
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.*</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.platform.LocalContext</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.viewinterop.AndroidView</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.media3.common.MediaItem</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.media3.common.Player</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.media3.exoplayer.ExoPlayer</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.media3.ui.PlayerView</span><span class="w"></span>
 
-@Composable
-fun VideoPlayer(
-    videoUrl: String,
-    modifier: Modifier = Modifier
-) {
-    val context = LocalContext.current
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">VideoPlayer</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">videoUrl</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="w"></span>
 
-    // Creating ExoPlayer
-    val exoPlayer = remember {
-        ExoPlayer.Builder(context).build().apply {
-            setMediaItem(MediaItem.fromUri(videoUrl))
-            prepare()
-        }
-    }
+<span class="w">    </span><span class="c1">// Creating ExoPlayer</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">exoPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ExoPlayer</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">build</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">setMediaItem</span><span class="p">(</span><span class="n">MediaItem</span><span class="p">.</span><span class="na">fromUri</span><span class="p">(</span><span class="n">videoUrl</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">prepare</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    // Lifecycle management
-    DisposableEffect(Unit) {
-        onDispose {
-            exoPlayer.release()
-        }
-    }
+<span class="w">    </span><span class="c1">// Lifecycle management</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisposableEffect</span><span class="p">(</span><span class="kt">Unit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">onDispose</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">exoPlayer</span><span class="p">.</span><span class="na">release</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    // Player user interface
-    AndroidView(
-        factory = { context -&gt;
-            PlayerView(context).apply {
-                player = exoPlayer
-            }
-        },
-        modifier = modifier
-    )
-}
-</code></pre>
+<span class="w">    </span><span class="c1">// Player user interface</span><span class="w"></span>
+<span class="w">    </span><span class="n">AndroidView</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">            </span><span class="n">PlayerView</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exoPlayer</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>Usage:</p>
-<pre><code class="language-kotlin">@Composable
-fun VideoPlayerScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // Example with MP4 video
-        VideoPlayer(
-            videoUrl = &quot;https://example.com/video.mp4&quot;,
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(16f / 9f)
-        )
-    }
-}
-</code></pre>
-<h3 id="complete-version-with-error-and-loading-management">Complete Version with Error and Loading Management</h3>
-<pre><code class="language-kotlin">@Composable
-fun AdvancedVideoPlayer(
-    videoUrl: String,
-    modifier: Modifier = Modifier
-) {
-    var isLoading by remember { mutableStateOf(true) }
-    var hasError by remember { mutableStateOf(false) }
-    val context = LocalContext.current
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">VideoPlayerScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Example with MP4 video</span><span class="w"></span>
+<span class="w">        </span><span class="n">VideoPlayer</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">videoUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://example.com/video.mp4&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="na">aspectRatio</span><span class="p">(</span><span class="m">16f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">9f</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="complete-version-with-error-and-loading-management">Complete Version with Error and Loading Management<a class="headerlink" href="#complete-version-with-error-and-loading-management" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">AdvancedVideoPlayer</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">videoUrl</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">isLoading</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">hasError</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="w"></span>
 
-    val exoPlayer = remember {
-        ExoPlayer.Builder(context).build().apply {
-            addListener(object : Player.Listener {
-                override fun onPlaybackStateChanged(state: Int) {
-                    when (state) {
-                        Player.STATE_READY -&gt; isLoading = false
-                        Player.STATE_ENDED -&gt; { /* Handle end */
-                        }
-                        Player.STATE_BUFFERING -&gt; isLoading = true
-                        Player.STATE_IDLE -&gt; { /* Initial state */
-                        }
-                    }
-                }
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">exoPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ExoPlayer</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">build</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">addListener</span><span class="p">(</span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Player</span><span class="p">.</span><span class="na">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onPlaybackStateChanged</span><span class="p">(</span><span class="n">state</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Player</span><span class="p">.</span><span class="na">STATE_READY</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">isLoading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Player</span><span class="p">.</span><span class="na">STATE_ENDED</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Handle end */</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Player</span><span class="p">.</span><span class="na">STATE_BUFFERING</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">isLoading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Player</span><span class="p">.</span><span class="na">STATE_IDLE</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Initial state */</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
 
-                override fun onPlayerError(error: PlaybackException) {
-                    hasError = true
-                    isLoading = false
-                }
-            })
+<span class="w">                </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onPlayerError</span><span class="p">(</span><span class="n">error</span><span class="p">:</span><span class="w"> </span><span class="n">PlaybackException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">hasError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">                    </span><span class="n">isLoading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">})</span><span class="w"></span>
 
-            setMediaItem(MediaItem.fromUri(videoUrl))
-            prepare()
-        }
-    }
+<span class="w">            </span><span class="n">setMediaItem</span><span class="p">(</span><span class="n">MediaItem</span><span class="p">.</span><span class="na">fromUri</span><span class="p">(</span><span class="n">videoUrl</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">prepare</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    DisposableEffect(Unit) {
-        onDispose {
-            exoPlayer.release()
-        }
-    }
+<span class="w">    </span><span class="n">DisposableEffect</span><span class="p">(</span><span class="kt">Unit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">onDispose</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">exoPlayer</span><span class="p">.</span><span class="na">release</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    Box(modifier = modifier) {
-        AndroidView(
-            factory = { context -&gt;
-                PlayerView(context).apply {
-                    player = exoPlayer
-                }
-            },
-            modifier = Modifier.matchParentSize()
-        )
+<span class="w">    </span><span class="n">Box</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AndroidView</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="n">PlayerView</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exoPlayer</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">matchParentSize</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
 
-        if (isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isLoading</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">CircularProgressIndicator</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        if (hasError) {
-            Text(
-                text = &quot;Video playback error&quot;,
-                modifier = Modifier.align(Alignment.Center),
-                color = Color.Red
-            )
-        }
-    }
-}
-</code></pre>
-<h3 id="important-points_1">Important Points</h3>
-<ol>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hasError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Video playback error&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">align</span><span class="p">(</span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="important-points_1">Important Points<a class="headerlink" href="#important-points_1" title="Permanent link">&para;</a></h3>
+<ol type="1">
 <li>
 <p>Add Internet permission in <code>AndroidManifest.xml</code>:
-   <code>xml
-   &lt;uses-permission android:name="android.permission.INTERNET"/&gt;</code></p>
+   <div class="highlight"><pre><span></span><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div></p>
 </li>
 <li>
 <p>For ExoPlayer:</p>
 <ul>
-<li>It's Google's recommended solution</li>
+<li>It&rsquo;s Google&rsquo;s recommended solution</li>
 <li>Supports many video formats</li>
 <li>Handles caching automatically</li>
 <li>Offers advanced playback controls</li>
@@ -460,7 +460,11 @@ fun AdvancedVideoPlayer(
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

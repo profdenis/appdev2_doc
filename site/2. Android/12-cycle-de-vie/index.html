@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../style.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/puml.css" rel="stylesheet" />
+        <link href="../../assets/mkdocs_puml/interaction.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -32,11 +34,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> Android Programming
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -58,6 +56,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../02-intro-compose/">2. Introduction to Jetpack Compose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../03-premi%C3%A8re-app/">3. First Application with Jetpack Compose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03b-usb-wifi-debugging/">3.1 USB and Wifi debugging</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../04-hockey-v1/">4. Hockey Application Version 1</a>
                   </li>
@@ -136,9 +136,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="12-lifecycle-and-architecture">12. Lifecycle and Architecture</h1>
-<h2 id="general-android-application-lifecycle">General Android Application Lifecycle</h2>
-<h3 id="fundamental-concepts">Fundamental Concepts</h3>
+                <h1 id="12-lifecycle-and-architecture">12. Lifecycle and Architecture<a class="headerlink" href="#12-lifecycle-and-architecture" title="Permanent link">&para;</a></h1>
+<h2 id="general-android-application-lifecycle">General Android Application Lifecycle<a class="headerlink" href="#general-android-application-lifecycle" title="Permanent link">&para;</a></h2>
+<h3 id="fundamental-concepts">Fundamental Concepts<a class="headerlink" href="#fundamental-concepts" title="Permanent link">&para;</a></h3>
 <p>An Android application consists of different components, each with its own lifecycle, but the main element is the *
 <em>Activity</em>*. An activity represents a screen of the application with which the user can interact.</p>
 <p>The lifecycle of an activity extends from its creation to its destruction, when the system reclaims its resources.
@@ -149,7 +149,7 @@ Understanding this lifecycle is essential for:</p>
 <li>Preserving application data and state</li>
 <li>Properly handling configuration changes (screen rotation)</li>
 </ul>
-<h3 id="main-activity-states">Main Activity States</h3>
+<h3 id="main-activity-states">Main Activity States<a class="headerlink" href="#main-activity-states" title="Permanent link">&para;</a></h3>
 <p>An activity can be in four main states:</p>
 <ul>
 <li><strong>Active/Resumed</strong>: The activity is in the foreground and interactive</li>
@@ -158,9 +158,9 @@ Understanding this lifecycle is essential for:</p>
 <li><strong>Destroyed</strong>: The activity is terminated</li>
 </ul>
 <p>Lifecycle</p>
-<h3 id="lifecycle-methods">Lifecycle Methods</h3>
+<h3 id="lifecycle-methods">Lifecycle Methods<a class="headerlink" href="#lifecycle-methods" title="Permanent link">&para;</a></h3>
 <p>The main methods called during state transitions are:</p>
-<ol>
+<ol type="1">
 <li><code>onCreate()</code>: Activity initialization</li>
 <li><code>onStart()</code>: Activity becomes visible</li>
 <li><code>onResume()</code>: Activity becomes interactive</li>
@@ -168,35 +168,35 @@ Understanding this lifecycle is essential for:</p>
 <li><code>onStop()</code>: Activity is no longer visible</li>
 <li><code>onDestroy()</code>: Activity is destroyed</li>
 </ol>
-<h2 id="jetpack-compose-specificities">Jetpack Compose Specificities</h2>
-<h3 id="declarative-approach">Declarative Approach</h3>
+<h2 id="jetpack-compose-specificities">Jetpack Compose Specificities<a class="headerlink" href="#jetpack-compose-specificities" title="Permanent link">&para;</a></h2>
+<h3 id="declarative-approach">Declarative Approach<a class="headerlink" href="#declarative-approach" title="Permanent link">&para;</a></h3>
 <p>Jetpack Compose uses a different approach from the traditional lifecycle. Instead of directly managing state changes
 through callback methods, Compose uses a declarative paradigm.</p>
-<h3 id="state-management">State Management</h3>
+<h3 id="state-management">State Management<a class="headerlink" href="#state-management" title="Permanent link">&para;</a></h3>
 <p>In Compose, the lifecycle is closely tied to state management:</p>
 <ul>
 <li>Composables are either stateless or stateful</li>
 <li>State is managed through <code>State&lt;T&gt;</code> objects and the <code>remember{}</code> function</li>
 <li>Recomposition occurs automatically when state changes</li>
 </ul>
-<h3 id="effects-and-lifecycle">Effects and Lifecycle</h3>
+<h3 id="effects-and-lifecycle">Effects and Lifecycle<a class="headerlink" href="#effects-and-lifecycle" title="Permanent link">&para;</a></h3>
 <p>Compose introduces specific effects to manage lifecycle-related operations:</p>
-<pre><code class="language-kotlin">@Composable
-fun MyComposable() {
-    // Effect executed at each recomposition
-    LaunchedEffect(key1) {
-        // Code to execute
-    }
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyComposable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Effect executed at each recomposition</span><span class="w"></span>
+<span class="w">    </span><span class="n">LaunchedEffect</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Code to execute</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    // Effect executed only at first composition
-    DisposableEffect(key1) {
-        onDispose {
-            // Resource cleanup
-        }
-    }
-}
-</code></pre>
-<h3 id="best-practices">Best Practices</h3>
+<span class="w">    </span><span class="c1">// Effect executed only at first composition</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisposableEffect</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">onDispose</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Resource cleanup</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
 <p>For an efficient Compose application:</p>
 <ul>
 <li>Favor stateless components</li>
@@ -263,7 +263,11 @@ whether using the traditional approach or Jetpack Compose.</p>
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../assets/mkdocs_puml/puml.js"></script>
+      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      <script src="../../assets/mkdocs_puml/interaction.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
