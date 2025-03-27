@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://profdenis.github.io/appdev2_doc/2.%20Android/12-cycle-de-vie/">
+        <link rel="canonical" href="https://profdenis.github.io/appdev2_doc/2.%20Android/18-async/">
       
       
-        <link rel="prev" href="../11-json/">
+        <link rel="prev" href="../17-images-distantes/">
       
       
-        <link rel="next" href="../13-architecture/">
+        <link rel="next" href="../19-api/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>12. Lifecycle and Architecture - Android Programming</title>
+        <title>18. Async and await - Android Programming</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#12-lifecycle-and-architecture" class="md-skip">
+        <a href="#18-async-and-await" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              12. Lifecycle and Architecture
+              18. Async and await
             
           </span>
         </div>
@@ -763,30 +763,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    12. Lifecycle and Architecture
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../12-cycle-de-vie/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -795,119 +775,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#general-android-application-lifecycle" class="md-nav__link">
-    <span class="md-ellipsis">
-      General Android Application Lifecycle
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="General Android Application Lifecycle">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fundamental-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fundamental Concepts
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#main-activity-states" class="md-nav__link">
-    <span class="md-ellipsis">
-      Main Activity States
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lifecycle-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Lifecycle Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#jetpack-compose-specificities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Jetpack Compose Specificities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Jetpack Compose Specificities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#declarative-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      Declarative Approach
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#state-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      State Management
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#effects-and-lifecycle" class="md-nav__link">
-    <span class="md-ellipsis">
-      Effects and Lifecycle
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1022,10 +889,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../18-async/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    18. Async and await
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1034,6 +921,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-programming-in-pure-kotlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Programming in Pure Kotlin
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous Programming in Pure Kotlin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coroutines-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coroutines Basics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-asyncawait" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding Async/Await
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-programming-in-jetpack-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Programming in Jetpack Compose
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous Programming in Jetpack Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launchedeffect-for-side-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      LaunchedEffect for Side Effects
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1094,37 +1067,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-android-application-lifecycle" class="md-nav__link">
+  <a href="#asynchronous-programming-in-pure-kotlin" class="md-nav__link">
     <span class="md-ellipsis">
-      General Android Application Lifecycle
+      Asynchronous Programming in Pure Kotlin
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="General Android Application Lifecycle">
+    <nav class="md-nav" aria-label="Asynchronous Programming in Pure Kotlin">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fundamental-concepts" class="md-nav__link">
+  <a href="#coroutines-basics" class="md-nav__link">
     <span class="md-ellipsis">
-      Fundamental Concepts
+      Coroutines Basics
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-activity-states" class="md-nav__link">
+  <a href="#understanding-asyncawait" class="md-nav__link">
     <span class="md-ellipsis">
-      Main Activity States
+      Understanding Async/Await
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#lifecycle-methods" class="md-nav__link">
+  <a href="#parallel-decomposition" class="md-nav__link">
     <span class="md-ellipsis">
-      Lifecycle Methods
+      Parallel Decomposition
     </span>
   </a>
   
@@ -1136,46 +1109,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jetpack-compose-specificities" class="md-nav__link">
+  <a href="#asynchronous-programming-in-jetpack-compose" class="md-nav__link">
     <span class="md-ellipsis">
-      Jetpack Compose Specificities
+      Asynchronous Programming in Jetpack Compose
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Jetpack Compose Specificities">
+    <nav class="md-nav" aria-label="Asynchronous Programming in Jetpack Compose">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#declarative-approach" class="md-nav__link">
+  <a href="#launchedeffect-for-side-effects" class="md-nav__link">
     <span class="md-ellipsis">
-      Declarative Approach
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#state-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      State Management
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#effects-and-lifecycle" class="md-nav__link">
-    <span class="md-ellipsis">
-      Effects and Lifecycle
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
+      LaunchedEffect for Side Effects
     </span>
   </a>
   
@@ -1204,94 +1150,136 @@
   
 
 
-<h1 id="12-lifecycle-and-architecture">12. Lifecycle and Architecture<a class="headerlink" href="#12-lifecycle-and-architecture" title="Permanent link">&para;</a></h1>
-<h2 id="general-android-application-lifecycle">General Android Application Lifecycle<a class="headerlink" href="#general-android-application-lifecycle" title="Permanent link">&para;</a></h2>
-<h3 id="fundamental-concepts">Fundamental Concepts<a class="headerlink" href="#fundamental-concepts" title="Permanent link">&para;</a></h3>
-<p>An Android application consists of different components, each with its own lifecycle, but the main element is the *
-<em>Activity</em>*. An activity represents a screen of the application with which the user can interact.</p>
-<p>The lifecycle of an activity extends from its creation to its destruction, when the system reclaims its resources.
-Understanding this lifecycle is essential for:</p>
-<ul>
-<li>Avoiding crashes during interruptions (phone calls, app switching)</li>
-<li>Optimizing system resource usage</li>
-<li>Preserving application data and state</li>
-<li>Properly handling configuration changes (screen rotation)</li>
-</ul>
-<h3 id="main-activity-states">Main Activity States<a class="headerlink" href="#main-activity-states" title="Permanent link">&para;</a></h3>
-<p>An activity can be in four main states:</p>
-<ul>
-<li><strong>Active/Resumed</strong>: The activity is in the foreground and interactive</li>
-<li><strong>Paused</strong>: Visible but has lost focus</li>
-<li><strong>Stopped</strong>: Not visible but kept in memory</li>
-<li><strong>Destroyed</strong>: The activity is terminated</li>
-</ul>
-<p>Lifecycle</p>
-<h3 id="lifecycle-methods">Lifecycle Methods<a class="headerlink" href="#lifecycle-methods" title="Permanent link">&para;</a></h3>
-<p>The main methods called during state transitions are:</p>
-<ol type="1">
-<li><code>onCreate()</code>: Activity initialization</li>
-<li><code>onStart()</code>: Activity becomes visible</li>
-<li><code>onResume()</code>: Activity becomes interactive</li>
-<li><code>onPause()</code>: Activity loses focus</li>
-<li><code>onStop()</code>: Activity is no longer visible</li>
-<li><code>onDestroy()</code>: Activity is destroyed</li>
-</ol>
-<h2 id="jetpack-compose-specificities">Jetpack Compose Specificities<a class="headerlink" href="#jetpack-compose-specificities" title="Permanent link">&para;</a></h2>
-<h3 id="declarative-approach">Declarative Approach<a class="headerlink" href="#declarative-approach" title="Permanent link">&para;</a></h3>
-<p>Jetpack Compose uses a different approach from the traditional lifecycle. Instead of directly managing state changes
-through callback methods, Compose uses a declarative paradigm.</p>
-<h3 id="state-management">State Management<a class="headerlink" href="#state-management" title="Permanent link">&para;</a></h3>
-<p>In Compose, the lifecycle is closely tied to state management:</p>
-<ul>
-<li>Composables are either stateless or stateful</li>
-<li>State is managed through <code>State&lt;T&gt;</code> objects and the <code>remember{}</code> function</li>
-<li>Recomposition occurs automatically when state changes</li>
-</ul>
-<h3 id="effects-and-lifecycle">Effects and Lifecycle<a class="headerlink" href="#effects-and-lifecycle" title="Permanent link">&para;</a></h3>
-<p>Compose introduces specific effects to manage lifecycle-related operations:</p>
-<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@Composable</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">MyComposable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="c1">// Effect executed at each recomposition</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">LaunchedEffect</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="c1">// Code to execute</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="c1">// Effect executed only at first composition</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">DisposableEffect</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="n">onDispose</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="c1">// Resource cleanup</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+<h1 id="18-async-and-await">18. Async and await<a class="headerlink" href="#18-async-and-await" title="Permanent link">&para;</a></h1>
+<p>Asynchronous programming in Kotlin provides powerful tools to handle operations that might take time to complete without
+blocking the main thread. This approach is crucial for creating responsive applications, especially on platforms like
+Android.</p>
+<h2 id="asynchronous-programming-in-pure-kotlin">Asynchronous Programming in Pure Kotlin<a class="headerlink" href="#asynchronous-programming-in-pure-kotlin" title="Permanent link">&para;</a></h2>
+<p>Kotlin&rsquo;s approach to asynchronous programming is centered around <strong>coroutines</strong>, which are lightweight threads that can
+be suspended without blocking the underlying thread.</p>
+<h3 id="coroutines-basics">Coroutines Basics<a class="headerlink" href="#coroutines-basics" title="Permanent link">&para;</a></h3>
+<p>At the core of Kotlin&rsquo;s asynchronous programming are suspending functions and the <code>kotlinx.coroutines</code> library. Here&rsquo;s a
+simple example:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.*</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runBlocking</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Start&quot;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">deferred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span><span class="w"> </span><span class="c1">// Simulates a long-running operation</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="m">42</span><span class="w"> </span><span class="c1">// Return value</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The computed value is: </span><span class="si">${</span><span class="n">deferred</span><span class="p">.</span><span class="na">await</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;End&quot;</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
 </span></code></pre></div>
-<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
-<p>For an efficient Compose application:</p>
+<p>In this example:</p>
 <ul>
-<li>Favor stateless components</li>
-<li>Hoist state to the appropriate level</li>
-<li>Use effects for operations with side effects</li>
-<li>Avoid side effects in composables</li>
-<li>Properly manage recomposition to optimize performance</li>
+<li><code>runBlocking</code> creates a coroutine scope that bridges regular and coroutine code</li>
+<li><code>async</code> starts a coroutine that returns a <code>Deferred</code> object</li>
+<li><code>await()</code> suspends the coroutine until the result is available[5]</li>
 </ul>
-<p>By understanding these concepts, you can develop robust Android applications that properly handle their lifecycle,
-whether using the traditional approach or Jetpack Compose.</p>
-<p>Citations:</p>
+<h3 id="understanding-asyncawait">Understanding Async/Await<a class="headerlink" href="#understanding-asyncawait" title="Permanent link">&para;</a></h3>
+<p>The async/await pattern is fundamental in Kotlin coroutines:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.*</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runBlocking</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">deferredValue</span><span class="p">:</span><span class="w"> </span><span class="n">Deferred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span><span class="w"> </span><span class="c1">// Simulate a long computation</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="m">42</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The deferred value will be computed soon...&quot;</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deferredValue</span><span class="p">.</span><span class="na">await</span><span class="p">()</span><span class="w"> </span><span class="c1">// Wait for the result without blocking</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Computed value: </span><span class="si">$</span><span class="n">result</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>This pattern allows you to:</p>
+<ol type="1">
+<li>Start asynchronous operations with <code>async</code></li>
+<li>Continue execution without waiting</li>
+<li>Get the result with <code>await()</code> when needed[5]</li>
+</ol>
+<h3 id="parallel-decomposition">Parallel Decomposition<a class="headerlink" href="#parallel-decomposition" title="Permanent link">&para;</a></h3>
+<p>One of the powerful features of coroutines is the ability to run multiple operations in parallel:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.*</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">fetchMostRecentOrderId</span><span class="p">():</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span><span class="w"> </span><span class="c1">// Simulate network request</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;order123&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">fetchDeliveryCost</span><span class="p">(</span><span class="n">orderId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">Double</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="m">500</span><span class="p">)</span><span class="w"> </span><span class="c1">// Simulate network request</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">5.99</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">fetchStockInformation</span><span class="p">(</span><span class="n">orderId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="m">500</span><span class="p">)</span><span class="w"> </span><span class="c1">// Simulate network request</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;In stock&quot;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">}</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processOrder</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coroutineScope</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">orderId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fetchMostRecentOrderId</span><span class="p">()</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">deliveryCostDeferred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fetchDeliveryCost</span><span class="p">(</span><span class="n">orderId</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">stockInfoDeferred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fetchStockInformation</span><span class="p">(</span><span class="n">orderId</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span><span class="c1">// Wait for both results</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">deliveryCost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deliveryCostDeferred</span><span class="p">.</span><span class="na">await</span><span class="p">()</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">stockInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stockInfoDeferred</span><span class="p">.</span><span class="na">await</span><span class="p">()</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Order: </span><span class="si">$</span><span class="n">orderId</span><span class="s">, Delivery: </span><span class="si">$</span><span class="n">deliveryCost</span><span class="s">, Stock: </span><span class="si">$</span><span class="n">stockInfo</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="p">}</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runBlocking</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="n">processOrder</span><span class="p">()</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>This example demonstrates how to:</p>
 <ul>
-<li>https://developer.android.com/codelabs/basic-android-kotlin-compose-activity-lifecycle?hl=fr</li>
-<li>https://appmaster.io/fr/blog/jetpack-compose-un-guide-du-debutant</li>
-<li>https://www.weblineindia.com/fr/blog/android-app-development-lifecycle.html</li>
-<li>https://appmaster.io/fr/blog/kotlin-avec-jetpack-compose-les-meilleures-pratiques</li>
-<li>http://www.iro.umontreal.ca/~dift1155/cours/ift1155/communs/Cours/2P/C02_CycledeVie_2P.pdf</li>
-<li>https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=fr</li>
-<li>https://developer.android.com/codelabs/basic-android-kotlin-training-activity-lifecycle?hl=fr</li>
-<li>https://developer.android.com/develop/ui/compose/state?hl=fr</li>
-<li>https://www.yeeply.com/fr/blog/developpement-applications-mobiles/cycle-de-vie-developpement-logiciels-mobiles/</li>
-<li>https://developer.android.com/guide/components/activities/activity-lifecycle?hl=fr</li>
-<li>https://openclassrooms.com/fr/courses/8150246-developpez-votre-premiere-application-android/8256687-apprehendez-le-cycle-de-vie-d-une-application</li>
-<li>https://www.editions-eni.fr/livre/jetpack-compose-developpez-des-interfaces-accessibles-et-modernes-pour-android-9782409039669/gestion-des-etats-et-des-effets</li>
-<li>https://www.lirmm.fr/~fmichel/ens/android/cours/Android_lifecycle.pdf</li>
-<li>https://mathias-seguy.developpez.com/tutoriels/android/comprendre-cyclevie-activite/</li>
+<li>Fetch data sequentially when needed (orderId)</li>
+<li>Launch parallel operations with <code>async</code></li>
+<li>Await results only when required[1]</li>
 </ul>
+<h2 id="asynchronous-programming-in-jetpack-compose">Asynchronous Programming in Jetpack Compose<a class="headerlink" href="#asynchronous-programming-in-jetpack-compose" title="Permanent link">&para;</a></h2>
+<p>Jetpack Compose integrates seamlessly with Kotlin coroutines to handle UI updates and asynchronous operations.</p>
+<h3 id="launchedeffect-for-side-effects">LaunchedEffect for Side Effects<a class="headerlink" href="#launchedeffect-for-side-effects" title="Permanent link">&para;</a></h3>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@Composable</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">GreetingDisplay</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">greeting</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;Loading...&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">LaunchedEffect</span><span class="p">(</span><span class="kt">Unit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span><span class="w"> </span><span class="c1">// Simulate network request</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="n">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello Android!&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greeting</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>This example shows how <code>LaunchedEffect</code> launches a coroutine that follows the composable&rsquo;s lifecycle, allowing you to
+perform asynchronous operations and update the UI when complete.[3]</p>
+<details class="note">
+<summary>Citations</summary>
+<ul>
+<li>[1] https://hackernoon.com/asynchronous-programming-techniques-with-kotlin-fg9l3wjn</li>
+<li>[2] https://www.kodeco.com/books/kotlin-coroutines-by-tutorials/v2.0/chapters/5-async-await</li>
+<li>[3] https://erecinos98.wordpress.com/2023/08/25/demystifying-asynchronous-programming-in-jetpack-compose-and-apk-sharing/</li>
+<li>[4] https://kodaschool.com/blog/implementing-coroutines-using-jetpack</li>
+<li>[5] https://www.dhiwise.com/post/mastering-asynchronous-programming-a-deep-dive</li>
+<li>[6] https://coldfusion-example.blogspot.com/2025/01/efficiently-handle-asynchronous.html</li>
+<li>[7] https://developer.android.com/kotlin/coroutines</li>
+<li>[8] https://30dayscoding.com/blog/android-jetpack-compose-coroutines-integration</li>
+<li>[9] https://developer.android.com/develop/ui/compose/kotlin</li>
+<li>[10] https://www.youtube.com/watch?v=Wpco6IK1hmY</li>
+<li>[11] https://proandroiddev.com/kotlin-coroutines-101-async-programming-in-practice-062b359d502b</li>
+<li>[12] https://www.simplilearn.com/tutorials/kotlin-tutorial/ultimate-guide-on-kotlin-coroutines</li>
+<li>[13] https://www.youtube.com/watch?v=9vvNUNyFTFM</li>
+<li>[14] https://outcomeschool.com/blog/kotlin-coroutines</li>
+<li>[15] https://www.youtube.com/watch?v=RmkI2HH4fqU</li>
+<li>[16] https://proandroiddev.com/async-image-loading-the-jetpack-compose-way-2686d1ac5a53</li>
+</ul>
+</details>
 
 
 
@@ -1327,7 +1315,7 @@ whether using the traditional approach or Jetpack Compose.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../11-json/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 11. Reading and Writing JSON Files">
+          <a href="../17-images-distantes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 17. Displaying Remote Images and Videos">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1337,20 +1325,20 @@ whether using the traditional approach or Jetpack Compose.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                11. Reading and Writing JSON Files
+                17. Displaying Remote Images and Videos
               </div>
             </div>
           </a>
         
         
           
-          <a href="../13-architecture/" class="md-footer__link md-footer__link--next" aria-label="Next: 13. Architecture">
+          <a href="../19-api/" class="md-footer__link md-footer__link--next" aria-label="Next: 19. Making API calls">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                13. Architecture
+                19. Making API calls
               </div>
             </div>
             <div class="md-footer__button md-icon">
