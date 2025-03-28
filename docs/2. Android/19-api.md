@@ -258,20 +258,22 @@ fun UserDataDisplay(user: UserModel) {
 This example demonstrates how to make API calls in both pure Kotlin and within a Jetpack Compose application. The
 Compose example follows modern Android architecture patterns with ViewModel and StateFlow for state management.
 
-Citations:
-[1] https://www.delasign.com/blog/android-studio-kotlin-api-call/
-[2] https://stackoverflow.com/questions/46177133/http-request-in-android-with-kotlin
-[3] https://dev.to/ethand91/android-jetpack-compose-api-tutorial-1kh5
-[4] https://rhythamnegi.com/http-request-with-ktor-client-jetpack-compose-android-project-example
-[5] https://zetcode.com/kotlin/getpostrequest/
-[6] https://ktor.io/docs/client-requests.html
-[7] https://developer.android.com/reference/java/net/HttpURLConnection
-[8] https://stackoverflow.com/questions/45219379/how-to-make-an-api-request-in-kotlin
-[9] https://dev.to/gaurav-nandankar/how-to-make-api-calls-in-android-using-kotlin-mpd
-[10] https://www.mobileinsights.dev/making-get-requests-to-a-rest-api-with-kotlin-and-gson-in-android-9005ef75546e
-[11] https://developer.android.com/develop/ui/compose/mental-model
-[12] https://www.youtube.com/watch?v=bLIWWOMVxts
-[13] https://www.youtube.com/watch?v=LEeCcS5qhAs
-[14] https://www.youtube.com/watch?v=OHdXOoBwLOs
-[15] https://ktor.io/docs/server-requests-and-responses.html
+??? note "Citations"
+
+      - [1] https://www.delasign.com/blog/android-studio-kotlin-api-call/
+      - [2] https://stackoverflow.com/questions/46177133/http-request-in-android-with-kotlin
+      - [3] https://dev.to/ethand91/android-jetpack-compose-api-tutorial-1kh5
+      - [4] https://rhythamnegi.com/http-request-with-ktor-client-jetpack-compose-android-project-example
+      - [5] https://zetcode.com/kotlin/getpostrequest/
+      - [6] https://ktor.io/docs/client-requests.html
+      - [7] https://developer.android.com/reference/java/net/HttpURLConnection
+      - [8] https://stackoverflow.com/questions/45219379/how-to-make-an-api-request-in-kotlin
+      - [9] https://dev.to/gaurav-nandankar/how-to-make-api-calls-in-android-using-kotlin-mpd
+      - [10] https://www.mobileinsights.dev/making-get-requests-to-a-rest-api-with-kotlin-and-gson-in-android-9005ef75546e
+      - [11] https://developer.android.com/develop/ui/compose/mental-model
+      - [12] https://www.youtube.com/watch?v=bLIWWOMVxts
+      - [13] https://www.youtube.com/watch?v=LEeCcS5qhAs
+      - [14] https://www.youtube.com/watch?v=OHdXOoBwLOs
+      - [15] https://ktor.io/docs/server-requests-and-responses.html
+
 

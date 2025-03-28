@@ -303,15 +303,16 @@ fun SettingsScreen() {
 
 This implementation offers clear and intuitive navigation via a dropdown menu in the application's top bar.
 
-Citations:
-https://saurabhjadhavblogs.com/ultimate-guide-to-jetpack-compose-navigation
-https://proandroiddev.com/android-jetpack-compose-navigation-1cdfc488b891?gi=d31e0323b815
-https://proandroiddev.com/implement-bottom-bar-navigation-in-jetpack-compose-b530b1cd9ee2?gi=5c1ab6e9d027
-https://proandroiddev.com/mastering-navigation-in-jetpack-compose-a-guide-to-using-the-inclusive-attribute-b66916a5f15c?gi=401071494588
-https://blog.kotlin-academy.com/mastery-navigation-in-jetpack-compose-db00b0a0ef75?gi=007e50484ede
-https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation
-https://www.youtube.com/watch?v=JLICaBEiJS0
-https://developer.android.com/develop/ui/compose/navigation
+??? note "Citations"
+
+     - https://saurabhjadhavblogs.com/ultimate-guide-to-jetpack-compose-navigation
+     - https://proandroiddev.com/android-jetpack-compose-navigation-1cdfc488b891?gi=d31e0323b815
+     - https://proandroiddev.com/implement-bottom-bar-navigation-in-jetpack-compose-b530b1cd9ee2?gi=5c1ab6e9d027
+     - https://proandroiddev.com/mastering-navigation-in-jetpack-compose-a-guide-to-using-the-inclusive-attribute-b66916a5f15c?gi=401071494588
+     - https://blog.kotlin-academy.com/mastery-navigation-in-jetpack-compose-db00b0a0ef75?gi=007e50484ede
+     - https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation
+     - https://www.youtube.com/watch?v=JLICaBEiJS0
+     - https://developer.android.com/develop/ui/compose/navigation
 
 ## Example with Icons in Bottom Bar
 
